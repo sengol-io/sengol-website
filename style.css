@@ -62,7 +62,7 @@
       --text:        #101828;
       --text-soft:   #344054;
       --muted:       #5B6B82;
-      --faint:       #8593A8;
+      --faint:       #5E6D83;   /* 5.2:1 on white, 4.5:1 on --surface-2; still used for small text */
 
       /* lines + fills */
       --line:        rgba(16, 24, 40, 0.10);
@@ -133,6 +133,12 @@
     ul { padding: 0; list-style: none; }
     button, input { font: inherit; color: inherit; }
 
+    /* navy ring on light surfaces; inside the dark panels it would vanish,
+       so those switch to the bright gold ring */
+    .evidence :focus-visible,
+    .code :focus-visible,
+    .cta-box :focus-visible,
+    .cta-box .access-form input:focus-visible { outline-color: var(--gold-bright); }
     :focus-visible {
       outline: 2px solid var(--navy);
       outline-offset: 3px;
@@ -315,6 +321,14 @@
     .chip--ok    { border-color: rgba(27,127,82,0.35); background: rgba(27,127,82,0.09); color: var(--ok); }
     .chip--crit  { border-color: rgba(180,35,24,0.32); background: rgba(180,35,24,0.07); color: var(--crit); }
     .chip--info  { border-color: rgba(14,110,128,0.32); background: rgba(14,110,128,0.08); color: var(--info); }
+    /* the same chips inside a dark panel use the dark-panel signal colours */
+    .evidence .chip,
+    .code .chip,
+    .cta-box .chip     { border-color: var(--panel-line-strong); background: var(--panel-fill); color: var(--panel-muted); }
+    .evidence .chip--ok,   .code .chip--ok,   .cta-box .chip--ok   { border-color: rgba(95,211,166,0.32);  background: rgba(95,211,166,0.10);  color: var(--ok-dark); }
+    .evidence .chip--crit, .code .chip--crit, .cta-box .chip--crit { border-color: rgba(242,128,126,0.34); background: rgba(242,128,126,0.10); color: var(--crit-dark); }
+    .evidence .chip--info, .code .chip--info, .cta-box .chip--info { border-color: rgba(111,200,216,0.30); background: rgba(111,200,216,0.09); color: var(--info-dark); }
+    .evidence .chip--gold, .code .chip--gold, .cta-box .chip--gold { border-color: rgba(201,168,76,0.40);  background: var(--gold-dim);        color: var(--gold-bright); }
 
     /* card ----------------------------------------------------- */
     .card {
