@@ -6,51 +6,55 @@
   @font-face{font-family:'Inter';src:url('../fonts/inter-latin.3100e775.woff2') format('woff2');font-weight:100 900;font-display:block}
   @font-face{font-family:'JetBrains Mono';src:url('../fonts/jetbrains-mono-latin.83c005d4.woff2') format('woff2');font-weight:100 800;font-display:block}
   :root{
-    --bg:#070E1B; --surface:#0A1628; --surface-2:#0C1B30; --surface-3:#0F2138;
-    --gold:#C9A84C; --gold-bright:#E7CC7E; --gold-dim:rgba(201,168,76,.14);
-    --ok:#5FD3A6; --crit:#F2807E;
-    --text:#E9EEF6; --text-soft:#C3CFE0; --muted:#8FA0BC;
-    --line:rgba(233,238,246,.09); --line-strong:rgba(233,238,246,.16); --line-gold:rgba(201,168,76,.30);
+    /* same palette as style.css: paper page, navy primary, gold accent,
+       and a navy panel that keeps the dark-panel tokens */
+    --bg:#F6F6F2; --surface:#FFFFFF; --surface-2:#EEEFE9;
+    --navy:#0B1628; --navy-2:#13233B;
+    --gold:#C9A84C; --gold-bright:#E7CC7E; --gold-text:#7F6318; --gold-dim:rgba(201,168,76,.16);
+    --text:#101828; --text-soft:#344054; --muted:#5B6B82;
+    --line:rgba(16,24,40,.10); --line-strong:rgba(16,24,40,.18); --line-gold:rgba(201,168,76,.55);
+    --panel:#0B1628; --panel-2:#0F2138; --panel-text:#E9EEF6; --panel-muted:#8FA0BC;
+    --panel-line:rgba(233,238,246,.10); --panel-line-strong:rgba(233,238,246,.18);
+    --ok-dark:#5FD3A6; --crit-dark:#F2807E;
   }
   *{box-sizing:border-box;margin:0}
-  body{
-    width:1200px;height:630px;overflow:hidden;position:relative;
-    font-family:'Inter',system-ui,sans-serif;color:var(--text);
+  /* The gradient lives on .wrap, which has an explicit 1200x630 box, rather
+     than on body: a body background propagates to the root canvas and is
+     sized to the html element, which left an unpainted band at the bottom. */
+  html,body{width:1200px;height:630px;overflow:hidden;background:var(--surface-2)}
+  body{position:relative;font-family:'Inter',system-ui,sans-serif;color:var(--text)}
+  .wrap{position:relative;width:1200px;height:630px;padding:52px 64px;display:flex;flex-direction:column;
     background:
-      radial-gradient(1100px 620px at 78% 8%, rgba(201,168,76,.055), transparent 60%),
-      linear-gradient(160deg, #0B1524 0%, var(--bg) 55%, #060B15 100%);
+      radial-gradient(900px 560px at 82% 10%, rgba(201,168,76,.10), transparent 62%),
+      linear-gradient(160deg, #FFFFFF 0%, var(--bg) 55%, var(--surface-2) 100%);
   }
-  .grid{position:absolute;inset:0;
-    background-image:linear-gradient(rgba(233,238,246,.028) 1px,transparent 1px),
-                     linear-gradient(90deg,rgba(233,238,246,.028) 1px,transparent 1px);
-    background-size:56px 56px}
-  .wrap{position:relative;padding:52px 64px;height:100%;display:flex;flex-direction:column}
-  .brand{display:flex;align-items:center;gap:13px;font-size:31px;font-weight:900;letter-spacing:-.04em}
-  .brand img{width:46px;height:46px;display:block}
+  .brand{display:flex;align-items:center;gap:13px;font-size:31px;font-weight:900;letter-spacing:-.04em;color:var(--text)}
+  /* brand-mark.png is the white symbol; it sits in a navy tile on the light card, as in the site nav */
+  .brand img{width:46px;height:46px;display:block;padding:7px;border-radius:12px;background:var(--navy)}
   .body{display:flex;gap:40px;flex:1;align-items:center;margin-top:16px}
   .left{flex:1;min-width:0}
-  h1{font-size:63px;line-height:1.06;font-weight:900;letter-spacing:-.045em}
-  h1 .g{color:var(--gold);display:block}
+  h1{font-size:63px;line-height:1.06;font-weight:900;letter-spacing:-.045em;color:var(--navy)}
+  h1 .g{display:block}
   p{margin-top:22px;font-size:20px;line-height:1.5;color:var(--text-soft);max-width:672px}
   .chips{display:flex;flex-wrap:nowrap;gap:10px;margin-top:30px}
-  .chip{border:1px solid var(--line-strong);border-radius:999px;padding:9px 15px;font-size:16px;font-weight:700;color:var(--text-soft);white-space:nowrap}
-  .chip.on{border-color:var(--line-gold);background:var(--gold-dim);color:var(--gold-bright)}
-  .panel{width:388px;flex:none;border:1px solid var(--line);border-radius:17px;background:var(--surface-2);
-         box-shadow:0 30px 80px rgba(0,0,0,.5);overflow:hidden;margin-top:8px}
-  .panel__bar{display:flex;align-items:center;gap:9px;padding:14px 17px;border-bottom:1px solid var(--line);background:var(--surface-3)}
+  .chip{border:1px solid var(--line-strong);border-radius:999px;padding:9px 15px;font-size:16px;font-weight:700;color:var(--text-soft);background:var(--surface);white-space:nowrap}
+  .chip.on{border-color:var(--line-gold);background:var(--gold-dim);color:var(--gold-text)}
+  .panel{width:388px;flex:none;border:1px solid var(--panel-line-strong);border-radius:17px;
+         background:linear-gradient(170deg, var(--panel-2), var(--panel));color:var(--panel-text);
+         box-shadow:0 30px 80px rgba(16,24,40,.28);overflow:hidden;margin-top:8px}
+  .panel__bar{display:flex;align-items:center;gap:9px;padding:14px 17px;border-bottom:1px solid var(--panel-line);background:rgba(255,255,255,.04)}
   .dot{width:9px;height:9px;border-radius:50%;background:rgba(233,238,246,.22)}
-  .panel__title{margin-left:9px;font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--muted);letter-spacing:.01em}
-  .r{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:17px 17px;border-bottom:1px solid var(--line)}
-  .r span:first-child{font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--text);
+  .panel__title{margin-left:9px;font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--panel-muted);letter-spacing:.01em}
+  .r{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:17px 17px;border-bottom:1px solid var(--panel-line)}
+  .r span:first-child{font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--panel-text);
        border-left:3px solid var(--gold);padding-left:11px;white-space:nowrap}
   .tag{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.07em;
        padding:5px 10px;border-radius:7px}
-  .tag.ok{color:var(--ok);background:rgba(95,211,166,.13)}
-  .tag.no{color:var(--crit);background:rgba(242,128,126,.13)}
-  .r.crit span:first-child{border-left-color:var(--crit)}
-  .foot{padding:15px 17px;font-family:'JetBrains Mono',monospace;font-size:13.5px;color:var(--ok)}
+  .tag.ok{color:var(--ok-dark);background:rgba(95,211,166,.13)}
+  .tag.no{color:var(--crit-dark);background:rgba(242,128,126,.13)}
+  .r.crit span:first-child{border-left-color:var(--crit-dark)}
+  .foot{padding:15px 17px;font-family:'JetBrains Mono',monospace;font-size:13.5px;color:var(--ok-dark)}
 </style>
-<div class="grid"></div>
 <div class="wrap">
   <div class="brand"><img src="../brand-mark.png" alt="">Sengol</div>
   <div class="body">

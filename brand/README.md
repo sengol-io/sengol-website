@@ -26,15 +26,25 @@ tokens, fonts and copy as the page, so a hero rewrite means re-rendering the
 card too.
 
 ```
-chromium --headless --disable-gpu --hide-scrollbars \
-  --force-device-scale-factor=1 --window-size=1200,630 \
-  --screenshot=og-image.png brand/og-card.html
+chromium --headless=new --disable-gpu --hide-scrollbars \
+  --force-device-scale-factor=1 --window-size=1200,720 \
+  --screenshot=og-card-raw.png brand/og-card.html
 ```
 
-Then optimize losslessly. Do **not** quantize to a 256-colour palette: the
-background is a navy gradient, and every palette method tried shifted it
-visibly toward purple (max channel deviation 36–72) for a ~250 KB saving that
-is not worth a wrong brand colour on the most-shared asset on the site.
+The window is 720 tall on purpose: Chromium's new headless mode reserves
+90 px of the window for browser chrome, so a 630 px window gives a 540 px
+viewport and the card's gradient stops short with an unpainted band at the
+bottom. Crop the top 1200×630 of the raw capture to get the card:
+
+```
+python3 -c "from PIL import Image; Image.open('og-card-raw.png').convert('RGB').crop((0,0,1200,630)).save('og-image.png', optimize=True)"
+```
+
+Check that the bottom row of the result is the gradient's end colour, not
+white. Then keep the PNG lossless. Do **not** quantize to a 256-colour
+palette: the background is a smooth gradient and the panel a navy one, and
+palette methods shift both visibly for a ~250 KB saving that is not worth a
+wrong brand colour on the most-shared asset on the site.
 
 ## Known limits of the source art
 
