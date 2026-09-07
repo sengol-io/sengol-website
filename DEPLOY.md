@@ -85,8 +85,14 @@ the project -> Settings.
 
 ## 2. Move the sengol.io custom domain
 
-This was completed on 2026-09-07; the steps are kept for the next time a
-hostname has to move between Pages projects.
+Status: done. On 2026-09-07 the operator attached `sengol.io` to
+`sengol-website`, confirmed with `curl -I` that `https://sengol.io` and
+`https://www.sengol.io` returned 200 with the `_headers` values and the same
+asset etags as `sengol-website.pages.dev`, and then deleted `sengol-landing`.
+Nothing in this repository performs that cutover; it is a dashboard
+procedure, kept here for the next time a hostname has to move between Pages
+projects. If you are reading this on a fresh account or after a project has
+been recreated, re-run section 3 before trusting this status line.
 
 The old project `sengol-landing` owned the `sengol.io` custom domain.
 Cloudflare only lets one Pages project hold a given hostname, and it offers
