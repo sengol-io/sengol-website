@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="AI assurance for production agents. Runtime guardrails, 32 evaluators and signed evidence an examiner can verify offline — OSFI E-23, EU AI Act and 27 more." />
-  <meta name="theme-color" content="#070E1B" />
+  <meta name="theme-color" content="#F6F6F2" />
   <title>AI Agent Assurance &amp; Governance Platform | Sengol</title>
   <link rel="canonical" href="https://sengol.io/" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
@@ -457,7 +457,7 @@
               <span class="door__badge chip">Run it yourself</span>
               <div class="card__icon"><svg aria-hidden="true"><use href="#i-lock" /></svg></div>
               <h3>You run it, inside your network.</h3>
-              <p class="lede">Docker Compose, Helm or Terraform, or <code style="font-family:var(--mono);font-size:0.86rem;color:var(--gold-bright)">pip install sengol</code> — with a 14-day licence file. Your data never leaves your network, from the first request.</p>
+              <p class="lede">Docker Compose, Helm or Terraform, or <code style="font-family:var(--mono);font-size:0.86rem;color:var(--gold-text)">pip install sengol</code> — with a 14-day licence file. Your data never leaves your network, from the first request.</p>
               <ul class="feature-list">
                 <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Your infrastructure</b> — your Postgres, your keys, your VPC or laptop.</span></li>
                 <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Same full capability</b> — the trial licence unlocks everything, not a subset.</span></li>
@@ -533,7 +533,7 @@
             <article class="step">
               <div class="step__num">04</div>
               <h3>Prove</h3>
-              <p>Each verdict is HMAC-signed, hash-chained, and mapped to the obligation it satisfies. Export an evidence pack and hand it to an auditor — they verify it with <code style="font-family:var(--mono);font-size:0.76rem;background:rgba(0,0,0,0.28);padding:2px 6px;border-radius:5px;color:var(--gold-bright)">sengol-verify</code>, a separate open-source tool with no dependency on Sengol and no licence to check.</p>
+              <p>Each verdict is HMAC-signed, hash-chained, and mapped to the obligation it satisfies. Export an evidence pack and hand it to an auditor — they verify it with <code style="font-family:var(--mono);font-size:0.76rem;background:var(--panel);padding:2px 6px;border-radius:5px;color:var(--gold-text)">sengol-verify</code>, a separate open-source tool with no dependency on Sengol and no licence to check.</p>
               <code>sengol-verify verify</code>
             </article>
           </div>
@@ -636,7 +636,7 @@ pass rate <span class="n">0.943</span> &lt; min_pass <span class="n">0.95</span>
                   <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>HMAC-SHA256 hash chain</b> — append-only, tamper-evident, with a canonical signed payload per record type.</span></li>
                   <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Ed25519 countersignatures</b> — a second, asymmetric signature so a third party verifies without ever holding your secret.</span></li>
                   <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Merkle anchoring</b> — periodic roots anchored to an RFC 3161 timestamp authority and Rekor, proving a record existed at a point in time.</span></li>
-                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Offline verification</b> — export a portable bundle and verify it with <code style="font-family:var(--mono);font-size:0.82rem;background:rgba(0,0,0,0.28);padding:1px 6px;border-radius:5px;color:var(--gold-bright)">sengol-verify</code>, a separate open-source tool that never talks to Sengol and never checks a licence.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Offline verification</b> — export a portable bundle and verify it with <code style="font-family:var(--mono);font-size:0.82rem;background:var(--panel);padding:1px 6px;border-radius:5px;color:var(--gold-text)">sengol-verify</code>, a separate open-source tool that never talks to Sengol and never checks a licence.</span></li>
                   <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>WORM-grade storage</b> — Postgres, DynamoDB, or S3 with Object Lock in COMPLIANCE mode.</span></li>
                 </ul>
                 <a class="panel__more" href="https://docs.sengol.io/concepts/audit-records">How audit records are signed<svg aria-hidden="true"><use href="#i-arrow" /></svg></a>
@@ -889,7 +889,7 @@ mfa_asserted=true · acr=urn:mace:...:mfa</code></pre>
                   requires your prompts or completions to reach us.
                 </p>
                 <p class="lede">
-                  <code style="font-family:var(--mono);font-size:0.86rem;color:var(--gold-bright)">docker compose up</code>
+                  <code style="font-family:var(--mono);font-size:0.86rem;color:var(--gold-text)">docker compose up</code>
                   for a laptop. Helm and Terraform for AWS, Azure, GCP, OpenShift and on-prem.
                   Fully air-gapped, if that's the requirement.
                 </p>

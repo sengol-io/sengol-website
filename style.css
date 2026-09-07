@@ -36,38 +36,60 @@
        1. TOKENS
        ============================================================ */
     :root {
-      /* surfaces */
-      --bg:          #070E1B;
-      --surface:     #0A1628;
-      --surface-2:   #0C1B30;
-      --surface-3:   #0F2138;
+      /* surfaces: warm off-white paper, white cards, a slightly deeper
+         tint for alternating sections */
+      --bg:          #F6F6F2;
+      --surface:     #FFFFFF;
+      --surface-2:   #EEEFE9;
+      --surface-3:   #E4E6DF;
 
-      /* brand */
+      /* brand: navy carries buttons, headings and the dark panels; gold is
+         the accent. --gold-text is gold darkened until it passes AA on
+         white; use it for any gold *text* on a light surface. */
+      --navy:        #0B1628;
+      --navy-2:      #13233B;
       --gold:        #C9A84C;
       --gold-bright: #E7CC7E;
-      --gold-dim:    rgba(201, 168, 76, 0.14);
+      --gold-text:   #7F6318;
+      --gold-dim:    rgba(201, 168, 76, 0.16);
 
-      /* semantic signal */
-      --ok:          #5FD3A6;
-      --crit:        #F2807E;
-      --info:        #6FC8D8;
+      /* semantic signal, tuned for light surfaces */
+      --ok:          #1B7F52;
+      --crit:        #B42318;
+      --info:        #0E6E80;
 
       /* type */
-      --text:        #E9EEF6;
-      --text-soft:   #C3CFE0;
-      --muted:       #8FA0BC;
-      --faint:       #62738F;
+      --text:        #101828;
+      --text-soft:   #344054;
+      --muted:       #5B6B82;
+      --faint:       #8593A8;
 
       /* lines + fills */
-      --line:        rgba(233, 238, 246, 0.09);
-      --line-strong: rgba(233, 238, 246, 0.16);
-      --line-gold:   rgba(201, 168, 76, 0.30);
-      --fill:        rgba(255, 255, 255, 0.035);
-      --fill-2:      rgba(255, 255, 255, 0.058);
+      --line:        rgba(16, 24, 40, 0.10);
+      --line-strong: rgba(16, 24, 40, 0.18);
+      --line-gold:   rgba(201, 168, 76, 0.55);
+      --fill:        rgba(16, 24, 40, 0.03);
+      --fill-2:      rgba(16, 24, 40, 0.055);
 
       /* depth */
-      --shadow:      0 24px 70px rgba(0, 0, 0, 0.42);
-      --shadow-lg:   0 40px 110px rgba(0, 0, 0, 0.55);
+      --shadow:      0 10px 30px rgba(16, 24, 40, 0.07);
+      --shadow-lg:   0 24px 64px rgba(16, 24, 40, 0.13);
+
+      /* dark panels: the evidence chain, code blocks and the closing CTA
+         keep the navy look. They use these tokens so the light page
+         tokens above never leak into them. */
+      --panel:       #0B1628;
+      --panel-2:     #0F2138;
+      --panel-text:  #E9EEF6;
+      --panel-soft:  #C3CFE0;
+      --panel-muted: #8FA0BC;
+      --panel-faint: #62738F;
+      --panel-line:  rgba(233, 238, 246, 0.10);
+      --panel-line-strong: rgba(233, 238, 246, 0.18);
+      --panel-fill:  rgba(255, 255, 255, 0.04);
+      --ok-dark:     #5FD3A6;
+      --crit-dark:   #F2807E;
+      --info-dark:   #6FC8D8;
 
       /* geometry */
       --r-sm: 10px;
@@ -112,12 +134,12 @@
     button, input { font: inherit; color: inherit; }
 
     :focus-visible {
-      outline: 2px solid var(--gold-bright);
+      outline: 2px solid var(--navy);
       outline-offset: 3px;
       border-radius: 4px;
     }
 
-    ::selection { background: rgba(201, 168, 76, 0.28); color: #fff; }
+    ::selection { background: rgba(201, 168, 76, 0.35); color: var(--text); }
 
     .sr-only {
       position: absolute; width: 1px; height: 1px;
@@ -128,7 +150,7 @@
     .skip-link {
       position: absolute; top: 8px; left: 8px; z-index: 100;
       padding: 10px 16px; border-radius: 999px;
-      background: var(--gold); color: var(--bg); font-weight: 800;
+      background: var(--navy); color: #fff; font-weight: 800;
       transform: translateY(-200%);
       transition: transform 180ms ease;
     }
@@ -137,11 +159,10 @@
     /* ============================================================
        3. AMBIENT BACKGROUND
        ============================================================ */
-    .ambient {
-      position: fixed; inset: 0; z-index: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
+    /* The blurred glows and grid were part of the dark theme. On paper
+       they read as stains, so the layer is kept in the markup (pages still
+       reference it) but not drawn. */
+    .ambient { display: none; }
 
     .ambient__glow {
       position: absolute;
@@ -187,7 +208,7 @@
     .container--narrow { width: min(940px, calc(100% - 44px)); }
 
     .section { padding: clamp(72px, 9vw, 122px) 0; position: relative; }
-    .section--tint { background: linear-gradient(180deg, rgba(255,255,255,0.016), rgba(255,255,255,0)); }
+    .section--tint { --section-bg: var(--surface-2); background: var(--surface-2); }
     .section--rule { border-top: 1px solid var(--line); }
 
     .eyebrow {
@@ -196,7 +217,7 @@
       border: 1px solid var(--line-gold);
       border-radius: 999px;
       background: var(--gold-dim);
-      color: var(--gold-bright);
+      color: var(--gold-text);
       font-size: 0.755rem; font-weight: 800;
       letter-spacing: 0.1em; text-transform: uppercase;
       line-height: 1.5;
@@ -235,7 +256,7 @@
       text-wrap: pretty;
     }
 
-    .gold { color: var(--gold-bright); }
+    .gold { color: var(--gold-text); }
 
     /* buttons ------------------------------------------------- */
     .btn {
@@ -256,22 +277,22 @@
 
     .btn:hover {
       transform: translateY(-2px);
-      border-color: var(--line-gold);
+      border-color: var(--navy);
       background: var(--fill);
-      color: #fff;
+      color: var(--text);
     }
 
     .btn--primary {
       border-color: transparent;
-      background: linear-gradient(180deg, var(--gold-bright), var(--gold));
-      color: #10192B;
+      background: var(--navy);
+      color: #fff;
       font-weight: 850;
-      box-shadow: 0 14px 38px rgba(201, 168, 76, 0.24);
+      box-shadow: 0 10px 26px rgba(11, 22, 40, 0.20);
     }
     .btn--primary:hover {
-      background: linear-gradient(180deg, #F0DA9C, var(--gold-bright));
-      color: #10192B;
-      box-shadow: 0 20px 50px rgba(201, 168, 76, 0.34);
+      background: var(--navy-2);
+      color: #fff;
+      box-shadow: 0 16px 36px rgba(11, 22, 40, 0.26);
     }
 
     .btn--ghost { border-color: var(--line); }
@@ -290,10 +311,10 @@
       line-height: 1.7;
       white-space: nowrap;
     }
-    .chip--gold  { border-color: var(--line-gold); background: var(--gold-dim); color: var(--gold-bright); }
-    .chip--ok    { border-color: rgba(95,211,166,0.32); background: rgba(95,211,166,0.10); color: var(--ok); }
-    .chip--crit  { border-color: rgba(242,128,126,0.34); background: rgba(242,128,126,0.10); color: var(--crit); }
-    .chip--info  { border-color: rgba(111,200,216,0.30); background: rgba(111,200,216,0.09); color: var(--info); }
+    .chip--gold  { border-color: var(--line-gold); background: var(--gold-dim); color: var(--gold-text); }
+    .chip--ok    { border-color: rgba(27,127,82,0.35); background: rgba(27,127,82,0.09); color: var(--ok); }
+    .chip--crit  { border-color: rgba(180,35,24,0.32); background: rgba(180,35,24,0.07); color: var(--crit); }
+    .chip--info  { border-color: rgba(14,110,128,0.32); background: rgba(14,110,128,0.08); color: var(--info); }
 
     /* card ----------------------------------------------------- */
     .card {
@@ -301,8 +322,7 @@
       padding: 26px;
       border: 1px solid var(--line);
       border-radius: var(--r-lg);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.052), rgba(255,255,255,0.014));
+      background: var(--surface);
       box-shadow: var(--shadow);
       transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
       overflow: hidden;
@@ -311,7 +331,7 @@
       content: "";
       position: absolute; inset: 0;
       border-radius: inherit;
-      background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 0%), rgba(201,168,76,0.10), transparent 62%);
+      background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 0%), rgba(201,168,76,0.09), transparent 62%);
       opacity: 0;
       transition: opacity 260ms ease;
       pointer-events: none;
@@ -326,7 +346,7 @@
       border: 1px solid var(--line-gold);
       border-radius: 12px;
       background: var(--gold-dim);
-      color: var(--gold-bright);
+      color: var(--gold-text);
     }
     .card__icon svg { width: 20px; height: 20px; }
 
@@ -337,14 +357,14 @@
        ============================================================ */
     .nav {
       position: sticky; top: 0; z-index: 50;
-      background: rgba(7, 14, 27, 0.72);
+      background: rgba(246, 246, 242, 0.78);
       border-bottom: 1px solid transparent;
       backdrop-filter: blur(20px) saturate(140%);
       -webkit-backdrop-filter: blur(20px) saturate(140%);
       transition: background 220ms ease, border-color 220ms ease;
     }
     .nav.is-stuck {
-      background: rgba(7, 14, 27, 0.92);
+      background: rgba(246, 246, 242, 0.94);
       border-bottom-color: var(--line);
     }
 
@@ -358,11 +378,16 @@
       font-size: 1.14rem; font-weight: 900; letter-spacing: -0.04em;
       color: var(--text);
     }
-    /* The mark is a shield — it is already its own container, so it sits bare
-       rather than inside the gold tile the old single-stroke glyph needed. */
+    /* brand-mark.png is the white symbol from the logo package, cut for dark
+       backgrounds. On the light nav it sits in a navy tile so it stays the
+       supplied artwork rather than a recoloured copy. */
     .brand__mark {
       display: block;
-      width: 30px; height: 30px;
+      box-sizing: border-box;
+      width: 32px; height: 32px;
+      padding: 5px;
+      border-radius: 9px;
+      background: var(--navy);
     }
 
     .nav__links {
@@ -426,11 +451,9 @@
       letter-spacing: -0.045em;
       text-wrap: balance;
     }
-    .hero h1 .verb {
-      background: linear-gradient(100deg, var(--gold-bright), var(--gold) 58%, #B99A45);
-      -webkit-background-clip: text; background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+    /* The headline no longer alternates gold and white; the whole line is
+       ink and the eyebrow above it carries the brand colour. */
+    .hero h1 .verb { color: var(--navy); }
 
     .hero__sub {
       max-width: 560px;
@@ -456,9 +479,10 @@
 
     .evidence {
       position: relative;
-      border: 1px solid var(--line-strong);
+      border: 1px solid var(--panel-line-strong);
       border-radius: var(--r-xl);
-      background: linear-gradient(170deg, rgba(15, 33, 56, 0.96), rgba(8, 17, 31, 0.96));
+      background: linear-gradient(170deg, var(--panel-2), var(--panel));
+      color: var(--panel-text);
       box-shadow: var(--shadow-lg);
       overflow: hidden;
     }
@@ -472,27 +496,27 @@
     .evidence__bar {
       display: flex; align-items: center; gap: 10px;
       padding: 13px 18px;
-      border-bottom: 1px solid var(--line);
-      background: rgba(255,255,255,0.026);
+      border-bottom: 1px solid var(--panel-line);
+      background: var(--panel-fill);
     }
     .dots { display: flex; gap: 6px; }
     .dots i { width: 9px; height: 9px; border-radius: 50%; background: rgba(233,238,246,0.16); }
     .evidence__title {
       font-family: var(--mono);
       font-size: 0.78rem;
-      color: var(--faint);
+      color: var(--panel-faint);
       letter-spacing: 0.02em;
     }
     .live {
       display: inline-flex; align-items: center; gap: 6px;
       margin-left: auto;
-      color: var(--ok);
+      color: var(--ok-dark);
       font-size: 0.685rem; font-weight: 800;
       letter-spacing: 0.1em; text-transform: uppercase;
     }
     .live i {
       width: 7px; height: 7px; border-radius: 50%;
-      background: var(--ok);
+      background: var(--ok-dark);
       box-shadow: 0 0 0 0 rgba(95,211,166,0.55);
       animation: pulse 2.4s ease-out infinite;
     }
@@ -507,8 +531,8 @@
     .rec {
       position: relative;
       padding: 14px 16px;
-      border: 1px solid var(--line);
-      border-left: 3px solid var(--line-strong);
+      border: 1px solid var(--panel-line);
+      border-left: 3px solid var(--panel-line-strong);
       border-radius: var(--r);
       background: rgba(255,255,255,0.028);
       opacity: 0;
@@ -522,8 +546,8 @@
       to   { opacity: 1; transform: none; }
     }
 
-    .rec--ok   { border-left-color: var(--ok); }
-    .rec--crit { border-left-color: var(--crit); background: rgba(242,128,126,0.055); }
+    .rec--ok   { border-left-color: var(--ok-dark); }
+    .rec--crit { border-left-color: var(--crit-dark); background: rgba(242,128,126,0.055); }
 
     .rec__top {
       display: flex; align-items: center; gap: 10px;
@@ -533,22 +557,22 @@
       font-family: var(--mono);
       font-size: 0.775rem;
       font-weight: 600;
-      color: var(--text);
+      color: var(--panel-text);
     }
     .rec__seq {
       margin-left: auto;
       font-family: var(--mono);
       font-size: 0.72rem;
-      color: var(--faint);
+      color: var(--panel-faint);
     }
     .rec__body {
       display: grid; gap: 3px;
       font-family: var(--mono);
       font-size: 0.735rem;
       line-height: 1.7;
-      color: var(--muted);
+      color: var(--panel-muted);
     }
-    .rec__body b { color: var(--text-soft); font-weight: 500; }
+    .rec__body b { color: var(--panel-soft); font-weight: 500; }
     .rec__hash {
       display: flex; align-items: center; gap: 7px;
       margin-top: 9px;
@@ -556,20 +580,20 @@
       border-top: 1px dashed rgba(233,238,246,0.10);
       font-family: var(--mono);
       font-size: 0.685rem;
-      color: var(--faint);
+      color: var(--panel-faint);
     }
     .rec__hash svg { width: 12px; height: 12px; color: var(--gold); flex: 0 0 auto; }
 
     .evidence__foot {
       display: flex; flex-wrap: wrap; gap: 8px 18px;
       padding: 14px 18px;
-      border-top: 1px solid var(--line);
-      background: rgba(255,255,255,0.02);
+      border-top: 1px solid var(--panel-line);
+      background: var(--panel-fill);
       font-size: 0.755rem; font-weight: 700;
-      color: var(--muted);
+      color: var(--panel-muted);
     }
     .evidence__foot span { display: inline-flex; align-items: center; gap: 6px; }
-    .evidence__foot svg { width: 13px; height: 13px; color: var(--ok); }
+    .evidence__foot svg { width: 13px; height: 13px; color: var(--ok-dark); }
 
     /* sits just below the chain, offset right — never covers the foot row */
     .verify-float {
@@ -580,7 +604,7 @@
       border: 1px solid var(--line-gold);
       border-left-width: 3px;
       border-radius: var(--r);
-      background: rgba(10, 22, 40, 0.96);
+      background: var(--panel);
       box-shadow: var(--shadow-lg);
     }
     .verify-float code {
@@ -593,7 +617,7 @@
     .verify-float p {
       font-family: var(--mono);
       font-size: 0.735rem;
-      color: var(--ok);
+      color: var(--ok-dark);
       margin: 0;
     }
 
@@ -620,7 +644,7 @@
       font-weight: 900;
       letter-spacing: -0.05em;
       line-height: 1.1;
-      color: var(--gold-bright);
+      color: var(--navy);
     }
     .stat span {
       display: block;
@@ -643,7 +667,7 @@
       padding: 26px;
       border: 1px solid var(--line);
       border-radius: var(--r-lg);
-      background: var(--fill);
+      background: var(--surface);
     }
     .tension__item b {
       font-size: 1.06rem; font-weight: 850; letter-spacing: -0.03em;
@@ -651,7 +675,7 @@
     .tension__item span { color: var(--muted); font-size: 0.93rem; }
     .tension__promise {
       margin-top: 30px;
-      color: var(--gold-bright);
+      color: var(--navy);
       font-size: clamp(1.12rem, 2.1vw, 1.5rem);
       font-weight: 850;
       letter-spacing: -0.035em;
@@ -682,11 +706,11 @@
       margin-bottom: 20px;
       border: 1px solid var(--line-gold);
       border-radius: 14px;
-      background: linear-gradient(180deg, rgba(201,168,76,0.20), rgba(201,168,76,0.06));
-      color: var(--gold-bright);
+      background: var(--gold-dim);
+      color: var(--gold-text);
       font-weight: 900;
       font-size: 0.95rem;
-      box-shadow: 0 0 0 7px var(--bg);
+      box-shadow: 0 0 0 7px var(--section-bg, var(--bg));
     }
     .step h3 { margin-bottom: 9px; }
     .step p { color: var(--muted); font-size: 0.945rem; }
@@ -696,7 +720,8 @@
       padding: 4px 9px;
       border: 1px solid var(--line);
       border-radius: 7px;
-      background: rgba(0,0,0,0.28);
+      border-color: transparent;
+      background: var(--panel);
       font-family: var(--mono);
       font-size: 0.76rem;
       color: var(--gold-bright);
@@ -725,7 +750,7 @@
     .tab[aria-selected="true"] {
       border-color: var(--line-gold);
       background: var(--gold-dim);
-      color: var(--gold-bright);
+      color: var(--gold-text);
     }
 
     .panel { display: none; }
@@ -740,7 +765,7 @@
       padding: clamp(26px, 3.4vw, 42px);
       border: 1px solid var(--line);
       border-radius: var(--r-xl);
-      background: linear-gradient(165deg, rgba(255,255,255,0.05), rgba(255,255,255,0.012));
+      background: var(--surface);
       box-shadow: var(--shadow);
     }
 
@@ -760,35 +785,36 @@
       font-size: 0.95rem;
       color: var(--text-soft);
     }
-    .feature-list svg { width: 20px; height: 20px; color: var(--gold); margin-top: 2px; }
+    .feature-list svg { width: 20px; height: 20px; color: var(--gold-text); margin-top: 2px; }
     .feature-list b { font-weight: 750; color: var(--text); }
     .feature-list span { color: var(--muted); }
 
     .panel__more {
       display: inline-flex; align-items: center; gap: 8px;
       margin-top: 24px;
-      color: var(--gold-bright);
+      color: var(--gold-text);
       font-size: 0.935rem; font-weight: 750;
       transition: gap 180ms ease, color 180ms ease;
     }
     .panel__more svg { width: 16px; height: 16px; }
-    .panel__more:hover { gap: 12px; color: #F0DA9C; }
+    .panel__more:hover { gap: 12px; color: var(--navy); }
 
     /* code block ------------------------------------------------ */
     .code {
-      border: 1px solid var(--line);
+      border: 1px solid var(--panel-line-strong);
       border-radius: var(--r-lg);
-      background: rgba(4, 9, 18, 0.85);
+      background: var(--panel);
+      color: var(--panel-text);
       overflow: hidden;
     }
     .code__bar {
       display: flex; align-items: center; gap: 10px;
       padding: 11px 16px;
-      border-bottom: 1px solid var(--line);
-      background: rgba(255,255,255,0.026);
+      border-bottom: 1px solid var(--panel-line);
+      background: var(--panel-fill);
       font-family: var(--mono);
       font-size: 0.755rem;
-      color: var(--faint);
+      color: var(--panel-faint);
     }
     .code pre {
       margin: 0;
@@ -797,16 +823,16 @@
       font-family: var(--mono);
       font-size: 0.815rem;
       line-height: 1.78;
-      color: var(--text-soft);
+      color: var(--panel-soft);
       tab-size: 2;
     }
-    .code .c  { color: var(--faint); font-style: italic; }  /* comment */
-    .code .k  { color: #C99AE0; }                            /* keyword */
-    .code .s  { color: var(--gold-bright); }                 /* string  */
-    .code .f  { color: var(--info); }                        /* fn      */
-    .code .n  { color: #E9A87C; }                            /* number  */
-    .code .ok { color: var(--ok); }
-    .code .no { color: var(--crit); }
+    .code .c  { color: var(--panel-faint); font-style: italic; }  /* comment */
+    .code .k  { color: #C99AE0; }                                  /* keyword */
+    .code .s  { color: var(--gold-bright); }                       /* string  */
+    .code .f  { color: var(--info-dark); }                         /* fn      */
+    .code .n  { color: #E9A87C; }                                  /* number  */
+    .code .ok { color: var(--ok-dark); }
+    .code .no { color: var(--crit-dark); }
 
     /* ============================================================
        11. BENTO
@@ -850,7 +876,7 @@
       padding: 12px 18px;
       border: 1px solid var(--line);
       border-radius: 999px;
-      background: var(--fill);
+      background: var(--surface);
       white-space: nowrap;
       font-size: 0.9rem;
       font-weight: 700;
@@ -878,7 +904,8 @@
       padding: 3px 8px;
       border: 1px solid var(--line);
       border-radius: 6px;
-      background: rgba(0,0,0,0.3);
+      border-color: transparent;
+      background: var(--panel);
       font-family: var(--mono);
       font-size: 0.83rem;
       color: var(--gold-bright);
@@ -903,18 +930,20 @@
       padding: 16px 18px;
       border: 1px solid var(--line);
       border-radius: var(--r);
-      background: var(--fill);
+      background: var(--surface);
     }
     .sec-list .ic {
       display: grid; place-items: center;
       width: 38px; height: 38px;
       border-radius: 11px;
       background: var(--gold-dim);
-      color: var(--gold-bright);
+      color: var(--gold-text);
     }
     .sec-list .ic svg { width: 18px; height: 18px; }
     .sec-list b { display: block; font-size: 0.985rem; font-weight: 800; letter-spacing: -0.02em; }
     .sec-list p { margin-top: 3px; color: var(--muted); font-size: 0.915rem; }
+    /* emphasis inside the description stays inline; only the title is a block */
+    .sec-list p b { display: inline; font-size: inherit; font-weight: 750; letter-spacing: 0; color: var(--text); }
 
     /* ============================================================
        15. PERSONAS
@@ -924,7 +953,7 @@
     .persona .role {
       display: block;
       margin-bottom: 10px;
-      color: var(--gold-bright);
+      color: var(--gold-text);
       font-size: 0.715rem; font-weight: 850;
       letter-spacing: 0.11em; text-transform: uppercase;
     }
@@ -945,10 +974,10 @@
     .faq details {
       border: 1px solid var(--line);
       border-radius: var(--r);
-      background: var(--fill);
+      background: var(--surface);
       transition: border-color 180ms ease;
     }
-    .faq details[open] { border-color: var(--line-gold); background: var(--fill-2); }
+    .faq details[open] { border-color: var(--line-gold); background: var(--surface); }
     .faq summary {
       display: flex; align-items: center; gap: 14px;
       padding: 19px 22px;
@@ -962,7 +991,7 @@
     .faq summary .plus {
       margin-left: auto;
       width: 18px; height: 18px;
-      color: var(--gold);
+      color: var(--gold-text);
       transition: transform 220ms ease;
       flex: 0 0 auto;
     }
@@ -975,23 +1004,39 @@
     .cta-box {
       position: relative;
       padding: clamp(40px, 5.5vw, 72px) clamp(24px, 4vw, 56px);
-      border: 1px solid var(--line-gold);
+      border: 1px solid var(--panel-line-strong);
       border-radius: var(--r-xl);
       background:
-        radial-gradient(ellipse 80% 120% at 50% 0%, rgba(201,168,76,0.15), transparent 62%),
-        linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.012));
+        radial-gradient(ellipse 80% 120% at 50% 0%, rgba(201,168,76,0.16), transparent 62%),
+        linear-gradient(180deg, var(--panel-2), var(--panel));
+      color: var(--panel-text);
       box-shadow: var(--shadow-lg);
       text-align: center;
       overflow: hidden;
     }
-    .cta-box h2 { max-width: 720px; margin-inline: auto; }
+    .cta-box h2 { max-width: 720px; margin-inline: auto; color: #fff; }
+    .cta-box .lede { color: var(--panel-muted); }
+    .cta-box .eyebrow { color: var(--gold-bright); border-color: rgba(201,168,76,0.4); }
+    .cta-box .chip { border-color: var(--panel-line); background: var(--panel-fill); color: var(--panel-muted); }
+    .cta-box .btn { border-color: var(--panel-line-strong); color: var(--panel-text); }
+    .cta-box .btn:hover { border-color: var(--gold); background: var(--panel-fill); color: #fff; }
+    .cta-box .btn--primary {
+      border-color: transparent;
+      background: linear-gradient(180deg, var(--gold-bright), var(--gold));
+      color: var(--navy);
+      box-shadow: 0 14px 38px rgba(201, 168, 76, 0.24);
+    }
+    .cta-box .btn--primary:hover {
+      background: linear-gradient(180deg, #F0DA9C, var(--gold-bright));
+      color: var(--navy);
+    }
 
     .access-form {
       display: flex;
       width: min(520px, 100%);
       margin: 30px auto 0;
       padding: 6px;
-      border: 1px solid var(--line-strong);
+      border: 1px solid var(--panel-line-strong);
       border-radius: 999px;
       background: rgba(4, 9, 18, 0.6);
     }
@@ -1000,15 +1045,16 @@
       border: 0; outline: 0;
       padding: 0 18px;
       background: transparent;
+      color: var(--panel-text);
       font-size: 0.97rem;
     }
-    .access-form input::placeholder { color: var(--faint); }
+    .access-form input::placeholder { color: var(--panel-faint); }
     .access-form .btn { flex: 0 0 auto; }
 
     .form-status {
       min-height: 1.5em;
       margin-top: 14px;
-      color: var(--ok);
+      color: var(--ok-dark);
       font-size: 0.925rem;
       font-weight: 700;
     }
@@ -1021,7 +1067,7 @@
     .footer {
       padding: 64px 0 34px;
       border-top: 1px solid var(--line);
-      background: rgba(4, 9, 18, 0.5);
+      background: var(--surface-2);
     }
     .footer__grid {
       display: grid;
@@ -1038,7 +1084,7 @@
     }
     .footer ul { display: grid; gap: 10px; }
     .footer ul a { color: var(--muted); font-size: 0.93rem; transition: color 160ms ease; }
-    .footer ul a:hover { color: var(--gold-bright); }
+    .footer ul a:hover { color: var(--navy); }
     .footer__bar {
       display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
       gap: 14px;
@@ -1131,7 +1177,7 @@
     .prose ol { list-style: decimal; }
     .prose li { color: var(--text-soft); font-size: 0.98rem; line-height: 1.6; }
     .prose li::marker { color: var(--gold); }
-    .prose a { color: var(--gold-bright); text-decoration: underline; text-underline-offset: 3px; }
+    .prose a { color: var(--gold-text); text-decoration: underline; text-underline-offset: 3px; }
     .prose strong { color: var(--text); }
     .prose hr { border: none; border-top: 1px solid var(--line); margin: 40px 0; }
 
@@ -1158,12 +1204,12 @@
       padding: 0 16px;
       border: 1px solid var(--line-strong);
       border-radius: var(--r-sm);
-      background: rgba(4, 9, 18, 0.55);
+      background: var(--surface);
       color: var(--text);
       font-size: 0.98rem;
     }
     .field input::placeholder { color: var(--faint); }
-    .field input:focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 2px; }
+    .field input:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
     .field input.is-invalid { border-color: var(--crit); }
     .field-error {
       min-height: 1.2em;
@@ -1193,9 +1239,9 @@
       display: none;
       margin-top: 16px;
       padding: 14px 16px;
-      border: 1px solid rgba(242,128,126,0.34);
+      border: 1px solid rgba(180,35,24,0.30);
       border-radius: var(--r-sm);
-      background: rgba(242,128,126,0.08);
+      background: rgba(180,35,24,0.06);
       color: var(--text-soft);
       font-size: 0.9rem;
       line-height: 1.55;
@@ -1216,7 +1262,7 @@
     }
     .kv-table th { color: var(--muted); font-weight: 700; width: 34%; }
     .kv-table td { color: var(--text-soft); }
-    .kv-table code { font-family: var(--mono); font-size: 0.85rem; color: var(--gold-bright); background: rgba(0,0,0,0.28); padding: 2px 7px; border-radius: 6px; }
+    .kv-table code { font-family: var(--mono); font-size: 0.85rem; color: var(--gold-bright); background: var(--panel); padding: 2px 7px; border-radius: 6px; }
     .table-wrap { overflow-x: auto; }
 
     .callout {
@@ -1237,7 +1283,7 @@
     }
     .error-page .code-big {
       font-family: var(--mono);
-      color: var(--gold-bright);
+      color: var(--gold-text);
       font-size: 0.9rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
