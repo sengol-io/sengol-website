@@ -1,0 +1,12 @@
+# Cloudflare Pages configuration for sengol.io.
+#
+# The site is plain HTML/CSS with no build step, so the repository root is the
+# deploy directory. Response headers live in `_headers`; keep that file as the
+# single source of header rules. There is no `_redirects` file because nothing
+# on the site needs one.
+#
+# Deploys run from .github/workflows/deploy-cloudflare.yml. See DEPLOY.md for
+# one-time project setup, secrets, and the custom-domain move.
+
+name = "sengol-website"
+pages_build_output_dir = "."
