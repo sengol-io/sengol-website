@@ -78,7 +78,7 @@
       "publisher": {
         "@id": "https://sengol.io/#organization"
       },
-      "softwareRequirements": "Python 3.11 or later",
+      "softwareRequirements": "Appliance image on Python 3.13; SDK supports Python 3.11 or later",
       "description": "Sengol is the assurance layer for production AI agents. It runs runtime guardrails inline, evaluates every model call with 32 deterministic and LLM-judge evaluators, gates deployments in CI/CD, and records every decision as a cryptographically signed, hash-chained audit record that a third party can verify offline.",
       "featureList": [
         "Runtime guardrails and tool authorization for AI agents",
@@ -90,7 +90,7 @@
         "29 regulatory frameworks including OSFI E-23, EU AI Act, NIST AI RMF and ISO/IEC 42001",
         "Model drift detection with automated response policies",
         "Segregation of duties, SSO, SCIM and resource-scoped access",
-        "Retention, legal hold and right-to-erasure"
+        "Retention floors and right-to-erasure"
       ],
       "isAccessibleForFree": false
     },
@@ -135,7 +135,7 @@
           "name": "Does any of my data leave my infrastructure?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Not by design. The SDK writes to an audit store you own — your Postgres, DynamoDB or S3 — in your own environment. Deploy with Docker Compose, Helm or Terraform inside your VPC, or fully air-gapped. If you use a hosted LLM judge, that provider sees the judge prompt; run a local model instead and nothing leaves at all."
+            "text": "Not by design. The SDK writes to an audit store you own — your own Postgres — in your own environment. Deploy with Docker Compose, Helm or Terraform inside your VPC, or fully air-gapped. If you use a hosted LLM judge, that provider sees the judge prompt; run a local model instead and nothing leaves at all."
           }
         },
         {
@@ -164,10 +164,10 @@
         },
         {
           "@type": "Question",
-          "name": "What's included and what's Enterprise-gated?",
+          "name": "Is there a free tier, or feature tiers?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Included: the SDK, every built-in evaluator, the signed audit store, offline verification, the local Console, the CLI and the CI gate. Enterprise-gated: the certified regulatory packs and PDF reports, the Judge Builder pipeline, and managed deployment tooling — Helm, Terraform, air-gapped install and the hosted API."
+            "text": "No. Sengol is proprietary software from version 2.0 and there is no free tier and no feature tiers: one licence unlocks the whole appliance — the SDK, every evaluator, the signed audit store, the Console, the CLI and CI gate, judge governance, ControlBook-driven reports, and the Docker Compose, Helm and Terraform installs, air-gapped or not. The 14-day trial is the full product. The one exception runs the other way: sengol-verify, the offline verifier, is a separate Apache-2.0 tool that needs no licence at all."
           }
         }
       ]
@@ -345,7 +345,7 @@
 
               <div class="hero__meta">
                 <span class="chip">Runs in your VPC</span>
-                <span class="chip">Python 3.11+</span>
+                <span class="chip">Python 3.13 appliance · 3.11+ SDK</span>
                 <span class="chip">OpenTelemetry-native</span>
                 <span class="chip">Air-gap capable</span>
               </div>
@@ -409,7 +409,7 @@
               </div>
 
               <div class="verify-float" aria-hidden="true">
-                <code>$ sengol-verify verify --offline pack.json</code>
+                <code>$ sengol-verify pack.json</code>
                 <p>OK · 4,823 records · 0 tampered</p>
               </div>
             </div>
@@ -528,13 +528,13 @@
               <div class="step__num">03</div>
               <h3>Gate</h3>
               <p>Block the call inline before the user sees it, and block the deploy before it merges. The GitHub Action posts a verdict on the PR and exits non-zero on failure.</p>
-              <code>sengol run-suite</code>
+              <code>sengol gate</code>
             </article>
             <article class="step">
               <div class="step__num">04</div>
               <h3>Prove</h3>
               <p>Each verdict is HMAC-signed, hash-chained, and mapped to the obligation it satisfies. Export an evidence pack and hand it to an auditor — they verify it with <code style="font-family:var(--mono);font-size:0.76rem;background:var(--panel);padding:2px 6px;border-radius:5px;color:var(--gold-bright)">sengol-verify</code>, a separate open-source tool with no dependency on Sengol and no licence to check.</p>
-              <code>sengol-verify verify</code>
+              <code>sengol-verify</code>
             </article>
           </div>
         </div>
@@ -604,13 +604,13 @@ resp = client.messages.<span class="f">create</span>(...)
                   <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Trajectory evaluation</b> — score the whole agent run, not just the final message: tool order, argument schemas, forbidden tools, intent resolution.</span></li>
                   <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Ensembles and flake tolerance</b> — unanimous, majority or weighted vote; repeat an LLM check N times and require M passes.</span></li>
                   <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Red teaming</b> — pluggable adversarial backends (Garak, PyRIT) surface probe breaches as CRITICAL findings.</span></li>
-                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Own your judge</b> <span class="chip chip--gold">Enterprise</span> — mine your traces, calibrate against human labels, fine-tune a small model in your VPC, and gate it on TPR/TNR, Cohen's κ and position consistency before promotion.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Own your judge</b> — your reviewers' signed decisions export as labelled training data; you train a candidate on your own ML platform, and Sengol calibrates it against the Judge Qualification Standard (TPR/TNR, Cohen's κ) and promotes it by signed id. Sengol never trains a model.</span></li>
                 </ul>
                 <a class="panel__more" href="https://docs.sengol.io/reference/evaluator-library">Browse the evaluator library<svg aria-hidden="true"><use href="#i-arrow" /></svg></a>
               </div>
               <div class="code">
-                <div class="code__bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span> ci · sengol run-suite</div>
-<pre><code><span class="c">$ sengol run-suite --controlbook osfi_e23.yaml \
+                <div class="code__bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span> ci · sengol gate</div>
+<pre><code><span class="c">$ sengol gate --controlbook osfi_e23.yaml \
     --dataset-path suites/kyc.jsonl --min-pass 0.95</span>
 
 evaluating  128 cases · 11 evaluators
@@ -637,13 +637,13 @@ pass rate <span class="n">0.943</span> &lt; min_pass <span class="n">0.95</span>
                   <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Ed25519 countersignatures</b> — a second, asymmetric signature so a third party verifies without ever holding your secret.</span></li>
                   <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Merkle anchoring</b> — periodic roots anchored to an RFC 3161 timestamp authority and Rekor, proving a record existed at a point in time.</span></li>
                   <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Offline verification</b> — export a portable bundle and verify it with <code style="font-family:var(--mono);font-size:0.82rem;background:var(--panel);padding:1px 6px;border-radius:5px;color:var(--gold-bright)">sengol-verify</code>, a separate open-source tool that never talks to Sengol and never checks a licence.</span></li>
-                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>WORM-grade storage</b> — Postgres, DynamoDB, or S3 with Object Lock in COMPLIANCE mode.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Append-only Postgres store</b> — tamper-evident by the hash chain and the signatures, not by trusting the storage vendor.</span></li>
                 </ul>
                 <a class="panel__more" href="https://docs.sengol.io/concepts/audit-records">How audit records are signed<svg aria-hidden="true"><use href="#i-arrow" /></svg></a>
               </div>
               <div class="code">
                 <div class="code__bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span> examiner's laptop · air-gapped</div>
-<pre><code><span class="c">$ sengol-verify verify --offline pack.json</span>
+<pre><code><span class="c">$ sengol-verify pack.json</span>
 
 bundle       kyc-triage-agent · 2026-Q2
 records      4,823
@@ -669,7 +669,7 @@ tampered     <span class="ok">0</span>
                   <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Bring your own policy</b> — an internal standard is one YAML entry. No new code, same signed evidence, same reports.</span></li>
                   <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Cross-framework crosswalk</b> — one control node maps to many regimes, so a single run answers OSFI and the AI Act at once. OWASP ASI coverage included.</span></li>
                   <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Obligation coverage, live</b> — see which obligations are covered, by which evaluator, by which record — and which are not.</span></li>
-                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Regulator-shaped reports</b> <span class="chip chip--gold">Enterprise</span> — JSON evidence pack and CRO-readable PDF, driven by your ControlBook.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Regulator-shaped reports</b> — JSON evidence pack and CRO-readable PDF, driven by your ControlBook.</span></li>
                 </ul>
                 <a class="panel__more" href="https://docs.sengol.io/concepts/controlbook">Read the ControlBook guide<svg aria-hidden="true"><use href="#i-arrow" /></svg></a>
               </div>
@@ -697,14 +697,14 @@ tampered     <span class="ok">0</span>
           <div class="panel" id="panel-access" role="tabpanel" aria-labelledby="tab-access" tabindex="0" hidden>
             <div class="panel__grid">
               <div>
-                <h3>Enterprise identity, segregation of duties, and legal hold.</h3>
+                <h3>Identity, segregation of duties, retention and erasure.</h3>
                 <p>Governance software that can't govern its own operators isn't evidence. Sengol enforces who may approve what, records it, and signs it.</p>
                 <ul class="feature-list">
                   <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>SSO and provisioning</b> — OIDC and SAML 2.0 sign-in, SCIM 2.0 user lifecycle, IdP group-to-role mapping re-derived on every login.</span></li>
                   <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Segregation of duties</b> — object-scoped maker–checker: the person who builds a judge cannot be the person who promotes it. Overrides require a reason and a signed record.</span></li>
                   <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Resource-scoped access</b> — bounded roles over label hierarchies, resolved server-side per request and pushed into the query, so a scoped auditor sees only their line of business.</span></li>
                   <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Independent challenge</b> — an E-23 style validator review, attested by a challenger provably disjoint from the development actors.</span></li>
-                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Legal hold, retention and erasure</b> — statutory retention floors, dual-control on any shortening, GDPR/PIPEDA erasure that purges data without breaking the chain.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Retention and erasure</b> — statutory retention floors the store enforces, and GDPR/PIPEDA tombstone erasure that purges the data without breaking the chain.</span></li>
                 </ul>
                 <a class="panel__more" href="https://docs.sengol.io/guides/access-governance">Read the access governance guide<svg aria-hidden="true"><use href="#i-arrow" /></svg></a>
               </div>
@@ -899,7 +899,7 @@ mfa_asserted=true · acr=urn:mace:...:mfa</code></pre>
             <ul class="sec-list reveal">
               <li>
                 <span class="ic"><svg aria-hidden="true"><use href="#i-shield" /></svg></span>
-                <div><b>Data residency by architecture</b><p>Evidence is written to your Postgres, DynamoDB or S3. Judges can run entirely on models inside your VPC.</p></div>
+                <div><b>Data residency by architecture</b><p>Evidence is written to your own Postgres, append-only. Judges can run entirely on models inside your VPC.</p></div>
               </li>
               <li>
                 <span class="ic"><svg aria-hidden="true"><use href="#i-lock" /></svg></span>
@@ -915,7 +915,7 @@ mfa_asserted=true · acr=urn:mace:...:mfa</code></pre>
               </li>
               <li>
                 <span class="ic"><svg aria-hidden="true"><use href="#i-file" /></svg></span>
-                <div><b>Retention done correctly</b><p>Statutory retention floors, legal hold that blocks disposition, WORM cold export, and signed retirement records. Erasure never breaks the chain.</p></div>
+                <div><b>Retention done correctly</b><p>Statutory retention floors the store enforces, and tombstone erasure for data-subject requests. Erasure never breaks the chain.</p></div>
               </li>
             </ul>
           </div>
@@ -960,7 +960,7 @@ mfa_asserted=true · acr=urn:mace:...:mfa</code></pre>
                 <li><svg aria-hidden="true"><use href="#i-check" /></svg><span>Every response scored against declared controls</span></li>
                 <li><svg aria-hidden="true"><use href="#i-check" /></svg><span>Human review queue with escalation SLAs</span></li>
                 <li><svg aria-hidden="true"><use href="#i-check" /></svg><span>Automatic recertification on regulation change</span></li>
-                <li><svg aria-hidden="true"><use href="#i-check" /></svg><span>Legal hold, retention floors, defensible disposal</span></li>
+                <li><svg aria-hidden="true"><use href="#i-check" /></svg><span>Retention floors, defensible erasure</span></li>
               </ul>
             </article>
           </div>
@@ -995,7 +995,7 @@ mfa_asserted=true · acr=urn:mace:...:mfa</code></pre>
             </details>
             <details>
               <summary>Does any of my data leave my infrastructure?<svg class="plus" aria-hidden="true"><use href="#i-plus" /></svg></summary>
-              <p>Not by design. The SDK writes to an audit store you own — your Postgres, DynamoDB or S3 — in your own environment. Deploy with Docker Compose, Helm or Terraform inside your VPC, or fully air-gapped. If you use a hosted LLM judge, that provider sees the judge prompt; run a local model instead and nothing leaves at all.</p>
+              <p>Not by design. The SDK writes to an audit store you own — your own Postgres — in your own environment. Deploy with Docker Compose, Helm or Terraform inside your VPC, or fully air-gapped. If you use a hosted LLM judge, that provider sees the judge prompt; run a local model instead and nothing leaves at all.</p>
             </details>
             <details>
               <summary>What does "cryptographically signed evidence" actually mean here?<svg class="plus" aria-hidden="true"><use href="#i-plus" /></svg></summary>
@@ -1010,8 +1010,8 @@ mfa_asserted=true · acr=urn:mace:...:mfa</code></pre>
               <p>Runtime instrumentation is two lines at process startup — <code>sengol.configure()</code> and <code>sengol.instrument()</code> — with no per-call changes to your agent code. The CI gate is one workflow step. Mapping your controls into a ControlBook is the part that takes real thought, and it is the part that produces the evidence.</p>
             </details>
             <details>
-              <summary>What's included and what's Enterprise-gated?<svg class="plus" aria-hidden="true"><use href="#i-plus" /></svg></summary>
-              <p>Included: the SDK, every built-in evaluator, the signed audit store, offline verification, the local Console, the CLI and the CI gate. Enterprise-gated: the certified regulatory packs and PDF reports, the Judge Builder pipeline, and managed deployment tooling — Helm, Terraform, air-gapped install and the hosted API.</p>
+              <summary>Is there a free tier, or feature tiers?<svg class="plus" aria-hidden="true"><use href="#i-plus" /></svg></summary>
+              <p>No. Sengol is proprietary software from version 2.0 and there is no free tier and no feature tiers: one licence unlocks the whole appliance — the SDK, every evaluator, the signed audit store, the Console, the CLI and CI gate, judge governance, ControlBook-driven reports, and the Docker Compose, Helm and Terraform installs, air-gapped or not. The 14-day trial is the full product. The one exception runs the other way: sengol-verify, the offline verifier, is a separate Apache-2.0 tool that needs no licence at all.</p>
             </details>
           </div>
         </div>
