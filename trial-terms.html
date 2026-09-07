@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Plain-language terms for the Sengol 14-day trial: what the two paths mean, what happens to your data, and what expiry does and does not affect." />
+  <meta name="theme-color" content="#070E1B" />
+  <title>Trial terms | Sengol</title>
+  <link rel="canonical" href="https://sengol.io/trial-terms.html" />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
+  <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="icon" href="/favicon-16.png" type="image/png" sizes="16x16" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+    <defs>
+      <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M3.5 7h17M3.5 12h17M3.5 17h17" />
+      </symbol>
+      <symbol id="i-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2.8H7.4A1.9 1.9 0 0 0 5.5 4.7v14.6a1.9 1.9 0 0 0 1.9 1.9h9.2a1.9 1.9 0 0 0 1.9-1.9V7.2z" />
+        <path d="M14 2.8V7.2h4.5" /><path d="m9.3 15.2 1.8 1.8 3.6-3.9" />
+      </symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4.5 12h15" /><path d="m13 5.5 6.5 6.5-6.5 6.5" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <div class="ambient" aria-hidden="true">
+    <div class="ambient__grid"></div>
+    <div class="ambient__glow ambient__glow--a"></div>
+    <div class="ambient__glow ambient__glow--b"></div>
+    <div class="ambient__glow ambient__glow--c"></div>
+  </div>
+
+  <div class="shell">
+    <header class="nav" id="nav">
+      <div class="container">
+        <div class="nav__inner">
+          <a class="brand" href="/index.html" aria-label="Sengol home">
+            <img class="brand__mark" src="/brand-mark.png" alt="" width="30" height="30" decoding="async" />
+            Sengol
+          </a>
+          <nav class="nav__links" aria-label="Primary">
+            <a href="/install.html">Install</a>
+            <a href="/security.html">Security</a>
+            <a href="/signup.html">Sign up</a>
+          </nav>
+          <div class="nav__cta">
+            <a class="btn btn--primary btn--sm" href="/signup.html">Start free trial</a>
+          </div>
+          <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="drawer" aria-label="Open menu">
+            <svg aria-hidden="true"><use href="#i-menu" /></svg>
+          </button>
+        </div>
+        <div class="drawer" id="drawer">
+          <a href="/install.html">Install</a>
+          <a href="/security.html">Security</a>
+          <a href="/signup.html">Sign up</a>
+          <a class="btn btn--primary" href="/signup.html">Start free trial</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="section page-hero">
+        <div class="container container--narrow">
+          <span class="eyebrow"><svg aria-hidden="true"><use href="#i-file" /></svg> Trial terms</span>
+          <h1>The 14-day trial, in plain language.</h1>
+          <p class="lede">This page explains what you're agreeing to when you start a Sengol trial. It is not a substitute for the licence agreement you receive by email, which governs if the two ever disagree.</p>
+        </div>
+      </section>
+
+      <section class="section section--rule">
+        <div class="container container--narrow prose">
+
+          <h2>Two paths, one trial</h2>
+          <p>A Sengol trial is 14 days of full capability — nothing is held back, gated, or watermarked. You choose how you run it:</p>
+          <ul>
+            <li><strong>Try it hosted.</strong> We provision a private Sengol instance on our AWS account for you, ready in about three minutes, pre-loaded with a reference agent and sample evidence.</li>
+            <li><strong>Run it yourself.</strong> You install Sengol inside your own network — Docker Compose, Helm, Terraform, or <code style="font-family:var(--mono);font-size:0.85rem;color:var(--gold-bright)">pip install sengol</code> — under a 14-day licence file. Your data never leaves your network under this path.</li>
+          </ul>
+          <p>Both paths come from the same signup. Picking one is not a commitment to the other, and you can ask us to switch you before day 14.</p>
+
+          <h2>Who can start one</h2>
+          <ul>
+            <li><strong>Corporate email only.</strong> Trials are provisioned against a work email address at the company evaluating Sengol. Personal addresses (Gmail, Outlook, Yahoo, Hotmail, iCloud, Proton and similar) are not accepted at signup.</li>
+            <li><strong>One trial per domain.</strong> A given company email domain gets one active trial at a time, regardless of which path is chosen or who on the team requests it. If your organization needs a second concurrent trial, email <a href="mailto:trial@sengol.io">trial@sengol.io</a>.</li>
+          </ul>
+
+          <h2>What data a hosted trial holds</h2>
+          <p>Hosted trial instances are for evaluation, not production traffic. They are provisioned with a reference agent and <strong>synthetic or non-production data only</strong> — do not point a hosted trial at real customer data, real accounts, or anything you would need to retain past the trial. A hosted instance is <strong>destroyed at day 14</strong>, along with everything on it. If there is evidence you want to keep — an exported pack, a report, a screenshot — export it before day 14.</p>
+          <p class="muted">Self-hosted trials are different: the instance runs on your infrastructure from the first request, and nothing about the trial licence changes where your data lives or who can see it.</p>
+
+          <h2>What expiry does — and does not — do</h2>
+          <p>When a trial (or, later, an annual licence) reaches its expiry date, one thing happens: <strong>Sengol stops evaluating new agent calls and stops gating new deploys.</strong> That's it.</p>
+          <p>Expiry does <strong>not</strong> take away access to evidence you already have:</p>
+          <ul>
+            <li>The Console keeps serving reads — you can still browse and search records already written.</li>
+            <li>Export keeps working — you can still pull an evidence pack for a period that already ran.</li>
+            <li><code style="font-family:var(--mono);font-size:0.85rem;color:var(--gold-bright)">sengol-verify</code> keeps verifying — it's a separate open-source tool with no dependency on Sengol and no licence check of its own, so a lapsed Sengol licence has no effect on whether your evidence still verifies.</li>
+          </ul>
+          <p>A lapsed licence is a reason to renew, not a reason evidence you've already signed becomes unreadable.</p>
+
+          <h2>Licences verify offline</h2>
+          <p>A Sengol licence file is checked locally, against a public key, at startup and periodically at runtime. There is no phone-home: Sengol does not call home to validate a licence, and a fully air-gapped self-hosted install works the same way a networked one does.</p>
+
+          <h2>After the trial</h2>
+          <p>Sengol is proprietary software from version 2.0 onward — there is no free tier. To keep using Sengol past day 14, you convert to an annual licence. Talk to us before or after your trial ends:</p>
+          <p><a class="btn btn--primary" href="mailto:hello@sengol.io" style="text-decoration:none;display:inline-flex;margin-top:8px">Talk to sales<svg aria-hidden="true" style="width:16px;height:16px;margin-left:8px"><use href="#i-arrow" /></svg></a></p>
+
+          <h2>Questions</h2>
+          <p>Anything on this page unclear, or a situation it doesn't cover — email <a href="mailto:hello@sengol.io">hello@sengol.io</a> and a person will answer.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__bar">
+          <span>© 2026 Sengol Inc. · Built in Canada</span>
+          <span><a href="/security.html" style="color:var(--muted)">Security</a> · <a href="/install.html" style="color:var(--muted)">Install</a></span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      "use strict";
+      var toggle = document.getElementById("navToggle");
+      var drawer = document.getElementById("drawer");
+      toggle.addEventListener("click", function () {
+        var open = drawer.classList.toggle("is-open");
+        toggle.setAttribute("aria-expanded", String(open));
+      });
+    })();
+  </script>
+</body>
+</html>

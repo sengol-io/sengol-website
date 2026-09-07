@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sengol's enterprise security standards: identity and access, key management, container hardening, retention and erasure, and offline evidence verification." />
+  <meta name="theme-color" content="#070E1B" />
+  <title>Security | Sengol</title>
+  <link rel="canonical" href="https://sengol.io/security.html" />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
+  <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="icon" href="/favicon-16.png" type="image/png" sizes="16x16" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+    <defs>
+      <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M3.5 7h17M3.5 12h17M3.5 17h17" />
+      </symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2.8 4.5 6v6c0 4.6 3.2 8 7.5 9.2 4.3-1.2 7.5-4.6 7.5-9.2V6z" /><path d="m9 12 2.2 2.2L15.2 10" />
+      </symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4.5" y="10.5" width="15" height="10" rx="2.2" /><path d="M8.2 10.5V7.4a3.8 3.8 0 0 1 7.6 0v3.1" />
+      </symbol>
+      <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15.5 20v-1.8a3.6 3.6 0 0 0-3.6-3.6H6.6A3.6 3.6 0 0 0 3 18.2V20" />
+        <circle cx="9.2" cy="7.4" r="3.4" /><path d="M21 20v-1.8a3.6 3.6 0 0 0-2.7-3.5" /><path d="M15.8 4.2a3.6 3.6 0 0 1 0 6.9" />
+      </symbol>
+      <symbol id="i-key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="8" cy="15.5" r="4.2" /><path d="M11.3 12.2 19.5 4" /><path d="M15.5 8 18 10.5" /><path d="M18 5.5 20.5 8" />
+      </symbol>
+      <symbol id="i-db" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <ellipse cx="12" cy="5.8" rx="7.4" ry="3.1" /><path d="M4.6 5.8v12.4c0 1.7 3.3 3.1 7.4 3.1s7.4-1.4 7.4-3.1V5.8" />
+        <path d="M4.6 12c0 1.7 3.3 3.1 7.4 3.1s7.4-1.4 7.4-3.1" />
+      </symbol>
+      <symbol id="i-box" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m3.5 7.5 8.5-4.3 8.5 4.3-8.5 4.3z" /><path d="M3.5 7.5v9l8.5 4.3 8.5-4.3v-9" /><path d="M12 11.8v9.9" />
+      </symbol>
+      <symbol id="i-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3.5 3.5l17 17" /><path d="M10.6 5.4A9.9 9.9 0 0 1 12 5.3c6 0 9.4 6.4 9.4 6.4a17 17 0 0 1-3.3 4.3M6.3 7.4A16.7 16.7 0 0 0 2.6 11.7S6 18.1 12 18.1a10 10 0 0 0 3.2-.5" /><path d="M9.7 10a2.9 2.9 0 0 0 4.1 4.1" />
+      </symbol>
+      <symbol id="i-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2.8H7.4A1.9 1.9 0 0 0 5.5 4.7v14.6a1.9 1.9 0 0 0 1.9 1.9h9.2a1.9 1.9 0 0 0 1.9-1.9V7.2z" />
+        <path d="M14 2.8V7.2h4.5" /><path d="m9.3 15.2 1.8 1.8 3.6-3.9" />
+      </symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4.5 12h15" /><path d="m13 5.5 6.5 6.5-6.5 6.5" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <div class="ambient" aria-hidden="true">
+    <div class="ambient__grid"></div>
+    <div class="ambient__glow ambient__glow--a"></div>
+    <div class="ambient__glow ambient__glow--b"></div>
+    <div class="ambient__glow ambient__glow--c"></div>
+  </div>
+
+  <div class="shell">
+    <header class="nav" id="nav">
+      <div class="container">
+        <div class="nav__inner">
+          <a class="brand" href="/index.html" aria-label="Sengol home">
+            <img class="brand__mark" src="/brand-mark.png" alt="" width="30" height="30" decoding="async" />
+            Sengol
+          </a>
+          <nav class="nav__links" aria-label="Primary">
+            <a href="/install.html">Install</a>
+            <a href="/trial-terms.html">Trial terms</a>
+            <a href="/signup.html">Sign up</a>
+          </nav>
+          <div class="nav__cta">
+            <a class="btn btn--primary btn--sm" href="/signup.html">Start free trial</a>
+          </div>
+          <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="drawer" aria-label="Open menu">
+            <svg aria-hidden="true"><use href="#i-menu" /></svg>
+          </button>
+        </div>
+        <div class="drawer" id="drawer">
+          <a href="/install.html">Install</a>
+          <a href="/trial-terms.html">Trial terms</a>
+          <a href="/signup.html">Sign up</a>
+          <a class="btn btn--primary" href="/signup.html">Start free trial</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="section page-hero">
+        <div class="container container--narrow">
+          <span class="eyebrow"><svg aria-hidden="true"><use href="#i-shield" /></svg> Security</span>
+          <h1>What exists today. Not a roadmap.</h1>
+          <p class="lede">Everything on this page is shipped and enforced, not planned. Sengol runs inside your perimeter, holds your keys where you tell it to, and produces evidence a third party can verify without trusting Sengol at all.</p>
+        </div>
+      </section>
+
+      <!-- callouts -->
+      <section class="section" style="padding-top:0">
+        <div class="container">
+          <div class="split">
+            <div class="card">
+              <div class="card__icon"><svg aria-hidden="true"><use href="#i-eye-off" /></svg></div>
+              <h3>No phone-home</h3>
+              <p>Sengol does not call home. Licences are checked offline against a public key, evaluators run against a judge endpoint you configure, and a self-hosted install works identically air-gapped or connected. There is nothing in the product whose function depends on reaching a Sengol server at runtime.</p>
+            </div>
+            <div class="card">
+              <div class="card__icon"><svg aria-hidden="true"><use href="#i-lock" /></svg></div>
+              <h3>Verify without trusting us</h3>
+              <p>Every record is HMAC-signed, hash-chained and Ed25519-countersigned. An auditor checks a bundle with <code style="font-family:var(--mono);font-size:0.85rem;color:var(--gold-bright)">sengol-verify</code> — a separate open-source tool with no dependency on Sengol, no network call, and no licence to hold. If Sengol disappeared tomorrow, evidence already exported would still verify.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- IDENTITY -->
+      <section class="section section--tint section--rule">
+        <div class="container">
+          <div class="section-head section-head--left reveal" style="margin-bottom:34px">
+            <span class="eyebrow"><svg aria-hidden="true"><use href="#i-users" /></svg> Identity &amp; access</span>
+            <h2>Who can do what, provable after the fact.</h2>
+          </div>
+          <ul class="sec-list reveal">
+            <li>
+              <span class="ic"><svg aria-hidden="true"><use href="#i-users" /></svg></span>
+              <div><b>Entra ID / OIDC single sign-on</b><p>Sign in through your identity provider with app-role mapping, re-derived on every login.</p></div>
+            </li>
+            <li>
+              <span class="ic"><svg aria-hidden="true"><use href="#i-users" /></svg></span>
+              <div><b>SCIM provisioning</b><p>User and group lifecycle synced automatically from your IdP — provisioned and deprovisioned without a ticket.</p></div>
+            </li>
+            <li>
+              <span class="ic"><svg aria-hidden="true"><use href="#i-lock" /></svg></span>
+              <div><b>Local users with TOTP MFA</b><p>No IdP required. Local accounts support time-based one-time-password multi-factor authentication.</p></div>
+            </li>
+            <li>
+              <span class="ic"><svg aria-hidden="true"><use href="#i-key" /></svg></span>
+              <div><b>Audited break-glass</b><p>An emergency access path exists for when SSO is down — and using it writes its own signed record.</p></div>
+            </li>
+            <li>
+              <span class="ic"><svg aria-hidden="true"><use href="#i-shield" /></svg></span>
+              <div><b>Four built-in roles</b><p><b>Admin</b>, <b>approver</b>, <b>auditor</b> (read-only) and <b>viewer</b> — a fixed, well-understood set rather than a role you have to design yourself.</p></div>
+            </li>
+            <li>
+              <span class="ic"><svg aria-hidden="true"><use href="#i-file" /></svg></span>
+              <div><b>Signed admin audit</b><p>Every administrative action — role changes, config edits, overrides — is itself a signed record, not a plain log line.</p></div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- KEYS & DEPLOYMENT -->
+      <section class="section section--rule">
+        <div class="container">
+          <div class="section-head section-head--left reveal" style="margin-bottom:34px">
+            <span class="eyebrow"><svg aria-hidden="true"><use href="#i-key" /></svg> Keys &amp; deployment hardening</span>
+            <h2>Your keys, your VPC, a hardened supply chain.</h2>
+          </div>
+          <ul class="sec-list reveal">
+            <li>
+              <span class="ic"><svg aria-hidden="true"><use href="#i-key" /></svg></span>
+              <div><b>Signing keys in KMS</b><p>Evidence signing keys live in your key management service, not in an environment variable or a config file.</p></div>
+            </li>
+            <li>
+              <span class="ic"><svg aria-hidden="true"><use href="#i-box" /></svg></span>
+              <div><b>Non-root containers</b><p>Every shipped container runs as a non-root user by default — no privilege to drop that you have to remember to configure.</p></div>
+            </li>
+            <li>
+              <span class="ic"><svg aria-hidden="true"><use href="#i-file" /></svg></span>
+              <div><b>SBOM and signed images</b><p>A software bill of materials ships with every release, and container images are signed so you can verify provenance before you deploy.</p></div>
+            </li>
+            <li>
+              <span class="ic"><svg aria-hidden="true"><use href="#i-shield" /></svg></span>
+              <div><b>Runs in your VPC</b><p>Docker Compose, Helm or Terraform, on AWS, Azure, GCP, OpenShift or on-prem. Nothing about the architecture requires a connection out.</p></div>
+            </li>
+            <li>
+              <span class="ic"><svg aria-hidden="true"><use href="#i-eye-off" /></svg></span>
+              <div><b>Air-gap capable</b><p>Runs fully disconnected when that's the requirement. Licence checks are offline; nothing else needs a network path to Sengol.</p></div>
+            </li>
+            <li>
+              <span class="ic"><svg aria-hidden="true"><use href="#i-eye-off" /></svg></span>
+              <div><b>No telemetry</b><p>Sengol does not collect usage telemetry from your deployment and send it anywhere. What you run stays yours to observe.</p></div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- DATA LIFECYCLE -->
+      <section class="section section--tint section--rule">
+        <div class="container">
+          <div class="section-head section-head--left reveal" style="margin-bottom:34px">
+            <span class="eyebrow"><svg aria-hidden="true"><use href="#i-db" /></svg> Data lifecycle</span>
+            <h2>Retention that holds, erasure that doesn't break the chain.</h2>
+          </div>
+          <ul class="sec-list reveal">
+            <li>
+              <span class="ic"><svg aria-hidden="true"><use href="#i-db" /></svg></span>
+              <div><b>Retention floors</b><p>A statutory or policy-driven minimum retention period that evidence cannot be disposed of before, enforced by the store, not by convention.</p></div>
+            </li>
+            <li>
+              <span class="ic"><svg aria-hidden="true"><use href="#i-lock" /></svg></span>
+              <div><b>Tombstone erasure</b><p>A data-subject erasure or right-to-be-forgotten request replaces the underlying content with a tombstone while preserving the hash chain — erasure doesn't leave the evidence trail unverifiable.</p></div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section section--rule">
+        <div class="container">
+          <div class="cta-box reveal">
+            <span class="eyebrow"><svg aria-hidden="true"><use href="#i-shield" /></svg> See it yourself</span>
+            <h2 style="margin-top:20px">Run the quickstart and verify a bundle with sengol-verify.</h2>
+            <div class="hero__actions" style="justify-content:center;margin-top:26px">
+              <a class="btn btn--primary" href="/install.html#quickstart">
+                Read the quickstart
+                <svg aria-hidden="true"><use href="#i-arrow" /></svg>
+              </a>
+              <a class="btn btn--ghost" href="/signup.html">
+                Start your 14-day trial
+                <svg aria-hidden="true"><use href="#i-arrow" /></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__bar">
+          <span>© 2026 Sengol Inc. · Built in Canada</span>
+          <span><a href="/install.html" style="color:var(--muted)">Install</a> · <a href="/trial-terms.html" style="color:var(--muted)">Trial terms</a></span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      "use strict";
+      var toggle = document.getElementById("navToggle");
+      var drawer = document.getElementById("drawer");
+      toggle.addEventListener("click", function () {
+        var open = drawer.classList.toggle("is-open");
+        toggle.setAttribute("aria-expanded", String(open));
+      });
+
+      var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var revealables = document.querySelectorAll(".reveal");
+      if (reduced || !("IntersectionObserver" in window)) {
+        revealables.forEach(function (el) { el.classList.add("is-in"); });
+      } else {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) { entry.target.classList.add("is-in"); io.unobserve(entry.target); }
+          });
+        }, { rootMargin: "0px 0px -12% 0px", threshold: 0.08 });
+        revealables.forEach(function (el) { io.observe(el); });
+      }
+    })();
+  </script>
+</body>
+</html>

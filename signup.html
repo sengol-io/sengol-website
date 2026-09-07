@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Start a 14-day Sengol trial — full capability, either hosted by us in about 3 minutes or run yourself inside your own network." />
+  <meta name="theme-color" content="#070E1B" />
+  <title>Start your trial | Sengol</title>
+  <link rel="canonical" href="https://sengol.io/signup.html" />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
+  <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="icon" href="/favicon-16.png" type="image/png" sizes="16x16" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- icon sprite (subset used on this page) -->
+  <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+    <defs>
+      <symbol id="i-check-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="9.2" /><path d="m8.2 12 2.6 2.6 5-5.4" />
+      </symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2.8 4.5 6v6c0 4.6 3.2 8 7.5 9.2 4.3-1.2 7.5-4.6 7.5-9.2V6z" /><path d="m9 12 2.2 2.2L15.2 10" />
+      </symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4.5" y="10.5" width="15" height="10" rx="2.2" /><path d="M8.2 10.5V7.4a3.8 3.8 0 0 1 7.6 0v3.1" />
+      </symbol>
+      <symbol id="i-cpu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="5.5" y="5.5" width="13" height="13" rx="2.2" /><rect x="9.5" y="9.5" width="5" height="5" rx="1" />
+        <path d="M9.5 2.5v3M14.5 2.5v3M9.5 18.5v3M14.5 18.5v3M2.5 9.5h3M2.5 14.5h3M18.5 9.5h3M18.5 14.5h3" />
+      </symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4.5 12h15" /><path d="m13 5.5 6.5 6.5-6.5 6.5" />
+      </symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M3.5 7h17M3.5 12h17M3.5 17h17" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <div class="ambient" aria-hidden="true">
+    <div class="ambient__grid"></div>
+    <div class="ambient__glow ambient__glow--a"></div>
+    <div class="ambient__glow ambient__glow--b"></div>
+    <div class="ambient__glow ambient__glow--c"></div>
+  </div>
+
+  <div class="shell">
+    <!-- ==================== NAV ==================== -->
+    <header class="nav" id="nav">
+      <div class="container">
+        <div class="nav__inner">
+          <a class="brand" href="/index.html" aria-label="Sengol home">
+            <img class="brand__mark" src="/brand-mark.png" alt="" width="30" height="30" decoding="async" />
+            Sengol
+          </a>
+          <nav class="nav__links" aria-label="Primary">
+            <a href="/index.html#platform">Platform</a>
+            <a href="/security.html">Security</a>
+            <a href="/install.html">Install</a>
+            <a href="/trial-terms.html">Trial terms</a>
+          </nav>
+          <div class="nav__cta">
+            <a class="btn btn--ghost btn--sm" href="/index.html">Back to sengol.io</a>
+          </div>
+          <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="drawer" aria-label="Open menu">
+            <svg aria-hidden="true"><use href="#i-menu" /></svg>
+          </button>
+        </div>
+        <div class="drawer" id="drawer">
+          <a href="/index.html#platform">Platform</a>
+          <a href="/security.html">Security</a>
+          <a href="/install.html">Install</a>
+          <a href="/trial-terms.html">Trial terms</a>
+          <a class="btn btn--ghost" href="/index.html">Back to sengol.io</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <div class="signup-shell">
+        <div class="container container--narrow">
+
+          <!-- ================= SCREEN 1: WORK IDENTITY ================= -->
+          <section id="screen-identity">
+            <div class="section-head reveal" style="margin-bottom:34px">
+              <span class="eyebrow"><svg aria-hidden="true"><use href="#i-shield" /></svg> Start in 14 days</span>
+              <h2>Tell us who's evaluating Sengol.</h2>
+              <p class="lede">Corporate email only, one trial per domain. This is not a marketing list — it provisions your trial.</p>
+            </div>
+
+            <div class="card signup-card reveal">
+              <form id="identityForm" novalidate>
+                <div class="field-grid">
+                  <div class="field">
+                    <label for="workEmail">Work email</label>
+                    <input id="workEmail" name="workEmail" type="email" placeholder="you@yourbank.com" autocomplete="email" required />
+                    <p class="field-error" id="workEmailError"></p>
+                  </div>
+                  <div class="field">
+                    <label for="fullName">Full name</label>
+                    <input id="fullName" name="fullName" type="text" placeholder="Jordan Reyes" autocomplete="name" required />
+                    <p class="field-error" id="fullNameError"></p>
+                  </div>
+                  <div class="field">
+                    <label for="company">Company</label>
+                    <input id="company" name="company" type="text" placeholder="Yourbank Financial Group" autocomplete="organization" required />
+                    <p class="field-error" id="companyError"></p>
+                  </div>
+                </div>
+
+                <p class="refusal-note" id="refusalNote" role="alert">
+                  That looks like a personal email address. Sengol trials are provisioned per company
+                  domain, so we need a work address at the institution evaluating it — one trial per
+                  domain. If you don't have a work email yet, reach us at
+                  <a href="mailto:trial@sengol.io">trial@sengol.io</a> and we'll sort it out.
+                </p>
+
+                <button class="btn btn--primary" type="submit" style="margin-top:22px;width:100%">
+                  Continue
+                  <svg aria-hidden="true"><use href="#i-arrow" /></svg>
+                </button>
+
+                <div class="divider-row">or</div>
+
+                <a class="btn btn--ms" id="msContinue" href="https://portal.sengol.io/auth/microsoft">
+                  <svg aria-hidden="true" viewBox="0 0 23 23"><rect x="1" y="1" width="10" height="10" fill="#F25022"/><rect x="12" y="1" width="10" height="10" fill="#7FBA00"/><rect x="1" y="12" width="10" height="10" fill="#00A4EF"/><rect x="12" y="12" width="10" height="10" fill="#FFB900"/></svg>
+                  Continue with Microsoft
+                </a>
+                <p class="field-hint" style="margin-top:10px;text-align:center">
+                  Signs you in with your Microsoft work account and skips the form above.
+                </p>
+              </form>
+            </div>
+
+            <p class="field-hint" style="text-align:center;margin-top:18px">
+              By continuing you agree to the <a href="/trial-terms.html" style="color:var(--gold-bright)">trial terms</a>.
+            </p>
+          </section>
+
+          <!-- ================= SCREEN 2: TWO DOORS ================= -->
+          <section id="screen-doors" hidden>
+            <div class="section-head reveal" style="margin-bottom:34px">
+              <span class="eyebrow"><svg aria-hidden="true"><use href="#i-cpu" /></svg> One signup, two ways to run it</span>
+              <h2>How do you want to try Sengol?</h2>
+              <p class="lede">Both are the full 14 days and the full capability set. Switch your mind later — nothing about this choice is permanent.</p>
+            </div>
+
+            <div class="doors reveal">
+              <article class="card door" id="hosted" data-path="hosted">
+                <span class="door__badge chip chip--gold">Recommended · fastest</span>
+                <div class="card__icon"><svg aria-hidden="true"><use href="#i-cpu" /></svg></div>
+                <h3>Try it hosted</h3>
+                <p class="lede">We spin up your own private instance on our AWS in about 3 minutes, pre-loaded with a reference agent and sample evidence.</p>
+                <ul class="feature-list">
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Nothing to install</b> — a URL and a login, ready in minutes.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Full capability</b> — every evaluator, the CI gate, the Console.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Synthetic data only</b> — the instance is destroyed at day 14.</span></li>
+                </ul>
+                <button class="btn btn--primary" type="button" data-submit="hosted">
+                  Start hosted trial
+                  <svg aria-hidden="true"><use href="#i-arrow" /></svg>
+                </button>
+              </article>
+
+              <article class="card door" id="self" data-path="self">
+                <span class="door__badge chip">Runs in your network</span>
+                <div class="card__icon"><svg aria-hidden="true"><use href="#i-lock" /></svg></div>
+                <h3>Run it yourself</h3>
+                <p class="lede">Download it — Docker Compose, Helm, Terraform, or <code style="font-family:var(--mono);font-size:0.85rem;color:var(--gold-bright)">pip install sengol</code> — with a 14-day licence file. Your data never leaves your network.</p>
+                <ul class="feature-list">
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Your infrastructure</b> — your Postgres, your keys, your VPC or laptop.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Same full capability</b> — the trial licence unlocks everything.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Offline licence check</b> — no phone-home, ever.</span></li>
+                </ul>
+                <button class="btn btn--ghost" type="button" data-submit="self">
+                  Get the self-hosted trial
+                  <svg aria-hidden="true"><use href="#i-arrow" /></svg>
+                </button>
+              </article>
+            </div>
+
+            <p class="field-hint" style="text-align:center;margin-top:22px">
+              <button type="button" id="backToIdentity" class="btn btn--ghost btn--sm" style="min-height:auto;padding:6px 14px">Back</button>
+            </p>
+          </section>
+
+          <!-- ================= SCREEN 3: CONFIRMATION ================= -->
+          <section id="screen-done" hidden>
+            <div class="card signup-card reveal" style="text-align:center">
+              <div class="card__icon" style="margin-inline:auto"><svg aria-hidden="true"><use href="#i-check-circle" /></svg></div>
+              <h3 style="font-size:1.4rem" id="doneHeadline">You're set.</h3>
+              <p class="lede" id="doneBody" style="margin-inline:auto;max-width:420px"></p>
+              <a class="btn btn--primary" href="/install.html" style="margin-top:22px" id="doneCta">Read the install guide</a>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__bar">
+          <span>© 2026 Sengol Inc. · Built in Canada</span>
+          <span><a href="/trial-terms.html" style="color:var(--muted)">Trial terms</a> · <a href="/security.html" style="color:var(--muted)">Security</a></span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Configure where trial signups go. Empty string falls back to a mailto: draft.
+    const PORTAL_URL = "https://portal.sengol.io";
+  </script>
+  <script>
+    (function () {
+      "use strict";
+
+      var msLink = document.getElementById("msContinue");
+      if (PORTAL_URL) { msLink.href = PORTAL_URL + "/auth/microsoft"; }
+
+      /* ---------- mobile drawer ---------- */
+      var toggle = document.getElementById("navToggle");
+      var drawer = document.getElementById("drawer");
+      toggle.addEventListener("click", function () {
+        var open = drawer.classList.toggle("is-open");
+        toggle.setAttribute("aria-expanded", String(open));
+      });
+
+      var BLOCKED_DOMAINS = [
+        "gmail.com", "googlemail.com",
+        "outlook.com", "hotmail.com", "hotmail.co.uk", "live.com", "msn.com",
+        "yahoo.com", "yahoo.co.uk", "ymail.com",
+        "icloud.com", "me.com", "mac.com",
+        "proton.me", "protonmail.com"
+      ];
+
+      function domainOf(email) {
+        var at = email.lastIndexOf("@");
+        return at === -1 ? "" : email.slice(at + 1).trim().toLowerCase();
+      }
+
+      var screenIdentity = document.getElementById("screen-identity");
+      var screenDoors = document.getElementById("screen-doors");
+      var screenDone = document.getElementById("screen-done");
+      var form = document.getElementById("identityForm");
+      var refusal = document.getElementById("refusalNote");
+      var lead = { workEmail: "", fullName: "", company: "" };
+
+      function setError(id, message) {
+        document.getElementById(id + "Error").textContent = message || "";
+        document.getElementById(id).classList.toggle("is-invalid", !!message);
+      }
+
+      function validate() {
+        var ok = true;
+        var email = document.getElementById("workEmail").value.trim();
+        var name = document.getElementById("fullName").value.trim();
+        var company = document.getElementById("company").value.trim();
+        refusal.classList.remove("is-shown");
+
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          setError("workEmail", "Enter a valid work email address.");
+          ok = false;
+        } else if (BLOCKED_DOMAINS.indexOf(domainOf(email)) !== -1) {
+          setError("workEmail", "Personal email addresses can't be used for a trial.");
+          refusal.classList.add("is-shown");
+          ok = false;
+        } else {
+          setError("workEmail", "");
+        }
+
+        if (!name) { setError("fullName", "Enter your full name."); ok = false; }
+        else { setError("fullName", ""); }
+
+        if (!company) { setError("company", "Enter your company name."); ok = false; }
+        else { setError("company", ""); }
+
+        if (ok) { lead = { workEmail: email, fullName: name, company: company }; }
+        return ok;
+      }
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (!validate()) return;
+        screenIdentity.hidden = true;
+        screenDoors.hidden = false;
+        screenDoors.scrollIntoView({ behavior: "smooth", block: "start" });
+
+        var hash = (window.location.hash || "").replace("#", "");
+        if (hash === "hosted" || hash === "self") {
+          var el = document.getElementById(hash);
+          if (el) { el.style.borderColor = "var(--line-gold)"; el.style.boxShadow = "var(--shadow-lg)"; }
+        }
+      });
+
+      document.getElementById("backToIdentity").addEventListener("click", function () {
+        screenDoors.hidden = true;
+        screenIdentity.hidden = false;
+      });
+
+      function submitLead(path) {
+        var payload = {
+          workEmail: lead.workEmail,
+          fullName: lead.fullName,
+          company: lead.company,
+          path: path
+        };
+
+        function finish() {
+          screenDoors.hidden = true;
+          screenDone.hidden = false;
+          screenDone.scrollIntoView({ behavior: "smooth", block: "start" });
+          if (path === "hosted") {
+            document.getElementById("doneHeadline").textContent = "Your instance is on its way.";
+            document.getElementById("doneBody").textContent =
+              "We're provisioning a private Sengol instance for " + payload.company +
+              ". You'll get a login by email in a few minutes — check your inbox.";
+            document.getElementById("doneCta").textContent = "Read what to try first";
+            document.getElementById("doneCta").href = "/install.html#quickstart";
+          } else {
+            document.getElementById("doneHeadline").textContent = "Your licence is on its way.";
+            document.getElementById("doneBody").textContent =
+              "We're emailing a 14-day licence file to " + payload.workEmail +
+              ". Meanwhile, here's how to install and where the licence file goes.";
+            document.getElementById("doneCta").textContent = "Read the install guide";
+            document.getElementById("doneCta").href = "/install.html";
+          }
+        }
+
+        if (!PORTAL_URL) {
+          var subject = encodeURIComponent("Sengol trial — " + payload.company);
+          var body = encodeURIComponent(
+            "Work email: " + payload.workEmail + "\n" +
+            "Name: " + payload.fullName + "\n" +
+            "Company: " + payload.company + "\n" +
+            "Path: " + (path === "hosted" ? "Try it hosted" : "Run it yourself") + "\n"
+          );
+          window.location.href = "mailto:trial@sengol.io?subject=" + subject + "&body=" + body;
+          finish();
+          return;
+        }
+
+        fetch(PORTAL_URL + "/api/trial-signups", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        }).then(finish).catch(function () {
+          var subject = encodeURIComponent("Sengol trial — " + payload.company);
+          var body = encodeURIComponent(
+            "Work email: " + payload.workEmail + "\n" +
+            "Name: " + payload.fullName + "\n" +
+            "Company: " + payload.company + "\n" +
+            "Path: " + (path === "hosted" ? "Try it hosted" : "Run it yourself") + "\n"
+          );
+          window.location.href = "mailto:trial@sengol.io?subject=" + subject + "&body=" + body;
+          finish();
+        });
+      }
+
+      Array.prototype.forEach.call(document.querySelectorAll("[data-submit]"), function (btn) {
+        btn.addEventListener("click", function () { submitLead(btn.getAttribute("data-submit")); });
+      });
+    })();
+  </script>
+</body>
+</html>

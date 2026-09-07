@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI assurance for production agents. Runtime guardrails, 32 evaluators and signed evidence an examiner can verify offline — OSFI E-23, EU AI Act and 27 more." />
+  <meta name="theme-color" content="#070E1B" />
+  <title>AI Agent Assurance &amp; Governance Platform | Sengol</title>
+  <link rel="canonical" href="https://sengol.io/" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Sengol" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:url" content="https://sengol.io/" />
+  <meta property="og:title" content="AI Agent Assurance & Governance Platform | Sengol" />
+  <meta property="og:description" content="The assurance layer for production AI agents. Governance says what should happen; Sengol proves what did — every decision a cryptographically signed record your regulator can verify offline, inside your own perimeter." />
+  <meta property="og:image" content="https://sengol.io/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Sengol — AI agent assurance with a cryptographically signed evidence chain" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AI Agent Assurance & Governance Platform | Sengol" />
+  <meta name="twitter:description" content="The assurance layer for production AI agents. Governance says what should happen; Sengol proves what did — every decision a cryptographically signed record your regulator can verify offline, inside your own perimeter." />
+  <meta name="twitter:image" content="https://sengol.io/og-image.png" />
+
+  <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
+  <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="icon" href="/favicon-16.png" type="image/png" sizes="16x16" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <link rel="preload" href="/fonts/inter-latin.3100e775.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/jetbrains-mono-latin.83c005d4.woff2" as="font" type="font/woff2" crossorigin />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://sengol.io/#organization",
+      "name": "Sengol",
+      "url": "https://sengol.io/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://sengol.io/apple-touch-icon.png",
+        "width": 180,
+        "height": 180
+      },
+      "description": "Sengol builds the AI agent governance and signed-evidence platform for regulated industries.",
+      "email": "hello@sengol.io",
+      "foundingLocation": {
+        "@type": "Place",
+        "name": "Canada"
+      },
+      "areaServed": "Worldwide"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://sengol.io/#website",
+      "url": "https://sengol.io/",
+      "name": "Sengol",
+      "publisher": {
+        "@id": "https://sengol.io/#organization"
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://sengol.io/#software",
+      "name": "Sengol",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "AI Assurance and Governance",
+      "operatingSystem": "Linux, macOS, Windows",
+      "url": "https://sengol.io/",
+      "publisher": {
+        "@id": "https://sengol.io/#organization"
+      },
+      "softwareRequirements": "Python 3.11 or later",
+      "description": "Sengol is the assurance layer for production AI agents. It runs runtime guardrails inline, evaluates every model call with 32 deterministic and LLM-judge evaluators, gates deployments in CI/CD, and records every decision as a cryptographically signed, hash-chained audit record that a third party can verify offline.",
+      "featureList": [
+        "Runtime guardrails and tool authorization for AI agents",
+        "32 built-in evaluators including PII, hallucination, toxicity and adversarial robustness",
+        "HMAC-SHA256 hash-chained, tamper-evident audit records",
+        "Ed25519 countersignatures and RFC 3161 / Rekor Merkle anchoring",
+        "Offline evidence verification with no vendor server",
+        "CI/CD deployment gate with pull request verdicts",
+        "29 regulatory frameworks including OSFI E-23, EU AI Act, NIST AI RMF and ISO/IEC 42001",
+        "Model drift detection with automated response policies",
+        "Segregation of duties, SSO, SCIM and resource-scoped access",
+        "Retention, legal hold and right-to-erasure"
+      ],
+      "isAccessibleForFree": false
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://sengol.io/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is AI agent governance?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "AI agent governance is the practice of controlling what an AI agent is allowed to do at runtime, evaluating what it actually did, and producing a record that proves both. In practice that means four things working together: policies declaring which tools and actions an agent may use, guardrails enforcing them inline before a response reaches a user, evaluators scoring each interaction for failures like PII leakage or hallucination, and an audit trail an independent party can verify. Observability tools cover the third; governance requires all four. Governance and assurance are not the same thing. Governance is the regime — the policies, the committees, who decides what an agent may do. Assurance is the evidence that the regime actually held: the testing, the verification and the record an independent party can check. In the three-lines model, governance is written in the first line and assurance is what the second and third lines — model validation and internal audit — are accountable for. Sengol is built for the assurance side: governance says what should happen, assurance proves what did."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Sengol help with OSFI E-23 compliance?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. OSFI Guideline E-23 on model risk management takes effect 1 May 2027 for federally regulated financial institutions in Canada, and extends to AI and machine-learning models. Sengol compiles E-23 into obligations, routes each one to the evaluators that satisfy it, and binds every signed record to the specific control that produced it — so coverage per agent and per period is a query, not a spreadsheet exercise. The same mechanism covers SR 11-7, the EU AI Act, FINTRAC, HIPAA and 24 other frameworks, and your own internal model-risk standard is one YAML entry."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is Sengol different from an AI observability tool?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "An observability tool tells you what happened. Sengol decides what is allowed to happen, and produces evidence of the decision. It blocks a CRITICAL failure inline before the user sees it, blocks a failing deploy before it merges, and writes each verdict as a hash-chained, cryptographically signed record that a third party can verify offline without access to your systems. The gate verdict and the record you hand an examiner are the same object, not two systems you reconcile."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is this different from LangSmith, Arize or Galileo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Those are developer observability tools — they help engineers debug agents faster, and they do it well. They produce dashboards and scores. Sengol produces evidence: a signed, hash-chained, offline-verifiable record bound to the specific obligation it satisfies, plus the runtime controls that decide what happens next. The gate verdict and the record you hand an examiner are the same object."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does any of my data leave my infrastructure?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not by design. The SDK writes to an audit store you own — your Postgres, DynamoDB or S3 — in your own environment. Deploy with Docker Compose, Helm or Terraform inside your VPC, or fully air-gapped. If you use a hosted LLM judge, that provider sees the judge prompt; run a local model instead and nothing leaves at all."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does \"cryptographically signed evidence\" actually mean here?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Each record has a canonical payload signed with HMAC-SHA256 and linked to the previous record in a per-agent hash chain, so the store is append-only and tamper-evident. Records are additionally countersigned with Ed25519 and periodically Merkle-anchored to an RFC 3161 timestamp authority and Rekor. A third party can verify an exported bundle offline, with the public key alone — no access to your systems or your secret."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "My regulator isn't on your list. Now what?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Add it. A framework in Sengol is a catalog entry with obligations and evaluator routing — no new Python classes. That is exactly how internal bank policies and regional regimes are supported, and they get the same compiled obligations, the same signed evidence and the same reports as the 29 that ship in the box."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does integration actually take?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Runtime instrumentation is two lines at process startup — sengol.configure() and sengol.instrument() — with no per-call changes to your agent code. The CI gate is one workflow step. Mapping your controls into a ControlBook is the part that takes real thought, and it is the part that produces the evidence."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What's included and what's Enterprise-gated?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Included: the SDK, every built-in evaluator, the signed audit store, offline verification, the local Console, the CLI and the CI gate. Enterprise-gated: the certified regulatory packs and PDF reports, the Judge Builder pipeline, and managed deployment tooling — Helm, Terraform, air-gapped install and the hosted API."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- icon sprite -->
+  <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+    <defs>
+      <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m20 6-11 11-5-5" />
+      </symbol>
+      <symbol id="i-check-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="9.2" /><path d="m8.2 12 2.6 2.6 5-5.4" />
+      </symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2.8 4.5 6v6c0 4.6 3.2 8 7.5 9.2 4.3-1.2 7.5-4.6 7.5-9.2V6z" /><path d="m9 12 2.2 2.2L15.2 10" />
+      </symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4.5" y="10.5" width="15" height="10" rx="2.2" /><path d="M8.2 10.5V7.4a3.8 3.8 0 0 1 7.6 0v3.1" />
+      </symbol>
+      <symbol id="i-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 13.5a3.6 3.6 0 0 0 5.3.4l2.6-2.6a3.7 3.7 0 0 0-5.2-5.2l-1.5 1.5" />
+        <path d="M14 10.5a3.6 3.6 0 0 0-5.3-.4l-2.6 2.6a3.7 3.7 0 0 0 5.2 5.2l1.5-1.5" />
+      </symbol>
+      <symbol id="i-bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M13.2 2.5 4.8 13.4h6l-.9 8.1 8.4-10.9h-6z" />
+      </symbol>
+      <symbol id="i-branch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="6.5" cy="5" r="2.4" /><circle cx="6.5" cy="19" r="2.4" /><circle cx="17.5" cy="9" r="2.4" />
+        <path d="M6.5 7.4v9.2" /><path d="M17.5 11.4c0 3.2-2.4 4.4-5.4 4.9" />
+      </symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 20V4" /><path d="M4 20h16" /><path d="m7.5 15.5 3.5-4.2 3 2.6 4.5-6" />
+      </symbol>
+      <symbol id="i-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2.8H7.4A1.9 1.9 0 0 0 5.5 4.7v14.6a1.9 1.9 0 0 0 1.9 1.9h9.2a1.9 1.9 0 0 0 1.9-1.9V7.2z" />
+        <path d="M14 2.8V7.2h4.5" /><path d="m9.3 15.2 1.8 1.8 3.6-3.9" />
+      </symbol>
+      <symbol id="i-scale" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3.5v17" /><path d="M7 20.5h10" /><path d="M4.5 7.2h15" />
+        <path d="M7.6 7.2 4.6 13.4h6z" /><path d="M16.4 7.2l-3 6.2h6z" />
+      </symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M2.6 12S6 5.6 12 5.6 21.4 12 21.4 12 18 18.4 12 18.4 2.6 12 2.6 12" /><circle cx="12" cy="12" r="2.9" />
+      </symbol>
+      <symbol id="i-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20.5 11a8.5 8.5 0 0 0-14.7-4.6L2.8 9.2" /><path d="M2.8 4.5v4.7h4.7" />
+        <path d="M3.5 13a8.5 8.5 0 0 0 14.7 4.6l3-2.8" /><path d="M21.2 19.5v-4.7h-4.7" />
+      </symbol>
+      <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15.5 20v-1.8a3.6 3.6 0 0 0-3.6-3.6H6.6A3.6 3.6 0 0 0 3 18.2V20" />
+        <circle cx="9.2" cy="7.4" r="3.4" /><path d="M21 20v-1.8a3.6 3.6 0 0 0-2.7-3.5" /><path d="M15.8 4.2a3.6 3.6 0 0 1 0 6.9" />
+      </symbol>
+      <symbol id="i-db" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <ellipse cx="12" cy="5.8" rx="7.4" ry="3.1" /><path d="M4.6 5.8v12.4c0 1.7 3.3 3.1 7.4 3.1s7.4-1.4 7.4-3.1V5.8" />
+        <path d="M4.6 12c0 1.7 3.3 3.1 7.4 3.1s7.4-1.4 7.4-3.1" />
+      </symbol>
+      <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m8.5 8-5 4 5 4" /><path d="m15.5 8 5 4-5 4" /><path d="m13.6 4.5-3.2 15" />
+      </symbol>
+      <symbol id="i-cpu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="5.5" y="5.5" width="13" height="13" rx="2.2" /><rect x="9.5" y="9.5" width="5" height="5" rx="1" />
+        <path d="M9.5 2.5v3M14.5 2.5v3M9.5 18.5v3M14.5 18.5v3M2.5 9.5h3M2.5 14.5h3M18.5 9.5h3M18.5 14.5h3" />
+      </symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4.5 12h15" /><path d="m13 5.5 6.5 6.5-6.5 6.5" />
+      </symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round">
+        <path d="M12 5v14M5 12h14" />
+      </symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M3.5 7h17M3.5 12h17M3.5 17h17" />
+      </symbol>
+      <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3.5 4.6A2.1 2.1 0 0 1 5.6 2.5H19v17H5.6a2.1 2.1 0 0 0-2.1 2.1z" /><path d="M3.5 19.6A2.1 2.1 0 0 1 5.6 17.5H19" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <div class="ambient" aria-hidden="true">
+    <div class="ambient__grid"></div>
+    <div class="ambient__glow ambient__glow--a"></div>
+    <div class="ambient__glow ambient__glow--b"></div>
+    <div class="ambient__glow ambient__glow--c"></div>
+  </div>
+
+  <div class="shell">
+
+    <!-- ==================== NAV ==================== -->
+    <header class="nav" id="nav">
+      <div class="container">
+        <div class="nav__inner">
+          <a class="brand" href="#top" aria-label="Sengol home">
+            <img class="brand__mark" src="/brand-mark.png" alt="" width="30" height="30" decoding="async" />
+            Sengol
+          </a>
+
+          <nav class="nav__links" aria-label="Primary">
+            <a href="#platform">Platform</a>
+            <a href="#capabilities">Capabilities</a>
+            <a href="#frameworks">Frameworks</a>
+            <a href="/security.html">Security</a>
+            <a href="/install.html">Install</a>
+            <a href="https://docs.sengol.io">Docs</a>
+            <a href="/signup.html">Sign up</a>
+          </nav>
+
+          <div class="nav__cta">
+            <a class="btn btn--primary btn--sm" href="/signup.html">Start free trial</a>
+          </div>
+
+          <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="drawer" aria-label="Open menu">
+            <svg aria-hidden="true"><use href="#i-menu" /></svg>
+          </button>
+        </div>
+
+        <div class="drawer" id="drawer">
+          <a href="#platform">Platform</a>
+          <a href="#capabilities">Capabilities</a>
+          <a href="#frameworks">Frameworks</a>
+          <a href="/security.html">Security</a>
+          <a href="/install.html">Install</a>
+          <a href="https://docs.sengol.io">Docs</a>
+          <a href="/signup.html">Sign up</a>
+          <a class="btn btn--primary" href="/signup.html">Start free trial</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <span id="top"></span>
+
+      <!-- ==================== HERO ==================== -->
+      <section class="section hero">
+        <div class="container">
+          <div class="hero__grid">
+
+            <div>
+              <span class="eyebrow">
+                <svg aria-hidden="true"><use href="#i-bolt" /></svg>
+                AI assurance for production agents
+              </span>
+
+              <h1>
+                <span class="verb">Build</span> without fear.<br />
+                <span class="verb">Govern</span> without friction.
+              </h1>
+
+              <p class="hero__sub">
+                Sengol is the assurance layer for production AI agents. Governance says what
+                should happen; Sengol proves what did — guardrails inline, every call evaluated,
+                every deploy gated, and each decision written as a cryptographically signed,
+                tamper-evident record your risk team and your regulator can verify, inside your
+                own perimeter.
+              </p>
+
+              <div class="hero__actions">
+                <a class="btn btn--primary" href="/signup.html">
+                  Start your 14-day trial
+                  <svg aria-hidden="true"><use href="#i-arrow" /></svg>
+                </a>
+                <a class="btn btn--ghost" href="/install.html">
+                  Install it yourself
+                  <svg aria-hidden="true"><use href="#i-arrow" /></svg>
+                </a>
+              </div>
+
+              <div class="hero__meta">
+                <span class="chip">Runs in your VPC</span>
+                <span class="chip">Python 3.11+</span>
+                <span class="chip">OpenTelemetry-native</span>
+                <span class="chip">Air-gap capable</span>
+              </div>
+            </div>
+
+            <!-- signed evidence chain visual -->
+            <div class="evidence-wrap">
+              <div class="evidence" role="img" aria-label="An illustration of a hash-linked chain of three signed evidence records: an allowed authorization decision, a blocked PII leak, and a passed evaluation result — all chain verified, countersigned and anchored.">
+                <div class="evidence__bar">
+                  <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                  <span class="evidence__title">sengol · signed evidence chain</span>
+                  <span class="live"><i></i> live</span>
+                </div>
+
+                <div class="chain" aria-hidden="true">
+                  <article class="rec rec--ok">
+                    <div class="rec__top">
+                      <span class="rec__type">sengol.authz.decision</span>
+                      <span class="chip chip--ok">allowed</span>
+                      <span class="rec__seq">#4,821</span>
+                    </div>
+                    <div class="rec__body">
+                      <div>agent_id: <b>kyc-triage-agent</b></div>
+                      <div>tool: <b>core_banking.read_account</b></div>
+                    </div>
+                    <div class="rec__hash"><svg><use href="#i-link" /></svg> prev 7c1e…a09f</div>
+                  </article>
+
+                  <article class="rec rec--crit">
+                    <div class="rec__top">
+                      <span class="rec__type">sengol.eval.result</span>
+                      <span class="chip chip--crit">blocked</span>
+                      <span class="rec__seq">#4,822</span>
+                    </div>
+                    <div class="rec__body">
+                      <div>failure_mode: <b>PII_LEAKED</b></div>
+                      <div>policies: <b>PIPEDA · OSFI_E23</b></div>
+                    </div>
+                    <div class="rec__hash"><svg><use href="#i-link" /></svg> prev 4b83…12dd</div>
+                  </article>
+
+                  <article class="rec rec--ok">
+                    <div class="rec__top">
+                      <span class="rec__type">sengol.eval.result</span>
+                      <span class="chip chip--ok">passed</span>
+                      <span class="rec__seq">#4,823</span>
+                    </div>
+                    <div class="rec__body">
+                      <div>evaluators: <b>8 deterministic · 3 judge</b></div>
+                      <div>signature: <b>hmac-sha256 9f2c…</b></div>
+                    </div>
+                    <div class="rec__hash"><svg><use href="#i-link" /></svg> prev e551…77ba</div>
+                  </article>
+                </div>
+
+                <div class="evidence__foot" aria-hidden="true">
+                  <span><svg><use href="#i-check" /></svg> chain verified</span>
+                  <span><svg><use href="#i-check" /></svg> Ed25519 countersigned</span>
+                  <span><svg><use href="#i-check" /></svg> Merkle anchored</span>
+                </div>
+              </div>
+
+              <div class="verify-float" aria-hidden="true">
+                <code>$ sengol-verify verify --offline pack.json</code>
+                <p>OK · 4,823 records · 0 tampered</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== STATS ==================== -->
+      <section class="section" style="padding-top:0" aria-label="Platform at a glance">
+        <div class="container">
+          <div class="stats reveal">
+            <div class="stat"><b>29</b><span>Regulatory frameworks</span></div>
+            <div class="stat"><b>32</b><span>Built-in evaluators</span></div>
+            <div class="stat"><b>2 lines</b><span>To instrument an agent</span></div>
+            <div class="stat"><b>0</b><span>Bytes leaving your VPC</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== START IN 14 DAYS ==================== -->
+      <section class="section section--rule" id="start">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="eyebrow"><svg aria-hidden="true"><use href="#i-bolt" /></svg> Start in 14 days</span>
+            <h2>Two ways to start. Same 14 days, same full capability.</h2>
+            <p class="lede">One signup, then you choose: let us run your instance, or run it yourself. Nothing is held back in either path — every evaluator, every gate, every signed record.</p>
+          </div>
+
+          <div class="doors reveal">
+            <article class="card door">
+              <span class="door__badge chip chip--gold">Try it hosted</span>
+              <div class="card__icon"><svg aria-hidden="true"><use href="#i-cpu" /></svg></div>
+              <h3>We spin up your instance.</h3>
+              <p class="lede">A private Sengol instance on our AWS, ready in about 3 minutes, pre-loaded with a reference agent and sample evidence so there's something to look at on minute one.</p>
+              <ul class="feature-list">
+                <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>No install</b> — nothing to run locally, just a URL and a login.</span></li>
+                <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Full capability</b> — every evaluator, the CI gate, the Console, offline verification.</span></li>
+                <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Destroyed at day 14</b> — synthetic data only; export what you want to keep first.</span></li>
+              </ul>
+              <a class="btn btn--primary" href="/signup.html#hosted">Try it hosted<svg aria-hidden="true"><use href="#i-arrow" /></svg></a>
+            </article>
+
+            <article class="card door">
+              <span class="door__badge chip">Run it yourself</span>
+              <div class="card__icon"><svg aria-hidden="true"><use href="#i-lock" /></svg></div>
+              <h3>You run it, inside your network.</h3>
+              <p class="lede">Docker Compose, Helm or Terraform, or <code style="font-family:var(--mono);font-size:0.86rem;color:var(--gold-bright)">pip install sengol</code> — with a 14-day licence file. Your data never leaves your network, from the first request.</p>
+              <ul class="feature-list">
+                <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Your infrastructure</b> — your Postgres, your keys, your VPC or laptop.</span></li>
+                <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Same full capability</b> — the trial licence unlocks everything, not a subset.</span></li>
+                <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Offline licence check</b> — no phone-home, ever.</span></li>
+              </ul>
+              <a class="btn btn--ghost" href="/signup.html#self">Run it yourself<svg aria-hidden="true"><use href="#i-arrow" /></svg></a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== PLATFORM / PROBLEM ==================== -->
+      <section class="section section--tint section--rule" id="platform">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="eyebrow"><svg aria-hidden="true"><use href="#i-scale" /></svg> The AI evidence gap</span>
+            <h2>Dashboards score your agents. They don't prove anything.</h2>
+            <p class="lede">
+              When an examiner asks <em>"show me the evidence for this AI agent"</em>, a trace
+              viewer is not an answer. Sengol produces the artifact that is — the gate verdict
+              and the regulator-submittable record are the same signed object, not three
+              synchronized copies.
+            </p>
+          </div>
+
+          <div class="tension reveal">
+            <div class="tension__item">
+              <b>Your engineers want to ship.</b>
+              <span>Governance that costs a sprint gets routed around. Sengol is two lines and a CI step.</span>
+            </div>
+            <div class="tension__item">
+              <b>Your risk team wants proof.</b>
+              <span>Not screenshots. Append-only, hash-chained, independently verifiable records.</span>
+            </div>
+            <div class="tension__item">
+              <b>Your business wants both.</b>
+              <span>Ship agents into regulated workflows without waiting for a quarterly review.</span>
+            </div>
+          </div>
+
+          <p class="tension__promise reveal">Sengol is the reason you can say yes to all three.</p>
+        </div>
+      </section>
+
+      <!-- ==================== HOW IT WORKS ==================== -->
+      <section class="section">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="eyebrow"><svg aria-hidden="true"><use href="#i-branch" /></svg> How it works</span>
+            <h2>Four steps from agent to admissible evidence.</h2>
+            <p class="lede">Every step is a Python call, a CLI command, an API route — and a signed record.</p>
+          </div>
+
+          <div class="steps reveal">
+            <article class="step">
+              <div class="step__num">01</div>
+              <h3>Instrument</h3>
+              <p>One call patches the Anthropic and OpenAI SDKs at class level. Every existing agent call is intercepted — no per-call changes. Or ingest OTel traces directly.</p>
+              <code>sengol.instrument()</code>
+            </article>
+            <article class="step">
+              <div class="step__num">02</div>
+              <h3>Evaluate</h3>
+              <p>Deterministic evaluators run first in under a millisecond and short-circuit on CRITICAL. LLM judges then run concurrently — hallucination, PII, toxicity, tool misuse, adversarial robustness.</p>
+              <code>32 evaluators</code>
+            </article>
+            <article class="step">
+              <div class="step__num">03</div>
+              <h3>Gate</h3>
+              <p>Block the call inline before the user sees it, and block the deploy before it merges. The GitHub Action posts a verdict on the PR and exits non-zero on failure.</p>
+              <code>sengol run-suite</code>
+            </article>
+            <article class="step">
+              <div class="step__num">04</div>
+              <h3>Prove</h3>
+              <p>Each verdict is HMAC-signed, hash-chained, and mapped to the obligation it satisfies. Export an evidence pack and hand it to an auditor — they verify it with <code style="font-family:var(--mono);font-size:0.76rem;background:rgba(0,0,0,0.28);padding:2px 6px;border-radius:5px;color:var(--gold-bright)">sengol-verify</code>, a separate open-source tool with no dependency on Sengol and no licence to check.</p>
+              <code>sengol-verify verify</code>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== CAPABILITY TABS ==================== -->
+      <section class="section section--tint section--rule" id="capabilities">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="eyebrow"><svg aria-hidden="true"><use href="#i-cpu" /></svg> Capabilities</span>
+            <h2>One platform, from the request to the regulator.</h2>
+            <p class="lede">Runtime control, evaluation quality, cryptographic evidence, and access governance — designed as one chain, not four tools you integrate yourself.</p>
+          </div>
+
+          <div class="tabs reveal" role="tablist" aria-label="Platform capabilities">
+            <button class="tab" role="tab" id="tab-runtime"  aria-controls="panel-runtime"  aria-selected="true"><svg aria-hidden="true"><use href="#i-shield" /></svg> Runtime guardrails</button>
+            <button class="tab" role="tab" id="tab-eval"     aria-controls="panel-eval"     aria-selected="false"><svg aria-hidden="true"><use href="#i-chart" /></svg> Evaluation &amp; judges</button>
+            <button class="tab" role="tab" id="tab-evidence" aria-controls="panel-evidence" aria-selected="false"><svg aria-hidden="true"><use href="#i-lock" /></svg> Signed evidence</button>
+            <button class="tab" role="tab" id="tab-reg"      aria-controls="panel-reg"      aria-selected="false"><svg aria-hidden="true"><use href="#i-file" /></svg> Regulation compiler</button>
+            <button class="tab" role="tab" id="tab-access"   aria-controls="panel-access"   aria-selected="false"><svg aria-hidden="true"><use href="#i-users" /></svg> Access governance</button>
+          </div>
+
+          <!-- panel: runtime -->
+          <div class="panel is-active" id="panel-runtime" role="tabpanel" aria-labelledby="tab-runtime" tabindex="0">
+            <div class="panel__grid">
+              <div>
+                <h3>Stop the bad call before it reaches the customer.</h3>
+                <p>Guardrails run inline in the request path. CRITICAL failures block immediately; everything else is recorded and routed. Enforcement is a policy decision, not a code change.</p>
+                <ul class="feature-list">
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Pre- and post-call interception</b> — patches the Anthropic and OpenAI SDKs; streaming responses are buffered and evaluated before delivery.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Tool authorization allow-lists</b> — per-agent policies block unauthorized tool calls, with a signed decision record on allow <em>and</em> block.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Delegation-depth limits</b> — agent-to-agent chains are reconstructed from OTel spans and attenuated at a declared depth.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>MCP tool integrity</b> — tool definitions are hash-pinned at approval, so a post-approval "rug pull" is flagged CRITICAL.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Gateway-native</b> — drop into LiteLLM or Portkey for allow / block / redact with in-path PII redaction.</span></li>
+                </ul>
+                <a class="panel__more" href="https://docs.sengol.io/guides/guardrails">Read the guardrails guide<svg aria-hidden="true"><use href="#i-arrow" /></svg></a>
+              </div>
+              <div class="code">
+                <div class="code__bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span> agent.py</div>
+<pre><code><span class="k">import</span> sengol
+
+sengol.<span class="f">configure</span>(
+    agent_id=<span class="s">"kyc-triage-agent"</span>,
+    agent_version=<span class="s">"2.4.0"</span>,
+    policies=[<span class="s">"OSFI_E23"</span>, <span class="s">"PIPEDA"</span>],
+)
+sengol.<span class="f">instrument</span>()   <span class="c"># every LLM call is now governed</span>
+
+<span class="c"># your existing code is unchanged</span>
+resp = client.messages.<span class="f">create</span>(...)
+
+<span class="c"># on a CRITICAL failure:</span>
+<span class="c"># BlockedError: <span class="no">PII_LEAKED</span> — response withheld,</span>
+<span class="c">#   signed AuditRecord #4,822 written</span></code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- panel: eval -->
+          <div class="panel" id="panel-eval" role="tabpanel" aria-labelledby="tab-eval" tabindex="0" hidden>
+            <div class="panel__grid">
+              <div>
+                <h3>Evaluation that holds up as model validation.</h3>
+                <p>Deterministic checks run first and short-circuit on CRITICAL, so you never pay for a judge call you don't need. LLM judges then fan out concurrently.</p>
+                <ul class="feature-list">
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>32 built-in evaluators</b> — hallucination, faithfulness, PII, toxicity, refusal accuracy, explainability, adversarial robustness, AML typology, tool-call correctness.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Trajectory evaluation</b> — score the whole agent run, not just the final message: tool order, argument schemas, forbidden tools, intent resolution.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Ensembles and flake tolerance</b> — unanimous, majority or weighted vote; repeat an LLM check N times and require M passes.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Red teaming</b> — pluggable adversarial backends (Garak, PyRIT) surface probe breaches as CRITICAL findings.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Own your judge</b> <span class="chip chip--gold">Enterprise</span> — mine your traces, calibrate against human labels, fine-tune a small model in your VPC, and gate it on TPR/TNR, Cohen's κ and position consistency before promotion.</span></li>
+                </ul>
+                <a class="panel__more" href="https://docs.sengol.io/reference/evaluator-library">Browse the evaluator library<svg aria-hidden="true"><use href="#i-arrow" /></svg></a>
+              </div>
+              <div class="code">
+                <div class="code__bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span> ci · sengol run-suite</div>
+<pre><code><span class="c">$ sengol run-suite --controlbook osfi_e23.yaml \
+    --dataset-path suites/kyc.jsonl --min-pass 0.95</span>
+
+evaluating  128 cases · 11 evaluators
+<span class="ok">✓</span> PIIEvaluator                 128/128
+<span class="ok">✓</span> FaithfulnessJudge            126/128
+<span class="ok">✓</span> ToolCallMatch                128/128
+<span class="no">✗</span> AdversarialRobustness        121/128
+
+pass rate <span class="n">0.943</span> &lt; min_pass <span class="n">0.95</span>
+<span class="no">GATE FAILED</span> · exit 1 · deploy blocked
+128 signed AuditRecords written</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- panel: evidence -->
+          <div class="panel" id="panel-evidence" role="tabpanel" aria-labelledby="tab-evidence" tabindex="0" hidden>
+            <div class="panel__grid">
+              <div>
+                <h3>Evidence, not logs. Verifiable by someone who doesn't trust you.</h3>
+                <p>Every verdict is a signed, append-only record in a per-agent hash chain. Change one byte anywhere in the history and verification fails — loudly, and provably.</p>
+                <ul class="feature-list">
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>HMAC-SHA256 hash chain</b> — append-only, tamper-evident, with a canonical signed payload per record type.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Ed25519 countersignatures</b> — a second, asymmetric signature so a third party verifies without ever holding your secret.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Merkle anchoring</b> — periodic roots anchored to an RFC 3161 timestamp authority and Rekor, proving a record existed at a point in time.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Offline verification</b> — export a portable bundle and verify it with <code style="font-family:var(--mono);font-size:0.82rem;background:rgba(0,0,0,0.28);padding:1px 6px;border-radius:5px;color:var(--gold-bright)">sengol-verify</code>, a separate open-source tool that never talks to Sengol and never checks a licence.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>WORM-grade storage</b> — Postgres, DynamoDB, or S3 with Object Lock in COMPLIANCE mode.</span></li>
+                </ul>
+                <a class="panel__more" href="https://docs.sengol.io/concepts/audit-records">How audit records are signed<svg aria-hidden="true"><use href="#i-arrow" /></svg></a>
+              </div>
+              <div class="code">
+                <div class="code__bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span> examiner's laptop · air-gapped</div>
+<pre><code><span class="c">$ sengol-verify verify --offline pack.json</span>
+
+bundle       kyc-triage-agent · 2026-Q2
+records      4,823
+chain        <span class="ok">OK</span>  every prev_hash links
+hmac         <span class="ok">OK</span>  4,823 / 4,823 signatures
+ed25519      <span class="ok">OK</span>  countersignatures valid
+anchors      <span class="ok">OK</span>  3 Merkle roots · RFC 3161 + Rekor
+tampered     <span class="ok">0</span>
+
+<span class="ok">VERIFIED</span> — no live server contacted</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- panel: regulation -->
+          <div class="panel" id="panel-reg" role="tabpanel" aria-labelledby="tab-reg" tabindex="0" hidden>
+            <div class="panel__grid">
+              <div>
+                <h3>Regulations as executable objects, not PDFs.</h3>
+                <p>A framework is a catalog entry, not a Python class. Sengol compiles it into obligations, routes each obligation to the evaluators that satisfy it, and keeps the evidence bound to the exact control that ran.</p>
+                <ul class="feature-list">
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>29 frameworks out of the box</b> — OSFI E-23, SR 11-7, EU AI Act, GDPR, HIPAA, FINTRAC, MAS, SAMA, APRA, ISO 42001, NIST AI RMF and more.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Bring your own policy</b> — an internal standard is one YAML entry. No new code, same signed evidence, same reports.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Cross-framework crosswalk</b> — one control node maps to many regimes, so a single run answers OSFI and the AI Act at once. OWASP ASI coverage included.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Obligation coverage, live</b> — see which obligations are covered, by which evaluator, by which record — and which are not.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Regulator-shaped reports</b> <span class="chip chip--gold">Enterprise</span> — JSON evidence pack and CRO-readable PDF, driven by your ControlBook.</span></li>
+                </ul>
+                <a class="panel__more" href="https://docs.sengol.io/concepts/controlbook">Read the ControlBook guide<svg aria-hidden="true"><use href="#i-arrow" /></svg></a>
+              </div>
+              <div class="code">
+                <div class="code__bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span> controlbook.yaml</div>
+<pre><code><span class="k">policy_id</span>: <span class="s">OSFI_E23</span>
+<span class="k">mappings</span>:
+  - <span class="k">obligation</span>: <span class="s">E23-3.3</span>   <span class="c"># explainability</span>
+    <span class="k">evaluators</span>: [<span class="s">ExplainabilityEvaluator</span>]
+    <span class="k">severity</span>: <span class="s">HIGH</span>
+    <span class="k">coverage_required</span>: <span class="k">true</span>
+    <span class="k">pass_rate</span>: <span class="n">0.95</span>
+
+  - <span class="k">obligation</span>: <span class="s">E23-6.1</span>   <span class="c"># ongoing monitoring</span>
+    <span class="k">evaluators</span>: [<span class="s">DriftMonitorPresent</span>]
+    <span class="k">severity</span>: <span class="s">CRITICAL</span>
+    <span class="k">coverage_required</span>: <span class="k">true</span>
+
+<span class="c"># every record carries the obligation it satisfied</span></code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- panel: access -->
+          <div class="panel" id="panel-access" role="tabpanel" aria-labelledby="tab-access" tabindex="0" hidden>
+            <div class="panel__grid">
+              <div>
+                <h3>Enterprise identity, segregation of duties, and legal hold.</h3>
+                <p>Governance software that can't govern its own operators isn't evidence. Sengol enforces who may approve what, records it, and signs it.</p>
+                <ul class="feature-list">
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>SSO and provisioning</b> — OIDC and SAML 2.0 sign-in, SCIM 2.0 user lifecycle, IdP group-to-role mapping re-derived on every login.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Segregation of duties</b> — object-scoped maker–checker: the person who builds a judge cannot be the person who promotes it. Overrides require a reason and a signed record.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Resource-scoped access</b> — bounded roles over label hierarchies, resolved server-side per request and pushed into the query, so a scoped auditor sees only their line of business.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Independent challenge</b> — an E-23 style validator review, attested by a challenger provably disjoint from the development actors.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Legal hold, retention and erasure</b> — statutory retention floors, dual-control on any shortening, GDPR/PIPEDA erasure that purges data without breaking the chain.</span></li>
+                </ul>
+                <a class="panel__more" href="https://docs.sengol.io/guides/access-governance">Read the access governance guide<svg aria-hidden="true"><use href="#i-arrow" /></svg></a>
+              </div>
+              <div class="code">
+                <div class="code__bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span> sengol sod ledger</div>
+<pre><code><span class="c">$ sengol judge promote --record-id jmc_91f2 \
+    --approver alice@bank.example</span>
+
+model card   <span class="ok">verified</span>  gate passed
+TPR <span class="n">0.94</span>  TNR <span class="n">0.92</span>  κ <span class="n">0.71</span>  PC <span class="n">0.88</span>
+
+checking segregation of duties…
+  validate  actor <span class="s">bob@bank.example</span>
+  promote   actor <span class="s">alice@bank.example</span>
+  <span class="ok">✓</span> distinct actors · maker-checker satisfied
+
+<span class="ok">APPROVED</span> · PromotionDecisionRecord signed
+mfa_asserted=true · acr=urn:mace:...:mfa</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== BENTO ==================== -->
+      <section class="section">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="eyebrow"><svg aria-hidden="true"><use href="#i-bolt" /></svg> Platform capabilities</span>
+            <h2>The parts nobody remembers until the audit.</h2>
+          </div>
+
+          <div class="bento reveal">
+            <article class="card card--wide">
+              <div class="card__icon"><svg aria-hidden="true"><use href="#i-branch" /></svg></div>
+              <div class="card__head"><h3>CI/CD gate with PR verdicts</h3></div>
+              <p>A GitHub Action runs your suite on every pull request, posts a sticky comment with the verdict and coverage, and exits non-zero to block the merge. The gate verdict <em>is</em> the audit record — not a copy of it.</p>
+            </article>
+
+            <article class="card card--wide">
+              <div class="card__icon"><svg aria-hidden="true"><use href="#i-refresh" /></svg></div>
+              <div class="card__head"><h3>Drift detection with a closed loop</h3></div>
+              <p>CUSUM detection on the live pass-rate stream. A breach doesn't just alert — it can trigger re-evaluation, suspend the agent, block new deploys, or route to human approval, and every response is signed.</p>
+            </article>
+
+            <article class="card">
+              <div class="card__icon"><svg aria-hidden="true"><use href="#i-eye" /></svg></div>
+              <div class="card__head"><h3>Shadow agent discovery</h3></div>
+              <p>Find agents running in your estate that nobody registered — then register, dismiss, or quarantine them with a signed disposition.</p>
+            </article>
+
+            <article class="card">
+              <div class="card__icon"><svg aria-hidden="true"><use href="#i-chart" /></svg></div>
+              <div class="card__head"><h3>Spend &amp; quota governance</h3></div>
+              <p>Per-agent, per-model cost and token budgets with signed usage evidence. Multi-currency limits with pinned or live FX.</p>
+            </article>
+
+            <article class="card">
+              <div class="card__icon"><svg aria-hidden="true"><use href="#i-file" /></svg></div>
+              <div class="card__head"><h3>Recertification triggers</h3></div>
+              <p>When a regulation changes, affected agents are queued for recertification automatically — from a signed regulation-update event.</p>
+            </article>
+
+            <article class="card card--wide">
+              <div class="card__icon"><svg aria-hidden="true"><use href="#i-scale" /></svg></div>
+              <div class="card__head"><h3>Human review queue &amp; authority model</h3></div>
+              <p>Escalation with SLAs, override authority by risk tier, and a versioned authority model whose status transitions are themselves signed records. Who may reverse a governance action — and what evidence that takes — is a declared artifact, not tribal knowledge.</p>
+            </article>
+
+            <article class="card card--wide">
+              <div class="card__icon"><svg aria-hidden="true"><use href="#i-code" /></svg></div>
+              <div class="card__head"><h3>Policy portability</h3></div>
+              <p>Export authorization policies to AWS Cedar, import Microsoft Agent Control Specification manifests as declared capabilities. Your policy is not trapped in our format.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== FRAMEWORKS ==================== -->
+      <section class="section section--tint section--rule" id="frameworks">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="eyebrow"><svg aria-hidden="true"><use href="#i-scale" /></svg> Regulatory frameworks</span>
+            <h2>29 frameworks compiled. Yours is one YAML entry away.</h2>
+            <p class="lede">Sengol is not OSFI-specific. It is opinionated about OSFI E-23 because that is where it ships first.</p>
+          </div>
+        </div>
+
+        <div class="marquee reveal" aria-label="Supported regulatory frameworks">
+          <div class="marquee__row">
+            <div>
+              <span class="reg"><i></i>OSFI E-23 <em>Model risk</em></span>
+              <span class="reg"><i></i>SR 11-7 <em>Fed / OCC / FDIC</em></span>
+              <span class="reg"><i></i>EU AI Act</span>
+              <span class="reg"><i></i>GDPR</span>
+              <span class="reg"><i></i>FINTRAC Part 6F</span>
+              <span class="reg"><i></i>PIPEDA</span>
+              <span class="reg"><i></i>HIPAA</span>
+              <span class="reg"><i></i>NIST AI RMF</span>
+              <span class="reg"><i></i>ISO/IEC 42001</span>
+              <span class="reg"><i></i>OSFI B-10 <em>Third party</em></span>
+              <span class="reg"><i></i>BCBS 239</span>
+              <span class="reg"><i></i>SOX</span>
+              <span class="reg"><i></i>CCPA</span>
+              <span class="reg"><i></i>OCC 2011-12</span>
+              <span class="reg"><i></i>SR 11-7</span>
+            </div>
+            <div aria-hidden="true">
+              <span class="reg"><i></i>OSFI E-23 <em>Model risk</em></span>
+              <span class="reg"><i></i>SR 11-7 <em>Fed / OCC / FDIC</em></span>
+              <span class="reg"><i></i>EU AI Act</span>
+              <span class="reg"><i></i>GDPR</span>
+              <span class="reg"><i></i>FINTRAC Part 6F</span>
+              <span class="reg"><i></i>PIPEDA</span>
+              <span class="reg"><i></i>HIPAA</span>
+              <span class="reg"><i></i>NIST AI RMF</span>
+              <span class="reg"><i></i>ISO/IEC 42001</span>
+              <span class="reg"><i></i>OSFI B-10 <em>Third party</em></span>
+              <span class="reg"><i></i>BCBS 239</span>
+              <span class="reg"><i></i>SOX</span>
+              <span class="reg"><i></i>CCPA</span>
+              <span class="reg"><i></i>OCC 2011-12</span>
+              <span class="reg"><i></i>SR 11-7</span>
+            </div>
+          </div>
+
+          <div class="marquee__row marquee__row--rev">
+            <div>
+              <span class="reg"><i></i>UK GDPR</span>
+              <span class="reg"><i></i>PRA SS1/23</span>
+              <span class="reg"><i></i>FCA AI</span>
+              <span class="reg"><i></i>EBA ML <em>IRB</em></span>
+              <span class="reg"><i></i>MAS TRM</span>
+              <span class="reg"><i></i>MAS FEAT</span>
+              <span class="reg"><i></i>PDPA <em>Singapore</em></span>
+              <span class="reg"><i></i>SAMA AI Ethics</span>
+              <span class="reg"><i></i>PDPL <em>Saudi Arabia</em></span>
+              <span class="reg"><i></i>RBI IT Governance</span>
+              <span class="reg"><i></i>IRDAI AI/ML</span>
+              <span class="reg"><i></i>DPDP <em>India</em></span>
+              <span class="reg"><i></i>APRA CPG 234</span>
+              <span class="reg"><i></i>US Treasury AI RMF</span>
+            </div>
+            <div aria-hidden="true">
+              <span class="reg"><i></i>UK GDPR</span>
+              <span class="reg"><i></i>PRA SS1/23</span>
+              <span class="reg"><i></i>FCA AI</span>
+              <span class="reg"><i></i>EBA ML <em>IRB</em></span>
+              <span class="reg"><i></i>MAS TRM</span>
+              <span class="reg"><i></i>MAS FEAT</span>
+              <span class="reg"><i></i>PDPA <em>Singapore</em></span>
+              <span class="reg"><i></i>SAMA AI Ethics</span>
+              <span class="reg"><i></i>PDPL <em>Saudi Arabia</em></span>
+              <span class="reg"><i></i>RBI IT Governance</span>
+              <span class="reg"><i></i>IRDAI AI/ML</span>
+              <span class="reg"><i></i>DPDP <em>India</em></span>
+              <span class="reg"><i></i>APRA CPG 234</span>
+              <span class="reg"><i></i>US Treasury AI RMF</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <p class="marquee-note reveal">
+            Adding a framework is one <code>catalog.yaml</code> entry — zero new Python classes.
+            Your internal model-risk standard works exactly the same way.
+          </p>
+        </div>
+      </section>
+
+      <!-- ==================== SECURITY ==================== -->
+      <section class="section section--tint section--rule" id="security">
+        <div class="container">
+          <div class="split">
+            <div class="reveal">
+              <div class="section-head section-head--left" style="margin-bottom:0">
+                <span class="eyebrow"><svg aria-hidden="true"><use href="#i-lock" /></svg> Security &amp; deployment</span>
+                <h2>Your perimeter. Your keys. Your data.</h2>
+                <p class="lede">
+                  Sengol is an SDK first and a service second. The evidence chain is written to
+                  a store you own, in an environment you control. Nothing about the design
+                  requires your prompts or completions to reach us.
+                </p>
+                <p class="lede">
+                  <code style="font-family:var(--mono);font-size:0.86rem;color:var(--gold-bright)">docker compose up</code>
+                  for a laptop. Helm and Terraform for AWS, Azure, GCP, OpenShift and on-prem.
+                  Fully air-gapped, if that's the requirement.
+                </p>
+              </div>
+            </div>
+
+            <ul class="sec-list reveal">
+              <li>
+                <span class="ic"><svg aria-hidden="true"><use href="#i-shield" /></svg></span>
+                <div><b>Data residency by architecture</b><p>Evidence is written to your Postgres, DynamoDB or S3. Judges can run entirely on models inside your VPC.</p></div>
+              </li>
+              <li>
+                <span class="ic"><svg aria-hidden="true"><use href="#i-lock" /></svg></span>
+                <div><b>Signing keys you control</b><p>Local HMAC or AWS KMS-backed signing with rotation, so old records still verify after a key change.</p></div>
+              </li>
+              <li>
+                <span class="ic"><svg aria-hidden="true"><use href="#i-users" /></svg></span>
+                <div><b>Identity that survives review</b><p>OIDC, SAML 2.0, SCIM 2.0, RBAC with a "you cannot grant what you don't hold" invariant, TOTP MFA, and audited break-glass.</p></div>
+              </li>
+              <li>
+                <span class="ic"><svg aria-hidden="true"><use href="#i-db" /></svg></span>
+                <div><b>Built for scale and HA</b><p>Multi-replica coordination, connection pooling, keyset pagination, and durable outbox delivery — no Redis required.</p></div>
+              </li>
+              <li>
+                <span class="ic"><svg aria-hidden="true"><use href="#i-file" /></svg></span>
+                <div><b>Retention done correctly</b><p>Statutory retention floors, legal hold that blocks disposition, WORM cold export, and signed retirement records. Erasure never breaks the chain.</p></div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== PERSONAS ==================== -->
+      <section class="section">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="eyebrow"><svg aria-hidden="true"><use href="#i-users" /></svg> Who Sengol is for</span>
+            <h2>One chain of evidence. Three very different readers.</h2>
+          </div>
+
+          <div class="personas reveal">
+            <article class="card persona">
+              <span class="role">Chief Risk Officer · MRM</span>
+              <h3>Answer the examiner without a fire drill.</h3>
+              <ul>
+                <li><svg aria-hidden="true"><use href="#i-check" /></svg><span>Obligation coverage per agent, per period</span></li>
+                <li><svg aria-hidden="true"><use href="#i-check" /></svg><span>Independently verifiable evidence packs</span></li>
+                <li><svg aria-hidden="true"><use href="#i-check" /></svg><span>Declared authority and override model</span></li>
+                <li><svg aria-hidden="true"><use href="#i-check" /></svg><span>Independent challenge with enforced separation</span></li>
+              </ul>
+            </article>
+
+            <article class="card persona">
+              <span class="role">VP Engineering · ML Platform</span>
+              <h3>Governance that doesn't cost you a sprint.</h3>
+              <ul>
+                <li><svg aria-hidden="true"><use href="#i-check" /></svg><span>Two lines at startup, no per-call changes</span></li>
+                <li><svg aria-hidden="true"><use href="#i-check" /></svg><span>SDK, CLI, REST API and GitHub Action</span></li>
+                <li><svg aria-hidden="true"><use href="#i-check" /></svg><span>Works with your existing OTel pipeline</span></li>
+                <li><svg aria-hidden="true"><use href="#i-check" /></svg><span>Self-host with Compose, Helm or Terraform</span></li>
+              </ul>
+            </article>
+
+            <article class="card persona">
+              <span class="role">Compliance · Model Validation</span>
+              <h3>Evidence bound to the control that produced it.</h3>
+              <ul>
+                <li><svg aria-hidden="true"><use href="#i-check" /></svg><span>Every response scored against declared controls</span></li>
+                <li><svg aria-hidden="true"><use href="#i-check" /></svg><span>Human review queue with escalation SLAs</span></li>
+                <li><svg aria-hidden="true"><use href="#i-check" /></svg><span>Automatic recertification on regulation change</span></li>
+                <li><svg aria-hidden="true"><use href="#i-check" /></svg><span>Legal hold, retention floors, defensible disposal</span></li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== FAQ ==================== -->
+      <section class="section">
+        <div class="container container--narrow">
+          <div class="section-head reveal">
+            <span class="eyebrow"><svg aria-hidden="true"><use href="#i-book" /></svg> Frequently asked questions</span>
+            <h2>The ones we always get asked.</h2>
+          </div>
+
+          <div class="faq reveal">
+            <details>
+              <summary>What is AI agent governance?<svg class="plus" aria-hidden="true"><use href="#i-plus" /></svg></summary>
+              <p>AI agent governance is the practice of controlling what an AI agent is allowed to do at runtime, evaluating what it actually did, and producing a record that proves both. In practice that means four things working together: policies declaring which tools and actions an agent may use, guardrails enforcing them inline before a response reaches a user, evaluators scoring each interaction for failures like PII leakage or hallucination, and an audit trail an independent party can verify. Observability tools cover the third; governance requires all four.</p>
+              <p><strong>Governance and assurance are not the same thing.</strong> Governance is the regime — the policies, the committees, who decides what an agent may do. Assurance is the evidence that the regime actually held: the testing, the verification and the record an independent party can check. In the three-lines model, governance is written in the first line and assurance is what the second and third lines — model validation and internal audit — are accountable for. Sengol is built for the assurance side: governance says what should happen, assurance proves what did.</p>
+            </details>
+            <details>
+              <summary>Does Sengol help with OSFI E-23 compliance?<svg class="plus" aria-hidden="true"><use href="#i-plus" /></svg></summary>
+              <p>Yes. OSFI Guideline E-23 on model risk management takes effect 1 May 2027 for federally regulated financial institutions in Canada, and extends to AI and machine-learning models. Sengol compiles E-23 into obligations, routes each one to the evaluators that satisfy it, and binds every signed record to the specific control that produced it — so coverage per agent and per period is a query, not a spreadsheet exercise. The same mechanism covers SR 11-7, the EU AI Act, FINTRAC, HIPAA and 24 other frameworks, and your own internal model-risk standard is one YAML entry.</p>
+            </details>
+            <details>
+              <summary>How is Sengol different from an AI observability tool?<svg class="plus" aria-hidden="true"><use href="#i-plus" /></svg></summary>
+              <p>An observability tool tells you what happened. Sengol decides what is allowed to happen, and produces evidence of the decision. It blocks a CRITICAL failure inline before the user sees it, blocks a failing deploy before it merges, and writes each verdict as a hash-chained, cryptographically signed record that a third party can verify offline without access to your systems. The gate verdict and the record you hand an examiner are the same object, not two systems you reconcile.</p>
+            </details>
+            <details>
+              <summary>How is this different from LangSmith, Arize or Galileo?<svg class="plus" aria-hidden="true"><use href="#i-plus" /></svg></summary>
+              <p>Those are developer observability tools — they help engineers debug agents faster, and they do it well. They produce dashboards and scores. Sengol produces evidence: a signed, hash-chained, offline-verifiable record bound to the specific obligation it satisfies, plus the runtime controls that decide what happens next. The gate verdict and the record you hand an examiner are the same object.</p>
+            </details>
+            <details>
+              <summary>Does any of my data leave my infrastructure?<svg class="plus" aria-hidden="true"><use href="#i-plus" /></svg></summary>
+              <p>Not by design. The SDK writes to an audit store you own — your Postgres, DynamoDB or S3 — in your own environment. Deploy with Docker Compose, Helm or Terraform inside your VPC, or fully air-gapped. If you use a hosted LLM judge, that provider sees the judge prompt; run a local model instead and nothing leaves at all.</p>
+            </details>
+            <details>
+              <summary>What does "cryptographically signed evidence" actually mean here?<svg class="plus" aria-hidden="true"><use href="#i-plus" /></svg></summary>
+              <p>Each record has a canonical payload signed with HMAC-SHA256 and linked to the previous record in a per-agent hash chain, so the store is append-only and tamper-evident. Records are additionally countersigned with Ed25519 and periodically Merkle-anchored to an RFC 3161 timestamp authority and Rekor. A third party can verify an exported bundle offline, with the public key alone — no access to your systems or your secret.</p>
+            </details>
+            <details>
+              <summary>My regulator isn't on your list. Now what?<svg class="plus" aria-hidden="true"><use href="#i-plus" /></svg></summary>
+              <p>Add it. A framework in Sengol is a catalog entry with obligations and evaluator routing — no new Python classes. That is exactly how internal bank policies and regional regimes are supported, and they get the same compiled obligations, the same signed evidence and the same reports as the 29 that ship in the box.</p>
+            </details>
+            <details>
+              <summary>How long does integration actually take?<svg class="plus" aria-hidden="true"><use href="#i-plus" /></svg></summary>
+              <p>Runtime instrumentation is two lines at process startup — <code>sengol.configure()</code> and <code>sengol.instrument()</code> — with no per-call changes to your agent code. The CI gate is one workflow step. Mapping your controls into a ControlBook is the part that takes real thought, and it is the part that produces the evidence.</p>
+            </details>
+            <details>
+              <summary>What's included and what's Enterprise-gated?<svg class="plus" aria-hidden="true"><use href="#i-plus" /></svg></summary>
+              <p>Included: the SDK, every built-in evaluator, the signed audit store, offline verification, the local Console, the CLI and the CI gate. Enterprise-gated: the certified regulatory packs and PDF reports, the Judge Builder pipeline, and managed deployment tooling — Helm, Terraform, air-gapped install and the hosted API.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== CTA ==================== -->
+      <section class="section" id="request-access">
+        <div class="container">
+          <div class="cta-box reveal">
+            <span class="eyebrow"><svg aria-hidden="true"><use href="#i-bolt" /></svg> Start now</span>
+            <h2 style="margin-top:20px">Your teams ship. Sengol keeps agents in bounds.</h2>
+            <p class="lede" style="max-width:640px;margin-inline:auto">
+              Declare your controls once. Sengol makes them executable, verifiable, and
+              defensible in production. 14 days, full capability, either way.
+            </p>
+
+            <div class="hero__actions" style="justify-content:center;margin-top:30px">
+              <a class="btn btn--primary" href="/signup.html">
+                Start your 14-day trial
+                <svg aria-hidden="true"><use href="#i-arrow" /></svg>
+              </a>
+              <a class="btn btn--ghost" href="mailto:hello@sengol.io">
+                Talk to us first
+                <svg aria-hidden="true"><use href="#i-arrow" /></svg>
+              </a>
+            </div>
+
+            <div class="cta-meta">
+              <span class="chip chip--gold">Self-hosted</span>
+              <span class="chip">Built in Canada</span>
+              <span class="chip">Runtime controls</span>
+              <span class="chip">Signed evidence</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__grid">
+          <div>
+            <a class="brand" href="#top">
+              <img class="brand__mark" src="/brand-mark.png" alt="" width="30" height="30" decoding="async" />
+              Sengol
+            </a>
+            <p class="footer__blurb">
+              The assurance layer for production AI agents.
+            </p>
+          </div>
+
+          <div>
+            <h4>Product</h4>
+            <ul>
+              <li><a href="#platform">Platform</a></li>
+              <li><a href="#capabilities">Capabilities</a></li>
+              <li><a href="#frameworks">Frameworks</a></li>
+              <li><a href="/security.html">Security</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4>Get started</h4>
+            <ul>
+              <li><a href="/signup.html">Sign up</a></li>
+              <li><a href="/install.html">Install it yourself</a></li>
+              <li><a href="/trial-terms.html">Trial terms</a></li>
+              <li><a href="https://docs.sengol.io">Documentation</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4>Company</h4>
+            <ul>
+              <li><a href="/signup.html">Start a trial</a></li>
+              <li><a href="mailto:hello@sengol.io">hello@sengol.io</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer__bar">
+          <span>© 2026 Sengol Inc. · Built in Canada</span>
+          <span>sengol.io</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      /* ---------- sticky nav shadow ---------- */
+      var nav = document.getElementById("nav");
+      var onScroll = function () {
+        nav.classList.toggle("is-stuck", window.scrollY > 12);
+      };
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+
+      /* ---------- mobile drawer ---------- */
+      var toggle = document.getElementById("navToggle");
+      var drawer = document.getElementById("drawer");
+      toggle.addEventListener("click", function () {
+        var open = drawer.classList.toggle("is-open");
+        toggle.setAttribute("aria-expanded", String(open));
+        toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      });
+      drawer.addEventListener("click", function (e) {
+        if (e.target.tagName === "A") {
+          drawer.classList.remove("is-open");
+          toggle.setAttribute("aria-expanded", "false");
+        }
+      });
+
+      /* ---------- capability tabs ---------- */
+      var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+      var select = function (tab) {
+        tabs.forEach(function (t) {
+          var on = t === tab;
+          t.setAttribute("aria-selected", String(on));
+          var panel = document.getElementById(t.getAttribute("aria-controls"));
+          panel.classList.toggle("is-active", on);
+          if (on) { panel.removeAttribute("hidden"); } else { panel.setAttribute("hidden", ""); }
+        });
+      };
+      tabs.forEach(function (tab, i) {
+        tab.addEventListener("click", function () { select(tab); });
+        tab.addEventListener("keydown", function (e) {
+          var next = null;
+          if (e.key === "ArrowRight") next = tabs[(i + 1) % tabs.length];
+          if (e.key === "ArrowLeft")  next = tabs[(i - 1 + tabs.length) % tabs.length];
+          if (e.key === "Home")       next = tabs[0];
+          if (e.key === "End")        next = tabs[tabs.length - 1];
+          if (next) { e.preventDefault(); select(next); next.focus(); }
+        });
+      });
+
+      /* ---------- scroll reveal ---------- */
+      var revealables = document.querySelectorAll(".reveal");
+      if (reduced || !("IntersectionObserver" in window)) {
+        revealables.forEach(function (el) { el.classList.add("is-in"); });
+      } else {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-in");
+              io.unobserve(entry.target);
+            }
+          });
+        }, { rootMargin: "0px 0px -12% 0px", threshold: 0.08 });
+        revealables.forEach(function (el) { io.observe(el); });
+      }
+
+      /* ---------- card spotlight ---------- */
+      if (!reduced && window.matchMedia("(hover: hover)").matches) {
+        document.addEventListener("pointermove", function (e) {
+          var card = e.target.closest ? e.target.closest(".card") : null;
+          if (!card) return;
+          var r = card.getBoundingClientRect();
+          card.style.setProperty("--mx", (e.clientX - r.left) + "px");
+          card.style.setProperty("--my", (e.clientY - r.top) + "px");
+        }, { passive: true });
+      }
+
+    })();
+  </script>
+</body>
+</html>

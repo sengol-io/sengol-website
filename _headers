@@ -1,0 +1,31 @@
+# Cloudflare Pages response headers.
+# Font filenames carry a content hash (e.g. inter-latin.3100e775.woff2), so a
+# changed file ships under a new name and `immutable` can never serve a stale
+# one. Regenerate the hash if you replace a font.
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/og-image.png
+  Cache-Control: public, max-age=604800
+
+/favicon.ico
+  Cache-Control: public, max-age=604800
+
+/favicon-*.png
+  Cache-Control: public, max-age=604800
+
+/apple-touch-icon.png
+  Cache-Control: public, max-age=604800
+
+/icon-*.png
+  Cache-Control: public, max-age=604800
+
+/brand-mark.png
+  Cache-Control: public, max-age=604800
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: geolocation=(), microphone=(), camera=()

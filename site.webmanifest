@@ -1,0 +1,14 @@
+{
+  "name": "Sengol",
+  "short_name": "Sengol",
+  "description": "The assurance layer for production AI agents.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#070E1B",
+  "theme_color": "#070E1B",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

@@ -1,0 +1,76 @@
+<!doctype html><meta charset="utf-8">
+<!-- Build source for /og-image.png. Not a page — see brand/README.md. -->
+<meta name="robots" content="noindex, nofollow">
+<title>Sengol OG card (build source)</title>
+<style>
+  @font-face{font-family:'Inter';src:url('../fonts/inter-latin.3100e775.woff2') format('woff2');font-weight:100 900;font-display:block}
+  @font-face{font-family:'JetBrains Mono';src:url('../fonts/jetbrains-mono-latin.83c005d4.woff2') format('woff2');font-weight:100 800;font-display:block}
+  :root{
+    --bg:#070E1B; --surface:#0A1628; --surface-2:#0C1B30; --surface-3:#0F2138;
+    --gold:#C9A84C; --gold-bright:#E7CC7E; --gold-dim:rgba(201,168,76,.14);
+    --ok:#5FD3A6; --crit:#F2807E;
+    --text:#E9EEF6; --text-soft:#C3CFE0; --muted:#8FA0BC;
+    --line:rgba(233,238,246,.09); --line-strong:rgba(233,238,246,.16); --line-gold:rgba(201,168,76,.30);
+  }
+  *{box-sizing:border-box;margin:0}
+  body{
+    width:1200px;height:630px;overflow:hidden;position:relative;
+    font-family:'Inter',system-ui,sans-serif;color:var(--text);
+    background:
+      radial-gradient(1100px 620px at 78% 8%, rgba(201,168,76,.055), transparent 60%),
+      linear-gradient(160deg, #0B1524 0%, var(--bg) 55%, #060B15 100%);
+  }
+  .grid{position:absolute;inset:0;
+    background-image:linear-gradient(rgba(233,238,246,.028) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(233,238,246,.028) 1px,transparent 1px);
+    background-size:56px 56px}
+  .wrap{position:relative;padding:52px 64px;height:100%;display:flex;flex-direction:column}
+  .brand{display:flex;align-items:center;gap:13px;font-size:31px;font-weight:900;letter-spacing:-.04em}
+  .brand img{width:46px;height:46px;display:block}
+  .body{display:flex;gap:40px;flex:1;align-items:center;margin-top:16px}
+  .left{flex:1;min-width:0}
+  h1{font-size:63px;line-height:1.06;font-weight:900;letter-spacing:-.045em}
+  h1 .g{color:var(--gold);display:block}
+  p{margin-top:22px;font-size:20px;line-height:1.5;color:var(--text-soft);max-width:672px}
+  .chips{display:flex;flex-wrap:nowrap;gap:10px;margin-top:30px}
+  .chip{border:1px solid var(--line-strong);border-radius:999px;padding:9px 15px;font-size:16px;font-weight:700;color:var(--text-soft);white-space:nowrap}
+  .chip.on{border-color:var(--line-gold);background:var(--gold-dim);color:var(--gold-bright)}
+  .panel{width:388px;flex:none;border:1px solid var(--line);border-radius:17px;background:var(--surface-2);
+         box-shadow:0 30px 80px rgba(0,0,0,.5);overflow:hidden;margin-top:8px}
+  .panel__bar{display:flex;align-items:center;gap:9px;padding:14px 17px;border-bottom:1px solid var(--line);background:var(--surface-3)}
+  .dot{width:9px;height:9px;border-radius:50%;background:rgba(233,238,246,.22)}
+  .panel__title{margin-left:9px;font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--muted);letter-spacing:.01em}
+  .r{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:17px 17px;border-bottom:1px solid var(--line)}
+  .r span:first-child{font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--text);
+       border-left:3px solid var(--gold);padding-left:11px;white-space:nowrap}
+  .tag{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.07em;
+       padding:5px 10px;border-radius:7px}
+  .tag.ok{color:var(--ok);background:rgba(95,211,166,.13)}
+  .tag.no{color:var(--crit);background:rgba(242,128,126,.13)}
+  .r.crit span:first-child{border-left-color:var(--crit)}
+  .foot{padding:15px 17px;font-family:'JetBrains Mono',monospace;font-size:13.5px;color:var(--ok)}
+</style>
+<div class="grid"></div>
+<div class="wrap">
+  <div class="brand"><img src="../brand-mark.png" alt="">Sengol</div>
+  <div class="body">
+    <div class="left">
+      <h1>AI assurance,<span class="g">signed as evidence.</span></h1>
+      <p>Governance says what should happen. Sengol proves what did — every decision a signed record your regulator can verify offline.</p>
+      <div class="chips">
+        <span class="chip on">OSFI E-23</span>
+        <span class="chip">EU AI Act</span>
+        <span class="chip">NIST AI RMF</span>
+        <span class="chip">ISO 42001</span>
+        <span class="chip">+25 more</span>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel__bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span class="panel__title">signed evidence chain</span></div>
+      <div class="r"><span>sengol.authz.decision</span><span class="tag ok">ALLOWED</span></div>
+      <div class="r crit"><span>PII_LEAKED</span><span class="tag no">BLOCKED</span></div>
+      <div class="r"><span>sengol.eval.result</span><span class="tag ok">PASSED</span></div>
+      <div class="foot">&#10003; chain verified &middot; 0 tampered</div>
+    </div>
+  </div>
+</div>
