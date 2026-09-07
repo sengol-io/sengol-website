@@ -6,9 +6,11 @@
 # on the site needs one.
 #
 # Deploys happen through Cloudflare's Git integration (the Cloudflare Pages
-# GitHub App watches this repo and deploys every push to main). This file is
-# also what `wrangler pages deploy` reads for a manual deploy from a laptop.
-# See DEPLOY.md.
+# GitHub App watches this repo and deploys every push to main). Because this
+# file contains `pages_build_output_dir`, Cloudflare reads it on every Git
+# build and treats it as the source of truth for the settings it defines,
+# overriding the dashboard. `wrangler pages deploy` reads it too for a manual
+# deploy from a laptop. See DEPLOY.md.
 
 name = "sengol-website"
 pages_build_output_dir = "."

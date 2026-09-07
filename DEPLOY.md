@@ -10,7 +10,7 @@ Files that matter:
 
 | File | Purpose |
 |---|---|
-| `wrangler.toml` | Names the Pages project and sets the deploy directory to the repo root. |
+| `wrangler.toml` | Live build configuration read by Cloudflare on every Git build: names the Pages project and sets the deploy directory to the repo root. See the note at the end of section 1. |
 | `_headers` | The only place response headers are defined. |
 | `CNAME`, `.nojekyll` | Leftovers from GitHub Pages; harmless on Cloudflare, kept so the repo still works there as a fallback. |
 
@@ -70,46 +70,72 @@ request gets a preview deploy. The Cloudflare GitHub App posts the preview
 URL as a check and a comment on the pull request; there is nothing else to
 configure for that.
 
-If you later want to change the build settings, they live under the project
--> Settings -> Builds & deployments. `wrangler.toml` in the repo is not read
-by the Git integration; it is there for manual wrangler deploys and as
-documentation of the project name and deploy directory.
+`wrangler.toml` is not just documentation. Because it contains
+`pages_build_output_dir`, Cloudflare detects it during every Git build and
+treats it as the source of truth for the settings it defines: the build
+output directory today, and any compatibility date, compatibility flags,
+environment variables, or bindings that are ever added to it. Those fields
+become read-only in the dashboard while the file is present, and a
+dashboard-only change to them will be overridden on the next build. The two
+must agree: `pages_build_output_dir = "."` in the file is the same thing as
+Build output directory `/` in the dashboard. To change a setting the file
+covers, change the file and push. Settings the file does not cover (build
+command, production branch, preview access, notifications) still live under
+the project -> Settings.
 
-## 2. Move the sengol.io custom domain without downtime
+## 2. Move the sengol.io custom domain
 
-The old project `sengol-landing` currently owns the `sengol.io` custom
-domain. Cloudflare only lets one Pages project hold a given hostname, so the
-order matters.
+This was completed on 2026-09-07; the steps are kept for the next time a
+hostname has to move between Pages projects.
+
+The old project `sengol-landing` owned the `sengol.io` custom domain.
+Cloudflare only lets one Pages project hold a given hostname, and it offers
+no atomic transfer between projects, so the order matters and there are two
+possible paths.
 
 1. Confirm the new project serves the site at its `*.pages.dev` URL.
-2. Workers & Pages -> `sengol-website` -> Custom domains -> Set up a custom
-   domain -> `sengol.io`. If Cloudflare refuses because the hostname is
-   attached to another project, go to `sengol-landing` -> Custom domains and
-   remove `sengol.io` there, then immediately re-add it on `sengol-website`.
-   Do the same for `www.sengol.io` if `sengol-landing` had it.
-3. Because `sengol.io` is a zone in the same Cloudflare account, the DNS
+2. List every hostname under `sengol-landing` -> Custom domains. Each one
+   (`sengol.io`, and `www.sengol.io` if present) has to be moved and verified
+   individually.
+3. Workers & Pages -> `sengol-website` -> Custom domains -> Set up a custom
+   domain -> `sengol.io`.
+   - If Cloudflare accepts the attach, there is no interruption: the hostname
+     switches to the new project as soon as its status shows Active.
+   - If Cloudflare refuses because the hostname is attached to another
+     project, you have to detach first: `sengol-landing` -> Custom domains ->
+     remove `sengol.io`, then immediately re-add it on `sengol-website`.
+     Between the removal and the new association showing Active, requests
+     to that hostname get a Cloudflare error page. In practice this is
+     seconds to about a minute, but it is a real gap, so do it at a quiet
+     time and have both browser tabs open before you start.
+   Repeat for `www.sengol.io`.
+4. Because `sengol.io` is a zone in the same Cloudflare account, the DNS
    record is a proxied CNAME pointing at the project's `pages.dev` hostname.
    Cloudflare updates that record automatically when the custom domain is
    attached. You do not need to edit DNS by hand; if you do look, it should
    read `sengol.io CNAME sengol-website.pages.dev` (proxied).
-4. Wait for the custom domain status to show Active (usually under a minute),
-   then run the verification in section 3.
-5. Only after `https://sengol.io` is confirmed to be served by the new
-   project, delete `sengol-landing` (its Settings -> General -> Delete
-   project) so the hostname cannot be re-attached to it by mistake.
-
-The cut-over is a single record change on Cloudflare's edge, so there is no
-propagation delay and no window where the site is down.
+5. Wait until every moved hostname shows Active under `sengol-website` ->
+   Custom domains, then run the verification in section 3 for each of them.
+6. Only after every hostname is confirmed to be served by the new project,
+   delete `sengol-landing` (its Settings -> General -> Delete project) so a
+   hostname cannot be re-attached to it by mistake. Deleting it while a
+   hostname is still pending or still attached to it takes that hostname
+   down.
 
 ## 3. Verify
 
-After the first deploy and after the custom domain move:
+After the first deploy and after the custom domain move, check every
+hostname, not just the apex:
 
 ```sh
 curl -I https://sengol.io
+curl -I https://www.sengol.io
+curl -sI http://sengol.io | head -1
 ```
 
-Expect `HTTP/2 200` and the headers defined in `_headers`:
+Expect `HTTP/2 200` on the first two (or a 301 to the apex from `www`, if a
+redirect rule is configured) and a 301 to HTTPS on the third. Each 200 must
+carry the headers defined in `_headers`:
 
 ```
 x-content-type-options: nosniff
@@ -127,8 +153,10 @@ curl -I https://sengol.io/fonts/inter-latin.3100e775.woff2
 Expect `cache-control: public, max-age=31536000, immutable`.
 
 If those headers are missing, either the deploy did not include `_headers`
-(check the build log under the project -> Deployments) or the domain is still
-pointing at the old project (check Custom domains on both projects).
+(check the build log under the project -> Deployments) or that hostname is
+still pointing at the old project (check Custom domains on both projects).
+A Cloudflare error page on one hostname while the other works means that
+hostname's custom-domain association is still pending or was never moved.
 
 ## Manual deploy from a laptop
 
