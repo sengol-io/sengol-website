@@ -146,6 +146,12 @@
     }
 
     ::selection { background: rgba(201, 168, 76, 0.35); color: var(--text); }
+    /* inside the dark panels the gold highlight composites to a dark olive,
+       so selected text stays white there */
+    .evidence ::selection,
+    .code ::selection,
+    .verify-float ::selection,
+    .cta-box ::selection { background: rgba(201, 168, 76, 0.45); color: #fff; }
 
     .sr-only {
       position: absolute; width: 1px; height: 1px;
