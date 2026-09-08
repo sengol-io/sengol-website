@@ -117,9 +117,10 @@ git clone https://github.com/sengol-io/sengol.git
 cd sengol
 cp .env.example .env
 
-<span class="c"># put your licence file where the container expects it</span>
+<span class="c"># put your licence where the container expects it — the file we
+# sent you is wherever you saved it, not inside this checkout</span>
 mkdir -p /etc/sengol
-cp sengol.lic /etc/sengol/sengol.lic
+cp /path/to/sengol.lic /etc/sengol/sengol.lic
 
 <span class="c"># edit .env: SENGOL_LICENSE_FILE, KMS signing key, Postgres DSN
 </span>
@@ -233,8 +234,8 @@ sengol.<span class="f">instrument</span>()</code></pre>
             <article class="step">
               <div class="step__num">01</div>
               <h3>Seed the demo</h3>
-              <p>Run the bundled reference agent against a sample KYC dataset so there's real evidence to look at, not an empty Console. <code style="font-family:var(--mono);font-size:0.78rem">make demo</code> is a target in the repository, so clone it first — the Helm and pip paths above never do, and the Terraform path leaves you in <code style="font-family:var(--mono);font-size:0.78rem">sengol/terraform/aws</code>.</p>
-              <code>git clone https://github.com/sengol-io/sengol.git<br />cd sengol<br />make demo</code>
+              <p>Run the bundled reference agent against a sample KYC dataset so there's real evidence to look at, not an empty Console. <code style="font-family:var(--mono);font-size:0.78rem">make demo</code> is a target in the repository, so run it from the repository root. Compose users are already there; the Helm and pip paths never clone, and the Terraform path leaves you in <code style="font-family:var(--mono);font-size:0.78rem">terraform/aws</code>.</p>
+              <code><span style="opacity:.62"># only if you have no checkout yet</span><br />git clone https://github.com/sengol-io/sengol.git &amp;&amp; cd sengol<br /><br /><span style="opacity:.62"># then, from the repository root</span><br />make demo</code>
             </article>
             <article class="step">
               <div class="step__num">02</div>
