@@ -112,16 +112,17 @@
           <div class="panel is-active install-panel" id="panel-compose" role="tabpanel" aria-labelledby="tab-compose" tabindex="0">
             <div class="code">
               <div class="code__bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span> laptop or single host</div>
-<pre><code><span class="c"># download the compose bundle</span>
-curl -O https://get.sengol.io/docker-compose.yml
-curl -O https://get.sengol.io/.env.example
+<pre><code><span class="c"># the compose bundle ships in the sengol repository</span>
+git clone https://github.com/sengol-io/sengol.git
+cd sengol
 cp .env.example .env
 
-<span class="c"># put your licence file where the container expects it</span>
+<span class="c"># put your licence where the container expects it — the file we
+# sent you is wherever you saved it, not inside this checkout</span>
 mkdir -p /etc/sengol
-cp trial-license.key /etc/sengol/license.key
+cp /path/to/sengol.lic /etc/sengol/sengol.lic
 
-<span class="c"># edit .env: set SENGOL_LICENSE_FILE, signing key, Postgres DSN
+<span class="c"># edit .env: SENGOL_LICENSE_FILE, KMS signing key, Postgres DSN
 </span>
 docker compose up -d
 
@@ -135,19 +136,16 @@ docker compose logs -f api</code></pre>
           <div class="panel install-panel" id="panel-helm" role="tabpanel" aria-labelledby="tab-helm" tabindex="0" hidden>
             <div class="code">
               <div class="code__bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span> Kubernetes cluster</div>
-<pre><code>helm repo add sengol https://charts.sengol.io
-helm repo update
+<pre><code><span class="c"># the chart is published as an OCI artifact with each release</span>
+kubectl create namespace sengol
 
 <span class="c"># mount the licence file as a Secret, not a ConfigMap</span>
 kubectl create secret generic sengol-license \
-  --from-file=license.key=./trial-license.key \
-  -n sengol --dry-run=client -o yaml | kubectl apply -f -
+  --from-file=license=./sengol.lic -n sengol
 
-helm install sengol sengol/sengol \
-  --namespace sengol --create-namespace \
-  --set license.secretName=sengol-license \
-  --set license.secretKey=license.key \
-  --set postgresql.enabled=true \
+helm install sengol oci://ghcr.io/sengol-io/charts/sengol \
+  --version &lt;release&gt; --namespace sengol \
+  --set license.existingSecret=sengol-license \
   -f values.yaml</code></pre>
             </div>
             <p class="field-hint" style="margin-top:14px">The chart wires <code style="font-family:var(--mono)">SENGOL_LICENSE_FILE</code> to the mounted secret path automatically. See <code style="font-family:var(--mono)">values.yaml</code> for HA replica count, ingress and KMS signing options.</p>
@@ -156,23 +154,16 @@ helm install sengol sengol/sengol \
           <!-- Terraform -->
           <div class="panel install-panel" id="panel-tf" role="tabpanel" aria-labelledby="tab-tf" tabindex="0" hidden>
             <div class="code">
-              <div class="code__bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span> main.tf</div>
-<pre><code><span class="k">module</span> <span class="s">"sengol"</span> {
-  <span class="k">source</span>  = <span class="s">"sengol-io/sengol/aws"</span>   <span class="c"># also: /azure, /gcp</span>
-  <span class="k">version</span> = <span class="s">"~> 1.0"</span>
+              <div class="code__bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span> shell</div>
+<pre><code><span class="c"># the stacks ship in the sengol repository: terraform/aws, /azure, /gcp</span>
+git clone https://github.com/sengol-io/sengol.git
+cd sengol/terraform/aws
 
-  <span class="k">license_file_path</span> = <span class="s">"./trial-license.key"</span>
-  <span class="k">deployment_name</span>   = <span class="s">"sengol-trial"</span>
-  <span class="k">replica_count</span>     = <span class="n">2</span>
-  <span class="k">air_gapped</span>        = <span class="k">false</span>
-}</code></pre>
+terraform init
+terraform apply -var-file=environments/prod.tfvars</code></pre>
             </div>
-<div class="code" style="margin-top:14px">
-  <div class="code__bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span> shell</div>
-<pre><code>terraform init
-terraform apply</code></pre>
-</div>
-            <p class="field-hint" style="margin-top:14px">Provisions the compute, the audit store, KMS signing keys and the load balancer. The licence file is uploaded once, at apply time, and never re-read from disk after boot.</p>
+            <p class="field-hint" style="margin-top:14px">Provisions the compute, the audit store, KMS signing keys and the load balancer.</p>
+            <p class="field-hint" style="margin-top:10px"><strong>Infrastructure only — the licence handoff is not wired yet.</strong> The stacks take the signing-key and JWT secret ARNs, but they have no licence input, so a Terraform apply on its own brings up an appliance that fails its licence check at boot. Place the licence on the task yourself, or use Docker Compose or Helm, until the stacks accept one.</p>
           </div>
 
           <!-- pip -->
@@ -184,7 +175,7 @@ terraform apply</code></pre>
 <span class="c"># SDK only — points at an API you already run (Compose/Helm/Terraform above),
 # it does not construct a Postgres store itself</span>
 <span class="k">export</span> SENGOL_API_URL=https://sengol.internal.yourbank.com
-<span class="k">export</span> SENGOL_LICENSE_FILE=/etc/sengol/license.key</code></pre>
+<span class="k">export</span> SENGOL_LICENSE_FILE=/etc/sengol/sengol.lic</code></pre>
             </div>
             <div class="code" style="margin-top:14px">
               <div class="code__bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span> agent.py</div>
@@ -213,12 +204,13 @@ sengol.<span class="f">instrument</span>()</code></pre>
           <div class="table-wrap">
             <table class="kv-table">
               <tbody>
-                <tr><th>Environment variable</th><td><code>SENGOL_LICENSE_FILE=/etc/sengol/license.key</code></td></tr>
-                <tr><th>Default path</th><td><code>/etc/sengol/license.key</code> — override with the variable above if your mount differs.</td></tr>
-                <tr><th>Format</th><td>An Ed25519-signed licence issued to your domain, verified offline against Sengol's public key — no network call, no phone-home.</td></tr>
+                <tr><th>Environment variable</th><td><code>SENGOL_LICENSE_FILE=/etc/sengol/sengol.lic</code></td></tr>
+                <tr><th>Default path</th><td><code>/etc/sengol/sengol.lic</code> — override with the variable above if your mount differs.</td></tr>
+                <tr><th>Renewal</th><td>The status is cached for at most a minute, and the cache is cut short at the licence's next expiry boundary. Replace the file in place and the appliance picks it up within about a minute — no restart.</td></tr>
+                <tr><th>Format</th><td>A signed licence (JWT, ES256) issued to your organisation and signed by a P-256 key held in Sengol's AWS KMS; verified offline against the public key baked into your build — no network call, no phone-home.</td></tr>
                 <tr><th>Docker Compose</th><td>Bind-mount the file and set the env var in <code>.env</code>.</td></tr>
-                <tr><th>Helm</th><td>Store it as a Kubernetes <code>Secret</code>; the chart's default <code>values.yaml</code> mounts it at the path above.</td></tr>
-                <tr><th>Terraform</th><td>Passed once at <code>apply</code> time as <code>license_file_path</code>; not re-read after boot.</td></tr>
+                <tr><th>Helm</th><td>Store it as a Kubernetes <code>Secret</code> and name it in <code>license.existingSecret</code>; the chart mounts it at <code>/etc/sengol/license/sengol.lic</code> and sets the variable for you.</td></tr>
+                <tr><th>Terraform</th><td>Not yet wired: the stacks have no licence input. Place the licence on the task yourself — the appliance reads <code>SENGOL_LICENSE_FILE</code> the same way it does under Compose and Helm.</td></tr>
               </tbody>
             </table>
           </div>
@@ -242,8 +234,8 @@ sengol.<span class="f">instrument</span>()</code></pre>
             <article class="step">
               <div class="step__num">01</div>
               <h3>Seed the demo</h3>
-              <p>Run the bundled reference agent against a sample KYC dataset so there's real evidence to look at, not an empty Console.</p>
-              <code>sengol demo seed</code>
+              <p>Run the bundled reference agent against a sample KYC dataset so there's real evidence to look at, not an empty Console. <code style="font-family:var(--mono);font-size:0.78rem">make demo</code> is a target in the repository, so run it from the repository root. Compose users are already there; the Helm and pip paths never clone, and the Terraform path leaves you in <code style="font-family:var(--mono);font-size:0.78rem">terraform/aws</code>.</p>
+              <code><span style="opacity:.62"># only if you have no checkout yet</span><br />git clone https://github.com/sengol-io/sengol.git &amp;&amp; cd sengol<br /><br /><span style="opacity:.62"># then, from the repository root</span><br />make demo</code>
             </article>
             <article class="step">
               <div class="step__num">02</div>
@@ -261,13 +253,13 @@ sengol.<span class="f">instrument</span>()</code></pre>
               <div class="step__num">04</div>
               <h3>Export a pack</h3>
               <p>Export the agent's evidence for the period as a portable bundle — the same export format an auditor receives.</p>
-              <code>sengol audit export --agent kyc-triage-agent</code>
+              <code>sengol export --tenant default --agent kyc-triage-agent --out pack.json</code>
             </article>
             <article class="step">
               <div class="step__num">05</div>
               <h3>Verify it, offline</h3>
               <p>Install the separate verifier and check the bundle with no network call and no access to your Sengol instance at all.</p>
-              <code>pip install sengol-verify<br />sengol-verify verify --offline pack.json</code>
+              <code>pip install sengol-verify<br />sengol-verify pack.json</code>
             </article>
           </div>
         </div>
