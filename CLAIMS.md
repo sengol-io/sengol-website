@@ -39,6 +39,8 @@ Sources, in order of authority:
 | Identity: Entra ID / OIDC app roles, SAML 2.0, SCIM users and groups with group-to-role mapping, local users with TOTP, audited break-glass, four built-in roles | index, security | ADR-0008; PRODUCT.md "Identity"; `sengol/sengol/api/v1/saml.py` |
 | Segregation of duties on judge promotion (maker-checker) | index | `sengol/sengol/governance/sod.py`; PRODUCT.md excludes only the configurable SoD *policy engine* |
 | Retention floors and tombstone erasure; **no legal hold, no dual-control erasure, no scheduled retention** | index, security | PRODUCT.md "Data lifecycle" and "What is deliberately not included" |
+| Terraform is infrastructure only — the stacks have no licence input, so an apply alone yields an appliance that fails its licence check at boot | install | `terraform/aws/variables.tf` (no `license_*` variable); `terraform/aws/modules/ecs/main.tf` (no licence secret) |
+| Licence status is cached at most 60s, cut short at the next expiry boundary — renewal is picked up without a restart | install | `sengol/governance/_license.py` `_CACHE_TTL_SECONDS = 60.0`, `_cache_until()` |
 | Signing keys in the customer's KMS; SBOM and signed images; non-root containers | security | PRODUCT.md "Operations"; `sengol/.github/workflows/publish.yml` (cosign + SBOM attestation) |
 | Appliance image runs Python 3.13; the SDK supports Python 3.11+ | index | `sengol/Dockerfile`; `sengol/pyproject.toml` `requires-python`; `sengol/AGENTS.md` |
 | Runs in your VPC, air-gap capable, on AWS, Azure, GCP, OpenShift or on-prem | index, security | PRODUCT.md "Install"; `sengol/terraform/{aws,azure,gcp}` |
@@ -51,3 +53,21 @@ Recorded here so the next copy change does not import them:
 - `sengol/docs/install/helm.mdx` names `charts.sengol.io` and `license.secretName`; the chart publishes to `oci://ghcr.io/sengol-io/charts/sengol` and the value is `license.existingSecret`.
 - `sengol/docs/install/docker-compose.mdx` clones `github.com/sengol/sengol`; the organisation is `sengol-io`.
 - `sengol/docs/install/terraform.mdx` shows a `license_secret_arn` input; `terraform/aws/variables.tf` has no licence input yet, so a Terraform-deployed appliance has no documented way to receive its licence.
+
+- **`PRODUCT.md` says dual-control erasure is archived; the appliance serves it.**
+  "What is deliberately not included" lists it as archived, but the running app
+  exposes `/v1/audit/erasure/dual-control`, `/disable` and `/disable/approve`,
+  `/v1/audit/erasure` documents a 403 when a tenant has made it MANDATORY, and
+  `sengol/governance/erasure_dual_control.py` implements it. `openapi.yaml` is
+  generated from `app.openapi()`, so those routes are definitely served. The
+  site currently follows PRODUCT.md and says nothing about it. One of the two
+  needs to change — this is a product decision, not a copy decision.
+- **S3 WORM archive is not in `PRODUCT.md` at all.** `sengol/api/s3_audit_store.py`
+  implements an Object Lock COMPLIANCE-mode archive (mandatory bucket
+  versioning, no bypass for anyone including account root). The previous site
+  copy advertised "WORM cold export"; this revision dropped it because
+  PRODUCT.md does not mention it. It is a real shipped capability and probably
+  belongs in PRODUCT.md.
+- **`sengol/README.md` line 26 shows `sengol-verify pack.zip`.** `sengol export`
+  writes a JSON bundle (`--out` is documented "Output path for bundle JSON"),
+  so the extension there is stale; this site says `pack.json`.

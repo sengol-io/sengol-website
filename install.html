@@ -153,21 +153,16 @@ helm install sengol oci://ghcr.io/sengol-io/charts/sengol \
           <!-- Terraform -->
           <div class="panel install-panel" id="panel-tf" role="tabpanel" aria-labelledby="tab-tf" tabindex="0" hidden>
             <div class="code">
-              <div class="code__bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span> main.tf</div>
+              <div class="code__bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span> shell</div>
 <pre><code><span class="c"># the stacks ship in the sengol repository: terraform/aws, /azure, /gcp</span>
 git clone https://github.com/sengol-io/sengol.git
 cd sengol/terraform/aws
 
-<span class="c"># the licence lives in your secrets manager, outside Terraform state</span>
 terraform init
 terraform apply -var-file=environments/prod.tfvars</code></pre>
             </div>
-<div class="code" style="margin-top:14px">
-  <div class="code__bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span> shell</div>
-<pre><code>terraform init
-terraform apply</code></pre>
-</div>
-            <p class="field-hint" style="margin-top:14px">Provisions the compute, the audit store, KMS signing keys and the load balancer. The licence file is uploaded once, at apply time, and never re-read from disk after boot.</p>
+            <p class="field-hint" style="margin-top:14px">Provisions the compute, the audit store, KMS signing keys and the load balancer.</p>
+            <p class="field-hint" style="margin-top:10px"><strong>Infrastructure only — the licence handoff is not wired yet.</strong> The stacks take the signing-key and JWT secret ARNs, but they have no licence input, so a Terraform apply on its own brings up an appliance that fails its licence check at boot. Place the licence on the task yourself, or use Docker Compose or Helm, until the stacks accept one.</p>
           </div>
 
           <!-- pip -->
@@ -210,10 +205,11 @@ sengol.<span class="f">instrument</span>()</code></pre>
               <tbody>
                 <tr><th>Environment variable</th><td><code>SENGOL_LICENSE_FILE=/etc/sengol/sengol.lic</code></td></tr>
                 <tr><th>Default path</th><td><code>/etc/sengol/sengol.lic</code> — override with the variable above if your mount differs.</td></tr>
+                <tr><th>Renewal</th><td>The status is cached for at most a minute, and the cache is cut short at the licence's next expiry boundary. Replace the file in place and the appliance picks it up within about a minute — no restart.</td></tr>
                 <tr><th>Format</th><td>A signed licence (JWT, ES256) issued to your organisation and signed by a P-256 key held in Sengol's AWS KMS; verified offline against the public key baked into your build — no network call, no phone-home.</td></tr>
                 <tr><th>Docker Compose</th><td>Bind-mount the file and set the env var in <code>.env</code>.</td></tr>
                 <tr><th>Helm</th><td>Store it as a Kubernetes <code>Secret</code> and name it in <code>license.existingSecret</code>; the chart mounts it at <code>/etc/sengol/license/sengol.lic</code> and sets the variable for you.</td></tr>
-                <tr><th>Terraform</th><td>Kept in your cloud's secrets manager, outside Terraform state, and mounted into the appliance task; re-read hourly like every other install.</td></tr>
+                <tr><th>Terraform</th><td>Not yet wired: the stacks have no licence input. Place the licence on the task yourself — the appliance reads <code>SENGOL_LICENSE_FILE</code> the same way it does under Compose and Helm.</td></tr>
               </tbody>
             </table>
           </div>
@@ -237,8 +233,8 @@ sengol.<span class="f">instrument</span>()</code></pre>
             <article class="step">
               <div class="step__num">01</div>
               <h3>Seed the demo</h3>
-              <p>Run the bundled reference agent against a sample KYC dataset so there's real evidence to look at, not an empty Console.</p>
-              <code>make demo</code>
+              <p>Run the bundled reference agent against a sample KYC dataset so there's real evidence to look at, not an empty Console. <code style="font-family:var(--mono);font-size:0.78rem">make demo</code> is a target in the repository, so clone it first — the Helm and pip paths above never do, and the Terraform path leaves you in <code style="font-family:var(--mono);font-size:0.78rem">sengol/terraform/aws</code>.</p>
+              <code>git clone https://github.com/sengol-io/sengol.git<br />cd sengol<br />make demo</code>
             </article>
             <article class="step">
               <div class="step__num">02</div>
