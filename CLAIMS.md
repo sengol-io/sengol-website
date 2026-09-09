@@ -71,3 +71,48 @@ Recorded here so the next copy change does not import them:
 - **`sengol/README.md` line 26 shows `sengol-verify pack.zip`.** `sengol export`
   writes a JSON bundle (`--out` is documented "Output path for bundle JSON"),
   so the extension there is stale; this site says `pack.json`.
+
+- **`sengol/docs/install/docker-compose.mdx` and the site both described an
+  "outbox worker" in the Compose stack.** `docker-compose.yml` defines
+  `postgres`, `sengol-api` and `pgbouncer` — there is no outbox worker service.
+  The Console is served by `sengol-api` (built into the image by the `console`
+  stage in `Dockerfile`). This site now says "the API, the Console, Postgres and
+  a connection pooler"; the doc is still wrong.
+
+## Removed from the site, 2026-09
+
+Recorded so the next copy change does not re-import them. Each was on the site
+with no row in this register. All three groups verified against the code before
+removal; the decision to remove was taken deliberately, not because the code
+was missing.
+
+**Contradicted by `PRODUCT.md` "What is deliberately not included".** The code
+ships all three; the product doc calls them archived. Until one side changes,
+the site claims neither.
+
+| Removed | Site location | Conflict |
+|---|---|---|
+| "Gateway-native — drop into LiteLLM or Portkey" | index, runtime guardrails tab | `PRODUCT.md` archives **Gateway / proxy**; `sengol/gateway/` ships |
+| "Spend & quota governance" card | index, platform capabilities | `PRODUCT.md` archives **Quota**; `sengol/gateway/core.py` ships it |
+| "Multi-replica coordination" | index, security & deployment | `PRODUCT.md` archives **HA coordination**; it ships "Stateless API — safe to run at N replicas", which the site now says instead |
+
+**No source row, removed rather than reworded.** Present in `sengol/docs` and in
+code, absent from `PRODUCT.md` and from this register.
+
+| Removed | Site location | Code |
+|---|---|---|
+| CUSUM drift detection with closed-loop response | index, platform capabilities (card) | `sengol/runtime/drift.py` |
+| Shadow agent discovery | index, platform capabilities (card) | `sengol/discovery/`, `sengol/governance/shadow_agents.py` |
+| Recertification triggers | index, platform capabilities (card) and persona list | `sengol/api/recert_router.py` |
+| Policy portability — AWS Cedar export, Microsoft ACS import | index, platform capabilities (card) | `sengol/policies/cedar.py`, `sengol/policies/acs.py` |
+| Red teaming via Garak and PyRIT | index, evaluation tab | `sengol/evaluators/redteam/` |
+| "OWASP ASI coverage included" | index, regulation tab | — |
+| "under a millisecond" (deterministic evaluators) | index, how it works step 02 | unbenchmarked |
+| "about 3 minutes" (hosted trial provisioning) | index, signup | unbenchmarked |
+| "keyset pagination, durable outbox delivery, no Redis required" | index, security & deployment | real, but no source row |
+
+Two capabilities still on the site have no row in the table above and no
+`PRODUCT.md` entry — **delegation-depth limits** and **MCP tool integrity**
+(both `sengol/runtime/authorization.py`, documented in `sengol/docs`). They were
+left in place and reworded. They need a decision: add a source row, or remove
+them the way the rows above were removed.

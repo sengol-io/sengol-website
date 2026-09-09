@@ -14,7 +14,7 @@
   <meta property="og:locale" content="en_US" />
   <meta property="og:url" content="https://sengol.io/" />
   <meta property="og:title" content="AI Agent Assurance & Governance Platform | Sengol" />
-  <meta property="og:description" content="The assurance layer for production AI agents. Governance says what should happen; Sengol proves what did — every decision a cryptographically signed record your regulator can verify offline, inside your own perimeter." />
+  <meta property="og:description" content="Sengol sits in front of your production AI agents. It blocks unsafe tool calls and responses, scores every model call, gates every deploy, and writes each decision as a signed record an examiner can verify offline. Governance says what should happen; Sengol proves what did." />
   <meta property="og:image" content="https://sengol.io/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -22,7 +22,7 @@
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="AI Agent Assurance & Governance Platform | Sengol" />
-  <meta name="twitter:description" content="The assurance layer for production AI agents. Governance says what should happen; Sengol proves what did — every decision a cryptographically signed record your regulator can verify offline, inside your own perimeter." />
+  <meta name="twitter:description" content="Sengol sits in front of your production AI agents. It blocks unsafe tool calls and responses, scores every model call, gates every deploy, and writes each decision as a signed record an examiner can verify offline. Governance says what should happen; Sengol proves what did." />
   <meta name="twitter:image" content="https://sengol.io/og-image.png" />
 
   <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
@@ -49,7 +49,7 @@
         "width": 180,
         "height": 180
       },
-      "description": "Sengol builds the AI agent governance and signed-evidence platform for regulated industries.",
+      "description": "Sengol builds the AI agent assurance platform for regulated industries: runtime governance controls, and signed evidence an examiner can verify offline.",
       "email": "hello@sengol.io",
       "foundingLocation": {
         "@type": "Place",
@@ -88,8 +88,7 @@
         "Offline evidence verification with no vendor server",
         "CI/CD deployment gate with pull request verdicts",
         "29 regulatory frameworks including OSFI E-23, EU AI Act, NIST AI RMF and ISO/IEC 42001",
-        "Model drift detection with automated response policies",
-        "Segregation of duties, SSO, SCIM and resource-scoped access",
+          "Segregation of duties, SSO, SCIM and resource-scoped access",
         "Retention floors and right-to-erasure"
       ],
       "isAccessibleForFree": false
@@ -127,7 +126,7 @@
           "name": "How is this different from LangSmith, Arize or Galileo?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Those are developer observability tools — they help engineers debug agents faster, and they do it well. They produce dashboards and scores. Sengol produces evidence: a signed, hash-chained, offline-verifiable record bound to the specific obligation it satisfies, plus the runtime controls that decide what happens next. The gate verdict and the record you hand an examiner are the same object."
+            "text": "Those are developer observability tools — they help engineers debug agents faster, and they do it well. They produce dashboards and scores. Sengol produces evidence: a signed, hash-chained, offline-verifiable record bound to the specific obligation it satisfies, plus the runtime controls that decide what happens next."
           }
         },
         {
@@ -284,7 +283,7 @@
           </nav>
 
           <div class="nav__cta">
-            <a class="btn btn--primary btn--sm" href="/signup.html">Start free trial</a>
+            <a class="btn btn--primary btn--sm" href="/signup.html">Start 14-day trial</a>
           </div>
 
           <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="drawer" aria-label="Open menu">
@@ -300,7 +299,7 @@
           <a href="/install.html">Install</a>
           <a href="https://docs.sengol.io">Docs</a>
           <a href="/signup.html">Sign up</a>
-          <a class="btn btn--primary" href="/signup.html">Start free trial</a>
+          <a class="btn btn--primary" href="/signup.html">Start 14-day trial</a>
         </div>
       </div>
     </header>
@@ -320,21 +319,21 @@
               </span>
 
               <h1>
-                <span class="verb">Build</span> without fear.<br />
-                <span class="verb">Govern</span> without friction.
+                <span class="verb">Prove</span> your AI agents<br />
+                are under control.
               </h1>
 
               <p class="hero__sub">
-                Sengol is the assurance layer for production AI agents. Governance says what
-                should happen; Sengol proves what did — guardrails inline, every call evaluated,
-                every deploy gated, and each decision written as a cryptographically signed,
-                tamper-evident record your risk team and your regulator can verify, inside your
-                own perimeter.
+                Sengol sits in front of your production AI agents. It blocks unsafe tool calls
+                and responses, scores every model call, gates every deploy, and writes each
+                decision as a signed, tamper-evident record an examiner can verify offline. It
+                runs inside your own network. Governance says what should happen; Sengol proves
+                what did.
               </p>
 
               <div class="hero__actions">
                 <a class="btn btn--primary" href="/signup.html">
-                  Start your 14-day trial
+                  Start 14-day trial
                   <svg aria-hidden="true"><use href="#i-arrow" /></svg>
                 </a>
                 <a class="btn btn--ghost" href="/install.html">
@@ -444,7 +443,7 @@
               <span class="door__badge chip chip--gold">Try it hosted</span>
               <div class="card__icon"><svg aria-hidden="true"><use href="#i-cpu" /></svg></div>
               <h3>We spin up your instance.</h3>
-              <p class="lede">A private Sengol instance on our AWS, ready in about 3 minutes, pre-loaded with a reference agent and sample evidence so there's something to look at on minute one.</p>
+              <p class="lede">A private Sengol instance on our AWS, pre-loaded with a reference agent and sample evidence so there is something to look at straight away.</p>
               <ul class="feature-list">
                 <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>No install</b> — nothing to run locally, just a URL and a login.</span></li>
                 <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Full capability</b> — every evaluator, the CI gate, the Console, offline verification.</span></li>
@@ -477,9 +476,8 @@
             <h2>Dashboards score your agents. They don't prove anything.</h2>
             <p class="lede">
               When an examiner asks <em>"show me the evidence for this AI agent"</em>, a trace
-              viewer is not an answer. Sengol produces the artifact that is — the gate verdict
-              and the regulator-submittable record are the same signed object, not three
-              synchronized copies.
+              viewer is not an answer. Sengol produces the artifact that is: the gate verdict
+              and the record you submit are one signed object.
             </p>
           </div>
 
@@ -490,7 +488,7 @@
             </div>
             <div class="tension__item">
               <b>Your risk team wants proof.</b>
-              <span>Not screenshots. Append-only, hash-chained, independently verifiable records.</span>
+              <span>Append-only, hash-chained records an outside party can verify.</span>
             </div>
             <div class="tension__item">
               <b>Your business wants both.</b>
@@ -498,7 +496,7 @@
             </div>
           </div>
 
-          <p class="tension__promise reveal">Sengol is the reason you can say yes to all three.</p>
+          <p class="tension__promise reveal">Sengol is how you say yes to all three.</p>
         </div>
       </section>
 
@@ -521,7 +519,7 @@
             <article class="step">
               <div class="step__num">02</div>
               <h3>Evaluate</h3>
-              <p>Deterministic evaluators run first in under a millisecond and short-circuit on CRITICAL. LLM judges then run concurrently — hallucination, PII, toxicity, tool misuse, adversarial robustness.</p>
+              <p>Deterministic evaluators run first and stop the moment one returns CRITICAL. LLM judges then run concurrently — hallucination, PII, toxicity, tool misuse, adversarial robustness.</p>
               <code>32 evaluators</code>
             </article>
             <article class="step">
@@ -553,7 +551,7 @@
             <button class="tab" role="tab" id="tab-runtime"  aria-controls="panel-runtime"  aria-selected="true"><svg aria-hidden="true"><use href="#i-shield" /></svg> Runtime guardrails</button>
             <button class="tab" role="tab" id="tab-eval"     aria-controls="panel-eval"     aria-selected="false"><svg aria-hidden="true"><use href="#i-chart" /></svg> Evaluation &amp; judges</button>
             <button class="tab" role="tab" id="tab-evidence" aria-controls="panel-evidence" aria-selected="false"><svg aria-hidden="true"><use href="#i-lock" /></svg> Signed evidence</button>
-            <button class="tab" role="tab" id="tab-reg"      aria-controls="panel-reg"      aria-selected="false"><svg aria-hidden="true"><use href="#i-file" /></svg> Regulation compiler</button>
+            <button class="tab" role="tab" id="tab-reg"      aria-controls="panel-reg"      aria-selected="false"><svg aria-hidden="true"><use href="#i-file" /></svg> Regulations</button>
             <button class="tab" role="tab" id="tab-access"   aria-controls="panel-access"   aria-selected="false"><svg aria-hidden="true"><use href="#i-users" /></svg> Access governance</button>
           </div>
 
@@ -566,9 +564,8 @@
                 <ul class="feature-list">
                   <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Pre- and post-call interception</b> — patches the Anthropic and OpenAI SDKs; streaming responses are buffered and evaluated before delivery.</span></li>
                   <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Tool authorization allow-lists</b> — per-agent policies block unauthorized tool calls, with a signed decision record on allow <em>and</em> block.</span></li>
-                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Delegation-depth limits</b> — agent-to-agent chains are reconstructed from OTel spans and attenuated at a declared depth.</span></li>
-                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>MCP tool integrity</b> — tool definitions are hash-pinned at approval, so a post-approval "rug pull" is flagged CRITICAL.</span></li>
-                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Gateway-native</b> — drop into LiteLLM or Portkey for allow / block / redact with in-path PII redaction.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Delegation limits</b> — when one agent calls another, Sengol reconstructs the chain from your OpenTelemetry traces and stops it at a depth you set.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>MCP tool integrity</b> — each tool definition is fingerprinted when you approve it. If it changes afterwards, the call is flagged CRITICAL.</span></li>
                 </ul>
                 <a class="panel__more" href="https://docs.sengol.io/guides/guardrails">Read the guardrails guide<svg aria-hidden="true"><use href="#i-arrow" /></svg></a>
               </div>
@@ -602,9 +599,8 @@ resp = client.messages.<span class="f">create</span>(...)
                 <ul class="feature-list">
                   <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>32 built-in evaluators</b> — hallucination, faithfulness, PII, toxicity, refusal accuracy, explainability, adversarial robustness, AML typology, tool-call correctness.</span></li>
                   <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Trajectory evaluation</b> — score the whole agent run, not just the final message: tool order, argument schemas, forbidden tools, intent resolution.</span></li>
-                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Ensembles and flake tolerance</b> — unanimous, majority or weighted vote; repeat an LLM check N times and require M passes.</span></li>
-                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Red teaming</b> — pluggable adversarial backends (Garak, PyRIT) surface probe breaches as CRITICAL findings.</span></li>
-                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Own your judge</b> — your reviewers' signed decisions export as labelled training data; you train a candidate on your own ML platform, and Sengol calibrates it against the Judge Qualification Standard (TPR/TNR, Cohen's κ) and promotes it by signed id. Sengol never trains a model.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Ensembles and repeat runs</b> — unanimous, majority or weighted vote; repeat an LLM check N times and require M passes.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Own your judge</b> — your reviewers' signed decisions export as labelled training data; you train a candidate on your own ML platform, and Sengol calibrates it against the Judge Qualification Standard — the TPR, TNR and Cohen's κ thresholds you set — and promotes it by signed id. Sengol never trains a model.</span></li>
                 </ul>
                 <a class="panel__more" href="https://docs.sengol.io/reference/evaluator-library">Browse the evaluator library<svg aria-hidden="true"><use href="#i-arrow" /></svg></a>
               </div>
@@ -630,13 +626,13 @@ pass rate <span class="n">0.943</span> &lt; min_pass <span class="n">0.95</span>
           <div class="panel" id="panel-evidence" role="tabpanel" aria-labelledby="tab-evidence" tabindex="0" hidden>
             <div class="panel__grid">
               <div>
-                <h3>Evidence, not logs. Verifiable by someone who doesn't trust you.</h3>
+                <h3>Records anyone can verify — including people who don't trust you.</h3>
                 <p>Every verdict is a signed, append-only record in a per-agent hash chain. Change one byte anywhere in the history and verification fails — loudly, and provably.</p>
                 <ul class="feature-list">
                   <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>HMAC-SHA256 hash chain</b> — append-only, tamper-evident, with a canonical signed payload per record type.</span></li>
                   <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Ed25519 countersignatures</b> — a second, asymmetric signature so a third party verifies without ever holding your secret.</span></li>
-                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Merkle anchoring</b> — periodic roots anchored to an RFC 3161 timestamp authority and Rekor, proving a record existed at a point in time.</span></li>
-                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Offline verification</b> — export a portable bundle and verify it with <code style="font-family:var(--mono);font-size:0.82rem;background:var(--panel);padding:1px 6px;border-radius:5px;color:var(--gold-bright)">sengol-verify</code>, a separate open-source tool that never talks to Sengol and never checks a licence.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Timestamp anchoring</b> — periodically a fingerprint of the chain is lodged with an independent timestamp authority (RFC 3161) and a public transparency log (Rekor), proving the records existed at that time.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Offline verification</b> — export a portable bundle and verify it with <code style="font-family:var(--mono);font-size:0.82rem;background:var(--panel);padding:1px 6px;border-radius:5px;color:var(--gold-bright)">sengol-verify</code>.</span></li>
                   <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Append-only Postgres store</b> — tamper-evident by the hash chain and the signatures, not by trusting the storage vendor.</span></li>
                 </ul>
                 <a class="panel__more" href="https://docs.sengol.io/concepts/audit-records">How audit records are signed<svg aria-hidden="true"><use href="#i-arrow" /></svg></a>
@@ -662,14 +658,14 @@ tampered     <span class="ok">0</span>
           <div class="panel" id="panel-reg" role="tabpanel" aria-labelledby="tab-reg" tabindex="0" hidden>
             <div class="panel__grid">
               <div>
-                <h3>Regulations as executable objects, not PDFs.</h3>
-                <p>A framework is a catalog entry, not a Python class. Sengol compiles it into obligations, routes each obligation to the evaluators that satisfy it, and keeps the evidence bound to the exact control that ran.</p>
+                <h3>Each regulation becomes a list of obligations.</h3>
+                <p>Sengol compiles a framework into obligations, routes each obligation to the evaluators that satisfy it, and keeps the evidence bound to the exact control that ran.</p>
                 <ul class="feature-list">
                   <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>29 frameworks out of the box</b> — OSFI E-23, SR 11-7, EU AI Act, GDPR, HIPAA, FINTRAC, MAS, SAMA, APRA, ISO 42001, NIST AI RMF and more.</span></li>
                   <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Bring your own policy</b> — an internal standard is one YAML entry. No new code, same signed evidence, same reports.</span></li>
-                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Cross-framework crosswalk</b> — one control node maps to many regimes, so a single run answers OSFI and the AI Act at once. OWASP ASI coverage included.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Cross-framework crosswalk</b> — one control node maps to many regimes, so a single run answers OSFI and the AI Act at once.</span></li>
                   <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Obligation coverage, live</b> — see which obligations are covered, by which evaluator, by which record — and which are not.</span></li>
-                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Regulator-shaped reports</b> — JSON evidence pack and CRO-readable PDF, driven by your ControlBook.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Reports for the regulator</b> — a JSON evidence pack and a PDF written for the risk committee, both driven by your ControlBook: the file where you declare which controls apply to which agent, and what passing means.</span></li>
                 </ul>
                 <a class="panel__more" href="https://docs.sengol.io/concepts/controlbook">Read the ControlBook guide<svg aria-hidden="true"><use href="#i-arrow" /></svg></a>
               </div>
@@ -697,13 +693,13 @@ tampered     <span class="ok">0</span>
           <div class="panel" id="panel-access" role="tabpanel" aria-labelledby="tab-access" tabindex="0" hidden>
             <div class="panel__grid">
               <div>
-                <h3>Identity, segregation of duties, retention and erasure.</h3>
-                <p>Governance software that can't govern its own operators isn't evidence. Sengol enforces who may approve what, records it, and signs it.</p>
+                <h3>Who can do what, provable after the fact.</h3>
+                <p>Sengol enforces who may approve what, records it, and signs it.</p>
                 <ul class="feature-list">
                   <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>SSO and provisioning</b> — OIDC and SAML 2.0 sign-in, SCIM 2.0 user lifecycle, IdP group-to-role mapping re-derived on every login.</span></li>
-                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Segregation of duties</b> — object-scoped maker–checker: the person who builds a judge cannot be the person who promotes it. Overrides require a reason and a signed record.</span></li>
-                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Resource-scoped access</b> — bounded roles over label hierarchies, resolved server-side per request and pushed into the query, so a scoped auditor sees only their line of business.</span></li>
-                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Independent challenge</b> — an E-23 style validator review, attested by a challenger provably disjoint from the development actors.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Segregation of duties</b> — maker–checker on every promotion: the person who builds a judge cannot be the one who promotes it. Overrides require a reason and a signed record.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Scoped access</b> — an auditor for one line of business sees only that line of business, enforced in the query rather than hidden in the screen.</span></li>
+                  <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Independent challenge</b> — an E-23 style validator review, carried out by someone who had no hand in building the agent, and the record proves it.</span></li>
                   <li><svg aria-hidden="true"><use href="#i-check-circle" /></svg><span><b>Retention and erasure</b> — statutory retention floors the store enforces, and GDPR/PIPEDA tombstone erasure that purges the data without breaking the chain.</span></li>
                 </ul>
                 <a class="panel__more" href="https://docs.sengol.io/guides/access-governance">Read the access governance guide<svg aria-hidden="true"><use href="#i-arrow" /></svg></a>
@@ -734,51 +730,22 @@ mfa_asserted=true · acr=urn:mace:...:mfa</code></pre>
         <div class="container">
           <div class="section-head reveal">
             <span class="eyebrow"><svg aria-hidden="true"><use href="#i-bolt" /></svg> Platform capabilities</span>
-            <h2>The parts nobody remembers until the audit.</h2>
+            <h2>The rest of what an examiner asks for.</h2>
           </div>
 
           <div class="bento reveal">
             <article class="card card--wide">
               <div class="card__icon"><svg aria-hidden="true"><use href="#i-branch" /></svg></div>
               <div class="card__head"><h3>CI/CD gate with PR verdicts</h3></div>
-              <p>A GitHub Action runs your suite on every pull request, posts a sticky comment with the verdict and coverage, and exits non-zero to block the merge. The gate verdict <em>is</em> the audit record — not a copy of it.</p>
-            </article>
-
-            <article class="card card--wide">
-              <div class="card__icon"><svg aria-hidden="true"><use href="#i-refresh" /></svg></div>
-              <div class="card__head"><h3>Drift detection with a closed loop</h3></div>
-              <p>CUSUM detection on the live pass-rate stream. A breach doesn't just alert — it can trigger re-evaluation, suspend the agent, block new deploys, or route to human approval, and every response is signed.</p>
-            </article>
-
-            <article class="card">
-              <div class="card__icon"><svg aria-hidden="true"><use href="#i-eye" /></svg></div>
-              <div class="card__head"><h3>Shadow agent discovery</h3></div>
-              <p>Find agents running in your estate that nobody registered — then register, dismiss, or quarantine them with a signed disposition.</p>
-            </article>
-
-            <article class="card">
-              <div class="card__icon"><svg aria-hidden="true"><use href="#i-chart" /></svg></div>
-              <div class="card__head"><h3>Spend &amp; quota governance</h3></div>
-              <p>Per-agent, per-model cost and token budgets with signed usage evidence. Multi-currency limits with pinned or live FX.</p>
-            </article>
-
-            <article class="card">
-              <div class="card__icon"><svg aria-hidden="true"><use href="#i-file" /></svg></div>
-              <div class="card__head"><h3>Recertification triggers</h3></div>
-              <p>When a regulation changes, affected agents are queued for recertification automatically — from a signed regulation-update event.</p>
+              <p>A GitHub Action runs your suite on every pull request, posts a comment with the verdict and coverage, and exits non-zero to block the merge. The gate verdict <em>is</em> the audit record — not a copy of it.</p>
             </article>
 
             <article class="card card--wide">
               <div class="card__icon"><svg aria-hidden="true"><use href="#i-scale" /></svg></div>
               <div class="card__head"><h3>Human review queue &amp; authority model</h3></div>
-              <p>Escalation with SLAs, override authority by risk tier, and a versioned authority model whose status transitions are themselves signed records. Who may reverse a governance action — and what evidence that takes — is a declared artifact, not tribal knowledge.</p>
+              <p>Escalation with SLAs, override authority by risk tier, and a versioned authority model whose status transitions are themselves signed records. Who may reverse a governance action — and what evidence that takes — is written down and versioned.</p>
             </article>
 
-            <article class="card card--wide">
-              <div class="card__icon"><svg aria-hidden="true"><use href="#i-code" /></svg></div>
-              <div class="card__head"><h3>Policy portability</h3></div>
-              <p>Export authorization policies to AWS Cedar, import Microsoft Agent Control Specification manifests as declared capabilities. Your policy is not trapped in our format.</p>
-            </article>
           </div>
         </div>
       </section>
@@ -788,7 +755,7 @@ mfa_asserted=true · acr=urn:mace:...:mfa</code></pre>
         <div class="container">
           <div class="section-head reveal">
             <span class="eyebrow"><svg aria-hidden="true"><use href="#i-scale" /></svg> Regulatory frameworks</span>
-            <h2>29 frameworks compiled. Yours is one YAML entry away.</h2>
+            <h2>29 frameworks included. Your own policy is one entry away.</h2>
             <p class="lede">Sengol is not OSFI-specific. It is opinionated about OSFI E-23 because that is where it ships first.</p>
           </div>
         </div>
@@ -911,11 +878,11 @@ mfa_asserted=true · acr=urn:mace:...:mfa</code></pre>
               </li>
               <li>
                 <span class="ic"><svg aria-hidden="true"><use href="#i-db" /></svg></span>
-                <div><b>Built for scale and HA</b><p>Multi-replica coordination, connection pooling, keyset pagination, and durable outbox delivery — no Redis required.</p></div>
+                <div><b>Built for scale</b><p>The API is stateless, so it runs safely at as many replicas as you need.</p></div>
               </li>
               <li>
                 <span class="ic"><svg aria-hidden="true"><use href="#i-file" /></svg></span>
-                <div><b>Retention done correctly</b><p>Statutory retention floors the store enforces, and tombstone erasure for data-subject requests. Erasure never breaks the chain.</p></div>
+                <div><b>Retention and erasure</b><p>Statutory retention floors the store enforces, and tombstone erasure for data-subject requests. Erasure never breaks the chain.</p></div>
               </li>
             </ul>
           </div>
@@ -959,7 +926,7 @@ mfa_asserted=true · acr=urn:mace:...:mfa</code></pre>
               <ul>
                 <li><svg aria-hidden="true"><use href="#i-check" /></svg><span>Every response scored against declared controls</span></li>
                 <li><svg aria-hidden="true"><use href="#i-check" /></svg><span>Human review queue with escalation SLAs</span></li>
-                <li><svg aria-hidden="true"><use href="#i-check" /></svg><span>Automatic recertification on regulation change</span></li>
+                <li><svg aria-hidden="true"><use href="#i-check" /></svg><span>Evidence bound to the obligation it satisfies</span></li>
                 <li><svg aria-hidden="true"><use href="#i-check" /></svg><span>Retention floors, defensible erasure</span></li>
               </ul>
             </article>
@@ -991,7 +958,7 @@ mfa_asserted=true · acr=urn:mace:...:mfa</code></pre>
             </details>
             <details>
               <summary>How is this different from LangSmith, Arize or Galileo?<svg class="plus" aria-hidden="true"><use href="#i-plus" /></svg></summary>
-              <p>Those are developer observability tools — they help engineers debug agents faster, and they do it well. They produce dashboards and scores. Sengol produces evidence: a signed, hash-chained, offline-verifiable record bound to the specific obligation it satisfies, plus the runtime controls that decide what happens next. The gate verdict and the record you hand an examiner are the same object.</p>
+              <p>Those are developer observability tools — they help engineers debug agents faster, and they do it well. They produce dashboards and scores. Sengol produces evidence: a signed, hash-chained, offline-verifiable record bound to the specific obligation it satisfies, plus the runtime controls that decide what happens next.</p>
             </details>
             <details>
               <summary>Does any of my data leave my infrastructure?<svg class="plus" aria-hidden="true"><use href="#i-plus" /></svg></summary>
@@ -1030,11 +997,11 @@ mfa_asserted=true · acr=urn:mace:...:mfa</code></pre>
 
             <div class="hero__actions" style="justify-content:center;margin-top:30px">
               <a class="btn btn--primary" href="/signup.html">
-                Start your 14-day trial
+                Start 14-day trial
                 <svg aria-hidden="true"><use href="#i-arrow" /></svg>
               </a>
               <a class="btn btn--ghost" href="mailto:hello@sengol.io">
-                Talk to us first
+                Talk to us
                 <svg aria-hidden="true"><use href="#i-arrow" /></svg>
               </a>
             </div>
@@ -1087,7 +1054,7 @@ mfa_asserted=true · acr=urn:mace:...:mfa</code></pre>
           <div>
             <h4>Company</h4>
             <ul>
-              <li><a href="/signup.html">Start a trial</a></li>
+              <li><a href="/signup.html">Start 14-day trial</a></li>
               <li><a href="mailto:hello@sengol.io">hello@sengol.io</a></li>
             </ul>
           </div>
